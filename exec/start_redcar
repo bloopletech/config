@@ -1,6 +1,1 @@
-#!/usr/bin/env bash
-if [[ "$1" == "" ]] || [[ "$1" == "." ]]; then
-    gvim -c "cd $PWD" &
-else
-    gvim -c "cd $PWD" --remote-silent "$1" &
-fi
+/home/bloopletech/key/config/exec/e
