@@ -1,0 +1,73 @@
+#BASIC COLOUR SETTINGS
+MODKEY=Mod1
+WMII_FOCUSCOLORS='#ffffff #333333 #000000'
+WMII_BACKGROUND='#333333'
+WMII_NORMCOLORS='#000000 #dddddd #333333'
+WMII_FONT='xft:Ubuntu-8'
+#WMII_FONT='xft:Monospace-10'
+#WMII_FONT='-*-fixed-medium-r-normal-*-13-*-*-*-*-*-*-*'
+#WMII_FONT='-*-terminus-medium-r-normal-*-14-*-*-*-*-*-*-*'
+
+#AUTOMATIC TAGGING
+wmiir write /rules <<EOF
+/.*/ allow=activate continue=1
+/MPlayer|VLC/ floating=on tags=6MEDIA
+/Banshee/ tags=6MEDIA
+/Terminal/ tags=1TERMINAL
+/.*Google Chrome$/ tags=2BROWSER
+/.*Firefox$/ tags=2BROWSER
+/Redcar/ tags=3EDITOR floating=off
+/gvim/ tags=3EDITOR
+/nautilus/ tags=4FILES
+/eog/ tags=7IMAGES
+/Toolbox/ floating=on
+/HipChat|XChat|Skype/ tags=8CHAT
+/witray/ tags=10IGNORE
+/.*/ tags=9OTHER
+EOF
+
+#MAKE SURE ALL TAGS GO TO COLMODE STACK+MAX
+wi_events <<EOF
+Event FocusTag
+        wmiir xwrite /tag/sel/ctl 'colmode 1 stack+max'
+        wmiir xwrite /tag/sel/ctl 'colmode ~ stack+max'
+        wmiir xwrite /tag/9OTHER/ctl 'colmode 1 stack'
+        wmiir xwrite /tag/9OTHER/ctl 'colmode ~ stack'
+Key F1
+        wmiir xwrite /ctl 'view 1TERMINAL'
+Key F2
+        wmiir xwrite /ctl 'view 2BROWSER'
+Key F3
+        wmiir xwrite /ctl 'view 3EDITOR'
+Key F4
+        wmiir xwrite /ctl 'view 4FILES'
+Key F6
+        wmiir xwrite /ctl 'view 6MEDIA'
+Key F7
+        wmiir xwrite /ctl 'view 7IMAGES'
+Key F8
+        wmiir xwrite /ctl 'view 8CHAT'
+Key F9
+        wmiir xwrite /ctl 'view 9OTHER'
+EOF
+
+#STATUS BAR TEXT
+status() {
+#  echo -n "label ⌚ $(iostat -c | tail -2 | grep -o '[0-9.]\+' | head -4 | (tr '\n' +; echo 0) | bc | grep -o '[0-9]\+' | head -1)% | ⚡ $(acpi -b | grep -o '[0-9]\+%') | $(date +'%a %I:%M%p')";
+  echo -n "label $(cat /proc/loadavg | cut -f1 -d ' ') | $(acpi -b | grep -o '[0-9]\+%') | $(date +'%a %I:%M%p')";
+  #echo -n "label ☕ $(cat /proc/loadavg | cut -f1 -d ' ') | ⚡ $(acpi -b | grep -o '[0-9]\+%') | $(date +'%a %I:%M%p')";
+}
+
+#GIVE ALL WINDOWS THE RIGHT GNOME THEME
+gnome-settings-daemon &
+#POWER MANAGEMENT ON
+gnome-power-manager &
+#KICKOFF STUFF I ALWAYS WANT
+chrome &
+gnome-terminal &
+nautilus &
+~/.wmii-hg/slow-starters &
+witray &
+#witray -s 19 &
+#INTERNETS GO
+nm-applet &
