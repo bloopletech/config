@@ -1,2 +1,2 @@
 #!/bin/bash
-mplayer -really-quiet -nolirc -framedrop -dr -fs -demuxer lavf -alang jpn,jp,eng,en -slang eng,en -ass -embeddedfonts -volume 100 "$1" 2>&1 >/dev/null 
+mplayer -really-quiet -nolirc -framedrop -dr -vo xv -fs -demuxer lavf -alang jpn,jp,eng,en -slang eng,en -ass -embeddedfonts -volume 100 "$1" 2>&1 >/dev/null 
