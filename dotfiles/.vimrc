@@ -3,6 +3,8 @@ set noswapfile
 set backspace=indent,eol,start
 set number
 set guioptions-=T
+set guioptions-=t
+set showtabline=0
 set clipboard=unnamed
 
 set t_Co=256
