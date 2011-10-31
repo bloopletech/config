@@ -11,6 +11,7 @@ set t_Co=256
 colorscheme railscasts
 highlight Pmenu guifg=#E6E1DC guibg=#111111
 highlight PmenuSel guifg=#E6E1DC guibg=#5A647E
+highlight MBENormal gui=NONE guifg=#BC9458
 
 "set showmatch
 "set matchtime=500
