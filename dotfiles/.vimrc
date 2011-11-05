@@ -30,6 +30,10 @@ set selectmode=mouse
 nnoremap <S-T> :<C-u>FufFile **/<CR>
 nnoremap <S-B> :<C-u>FufBuffer<CR>
 
+
+nnoremap U <C-R>
+nnoremap <C-R> U
+
 "imap <Tab> <Esc>
 "nmap <Tab> <Esc>:
 
