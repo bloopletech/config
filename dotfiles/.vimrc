@@ -6,6 +6,7 @@ set guioptions-=T
 set guioptions-=t
 set showtabline=0
 set clipboard=unnamed
+set hidden
 
 set t_Co=256
 colorscheme railscasts
@@ -27,9 +28,7 @@ set hls
 set selectmode=mouse
 
 nnoremap <S-T> :<C-u>FufFile **/<CR>
-
-let fuf_keyOpen = '<C-l>'
-let fuf_keyOpenTabpage = '<CR>'
+nnoremap <S-B> :<C-u>FufBuffer<CR>
 
 "imap <Tab> <Esc>
 "nmap <Tab> <Esc>:
@@ -39,3 +38,5 @@ vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
 cmap <C-v> <C-r>"
+
+"set wildchar=<Tab> wildmenu wildmode=full
