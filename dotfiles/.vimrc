@@ -30,7 +30,6 @@ set selectmode=mouse
 nnoremap <S-T> :<C-u>FufFile **/<CR>
 nnoremap <S-B> :<C-u>FufBuffer<CR>
 
-
 nnoremap U <C-R>
 nnoremap <C-R> U
 
@@ -43,4 +42,5 @@ vmap <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
 cmap <C-v> <C-r>"
 
+nnoremap q bd
 "set wildchar=<Tab> wildmenu wildmode=full

@@ -5,3 +5,4 @@ rails server -p 30814 -e production -d >/dev/null 2>&1
 cd ~/key/mangar
 rails server -p 30813 -d >/dev/null 2>&1
 cd ~
+super share
