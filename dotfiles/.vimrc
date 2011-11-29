@@ -26,6 +26,7 @@ set incsearch
 set hls
 
 set selectmode=mouse
+"set mousemode=popup
 
 nnoremap <S-T> :<C-u>FufFile **/<CR>
 nnoremap <S-B> :<C-u>FufBuffer<CR>
@@ -44,3 +45,14 @@ cmap <C-v> <C-r>"
 
 nnoremap q bd
 "set wildchar=<Tab> wildmenu wildmode=full
+
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
