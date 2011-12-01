@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/etc/sphinxsearch'
 let g:netrw_dirhist_2='/etc/hostapd'
 let g:netrw_dirhist_3='/etc/xdg/subtle'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/home/bloopletech/.vim'
 let g:netrw_dirhist_5='/usr/local/etc/wmii-hg'
 let g:netrw_dirhist_6='/home/bloopletech/work/coupa_development'
 let g:netrw_dirhist_7='/etc/hostapd'
+let g:netrw_dirhist_8='/home/bloopletech/work/coupa_development'
