@@ -64,3 +64,14 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 "inoremap <Down> <C-o>gj
 "inoremap <Up> <C-o>gk
+
+
+function WordCount()
+  let s:old_status = v:statusmsg
+  exe "silent normal g\<c-g>"
+  let s:word_count = str2nr(split(v:statusmsg)[11])
+  let v:statusmsg = s:old_status
+  return s:word_count
+endfunction
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+"set statusline=wc:%{WordCount()}
