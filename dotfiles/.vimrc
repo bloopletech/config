@@ -27,7 +27,7 @@ set softtabstop=2
 
 set autoindent
 set cindent
-set cinwords+=def,class,module
+filetype indent on
 
 set ignorecase
 set incsearch
@@ -42,17 +42,15 @@ nnoremap <S-B> :<C-u>FufBuffer<CR>
 nnoremap U <C-R>
 nnoremap <C-R> U
 
-"imap <Tab> <Esc>
-"nmap <Tab> <Esc>:
-
 vmap <C-c> "+yi
+vmap <C-S-c> <C-c>
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
+vmap <C-S-v> <C-v>
 imap <C-v> <ESC>"+pa
+imap <C-S-v> <C-v>
 cmap <C-v> <C-r>"
-
-"nnoremap q bd
-"set wildchar=<Tab> wildmenu wildmode=full
+cmap <C-S-v> <C-v>
 
 nnoremap j gj
 nnoremap k gk
@@ -62,16 +60,9 @@ nnoremap <Down> gj
 nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
-"inoremap <Down> <C-o>gj
-"inoremap <Up> <C-o>gk
 
+"nnoremap q bd
+"set wildchar=<Tab> wildmenu wildmode=full
 
-function WordCount()
-  let s:old_status = v:statusmsg
-  exe "silent normal g\<c-g>"
-  let s:word_count = str2nr(split(v:statusmsg)[11])
-  let v:statusmsg = s:old_status
-  return s:word_count
-endfunction
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+"set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 "set statusline=wc:%{WordCount()}
