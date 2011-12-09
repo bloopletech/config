@@ -57,6 +57,8 @@ nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
 
+imap <Tab> <C-P>
+
 "nnoremap q bd
 "set wildchar=<Tab> wildmenu wildmode=full
 
