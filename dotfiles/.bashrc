@@ -53,7 +53,7 @@ fi
 
 shopt -s autocd
 
-export PATH="/home/bloopletech/.npm/bin:/opt/android-sdk-linux_x86/tools:~/work/yodlee/apache-ant-1.8.1/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH"
+export PATH="/home/bloopletech/key/config/exec:/home/bloopletech/.npm/bin:/opt/android-sdk-linux_x86/tools:~/work/yodlee/apache-ant-1.8.1/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH"
 export MANPATH="/home/bloopletech/.npm/man:$MANPATH"
 export ANT_HOME="~/work/yodlee/apache-ant-1.8.1/" #EWWWW
 
