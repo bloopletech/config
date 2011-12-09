@@ -43,14 +43,10 @@ nnoremap U <C-R>
 nnoremap <C-R> U
 
 vmap <C-c> "+yi
-vmap <C-S-c> <C-c>
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
-vmap <C-S-v> <C-v>
 imap <C-v> <ESC>"+pa
-imap <C-S-v> <C-v>
 cmap <C-v> <C-r>"
-cmap <C-S-v> <C-v>
 
 nnoremap j gj
 nnoremap k gk
