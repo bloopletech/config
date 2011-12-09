@@ -66,6 +66,7 @@ alias fixnet="sudo modprobe -r ath9k && sudo modprobe ath9k"
 alias specs="rspec spec/*/**.rb"
 #alias allspecs="spec spec/{controllers,models,views,helpers,coupa_lib}/**"
 #alias r3allspecs="rspec spec/{controllers,models,views,helpers,coupa_lib}/**"
+alias cuke="cucumber -r features "
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
 alias up="git stash && git svn rebase && git stash apply"
 alias r="ps -A -f | grep "
@@ -81,6 +82,7 @@ export PATH="$PATH:~/key/third_party/git-achievements"
 alias git="git-achievements"
 alias vpn="sudo openvpn --config ~/Documents/seattle.ovpn --redirect-gateway def1 bypass-dns bypass-dhcp --daemon; sleep 30; sudo ifconfig tun0 mtu 1300; sudo ifconfig eth0 mtu 1300"
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
+alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
 
 function exaudio () { ffmpeg -i "$1" -acodec copy "$1.mp3"; }
 function crush () { TMP_FILENAME="/tmp/png_crush_image_$RANDOM"; echo $TMP_FILENAME; pngcrush -rem cHRM -rem gAMA -rem iCCP -rem sRGB "$1" $TMP_FILENAME; mv $TMP_FILENAME "$1"; }
@@ -98,8 +100,9 @@ function __e ()
 
 alias e2="e"
 
-alias vi="e"
-alias vim="e"
+#alias vi="e"
+#alias vim="e"
+
 
 function gems () { cd "$GEM_HOME/gems"; }
 function fm () { e $(ack -1 -Q -l --type=ruby "def $1"); }
@@ -118,7 +121,7 @@ alias push="git push"
 export CLICOLOR=TRUE
 
 export CAMPING_ENV=development
-export RUBYOPT="-rubygems"
+export RUBYOPT="-rubygems -Ku"
 export RUNNING_LOCALLY=true
 
 export ACK_OPTIONS="-i --type-add ruby=haml"
