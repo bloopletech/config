@@ -36,8 +36,10 @@ set hls
 "set selectmode=mouse
 "set mousemode=popup
 
-nnoremap <S-T> :<C-u>FufFile **/<CR>
-nnoremap <S-B> :<C-u>FufBuffer<CR>
+let g:ctrlp_map = '<Tab>'
+
+nnoremap <S-T> :CtrlP<CR>
+nnoremap <S-B> :CtrlPBuffer<CR>
 
 nnoremap U <C-R>
 nnoremap <C-R> U
@@ -56,6 +58,8 @@ nnoremap <Down> gj
 nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
 
 imap <Tab> <C-P>
 
