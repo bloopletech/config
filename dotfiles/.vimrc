@@ -8,6 +8,7 @@ set showtabline=0
 set clipboard=unnamedplus
 set hidden
 set mouse=a
+set linebreak
 
 set t_Co=256
 colorscheme railscasts
@@ -37,6 +38,7 @@ set hls
 "set mousemode=popup
 
 let g:ctrlp_map = '<Tab>'
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 nnoremap <S-T> :CtrlP<CR>
 nnoremap <S-B> :CtrlPBuffer<CR>
@@ -58,8 +60,8 @@ nnoremap <Down> gj
 nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
-inoremap <Down> <C-o>gj
-inoremap <Up> <C-o>gk
+inoremap <Down> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-o>gj"<CR>
+inoremap <Up> <C-R>=pumvisible() ? "\<lt>C-P>" : "\<lt>C-o>gk"<CR>
 
 imap <Tab> <C-P>
 
