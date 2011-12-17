@@ -38,6 +38,10 @@ set hls
 "set mousemode=popup
 
 let g:ctrlp_map = '<Tab>'
+let g:ctrlp_max_height = 38
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_lazy_update = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 nnoremap <S-T> :CtrlP<CR>
