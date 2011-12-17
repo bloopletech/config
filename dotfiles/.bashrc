@@ -63,7 +63,7 @@ alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
 alias lnode="ssh bloople@178.79.147.14"
 alias fixnet="sudo modprobe -r ath9k && sudo modprobe ath9k"
-alias specs="rspec spec/*/**.rb"
+alias specs="bundle exec rspec spec/*/**.rb"
 #alias allspecs="spec spec/{controllers,models,views,helpers,coupa_lib}/**"
 #alias r3allspecs="rspec spec/{controllers,models,views,helpers,coupa_lib}/**"
 alias cuke="cucumber -r features "
@@ -118,6 +118,9 @@ function pull ()
 }
 alias push="git push"
 
+alias storytime="setsid _storytime"
+alias worktime="setsid _worktime"
+
 export CLICOLOR=TRUE
 
 export CAMPING_ENV=development
@@ -128,8 +131,6 @@ export ACK_OPTIONS="-i --type-add ruby=haml"
 export VISUAL="vi"
 
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi  
-
-fortune
 
 cd .
 
