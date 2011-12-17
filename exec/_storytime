@@ -1,0 +1,9 @@
+#!/bin/bash
+killall -9 gnome-terminal >/dev/null 2>&1
+killall -9 chrome >/dev/null 2>&1
+killall -9 ruby >/dev/null 2>&1
+nmcli dev disconnect iface ttyUSB0 >/dev/null 2>&1 &
+nmcli dev disconnect iface wlan0 >/dev/null 2>&1 &
+nmcli dev disconnect iface eth0 >/dev/null 2>&1 &
+cd ~/key/notes
+gnome-terminal --tab-with-profile=Default --tab-with-profile=Default -e "bash -c 'e'"

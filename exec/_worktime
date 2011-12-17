@@ -1,0 +1,8 @@
+#!/bin/bash
+killall -9 gnome-terminal >/dev/null 2>&1
+killall -9 chrome >/dev/null 2>&1
+killall -9 ruby >/dev/null 2>&1
+nmcli con up uuid efad4985-d2d0-4fdf-b092-a20d8ff64e3b >/dev/null 2>&1 &
+chrome &
+cd ~/work/coupa_development
+gnome-terminal --tab-with-profile=Default --tab-with-profile=Default --tab-with-profile=Default --tab-with-profile=Default -e "bash -c 'e'"
