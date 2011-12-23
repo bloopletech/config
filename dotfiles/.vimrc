@@ -74,3 +74,6 @@ imap <Tab> <C-P>
 
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 "set statusline=wc:%{WordCount()}
+
+au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
+"au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
