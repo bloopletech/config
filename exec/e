@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 if [[ "$1" == "" ]] || [[ "$1" == "." ]]; then
-    vim -c "cd $PWD"
+  vim -c "cd $PWD"
 else
-    vim -c "cd $PWD" --remote-silent "$1"
+  IFS=":" read -ra FP <<< "$1"
+  if [ ${#FP[@]} == '1' ]; then
+    FP[1]="0"
+  fi
+
+  vim -c "cd $PWD" +${FP[1]} "${FP[0]}"
 fi
