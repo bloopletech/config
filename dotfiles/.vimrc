@@ -50,7 +50,7 @@ nnoremap <S-B> :CtrlPBuffer<CR>
 nnoremap U <C-R>
 nnoremap <C-R> U
 
-vmap <C-c> "+yi
+vmap <C-c> "+y
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
@@ -75,5 +75,8 @@ imap <Tab> <C-P>
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 "set statusline=wc:%{WordCount()}
 
+au BufNewFile,BufRead *.less set filetype=less
+
 au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
+au BufRead,BufNewFile *.txt setlocal textwidth=100
 "au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
