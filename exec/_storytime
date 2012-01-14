@@ -5,6 +5,5 @@ killall -9 ruby >/dev/null 2>&1
 nmcli dev disconnect iface ttyUSB0 >/dev/null 2>&1 &
 nmcli dev disconnect iface wlan0 >/dev/null 2>&1 &
 nmcli dev disconnect iface eth0 >/dev/null 2>&1 &
-truecrypt ~/key/_notes.tc ~/key/notes
-cd ~/key/notes
-gnome-terminal --tab-with-profile=Default --tab-with-profile=Default -e "bash -c 'killall _storytime; e'"
+mounts
+#gnome-terminal --tab-with-profile=Default --tab-with-profile=Default -e "bash -c 'killall _storytime; e'"
