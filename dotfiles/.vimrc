@@ -15,6 +15,9 @@ colorscheme railscasts
 highlight Pmenu NONE
 highlight PmenuSel NONE
 highlight PmenuSel ctermbg=240
+highlight! link SpellCap SpellBad
+highlight! link SpellRare SpellBad
+highlight! link SpellLocal SpellBad
 "highlight Pmenu guifg=#E6E1DC guibg=#111111 ctermbg=0
 "highlight PmenuSel guifg=#E6E1DC guibg=#5A647E
 "highlight MBENormal gui=NONE guifg=#BC9458
@@ -37,11 +40,15 @@ set hls
 "set selectmode=mouse
 "set mousemode=popup
 
+set shellpipe=">"
+"cmap ack Ack
+
 let g:ctrlp_map = '<Tab>'
 let g:ctrlp_max_height = 38
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_lazy_update = 1
+let g:ctrlp_extensions = ['tag']
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 nnoremap <S-T> :CtrlP<CR>
