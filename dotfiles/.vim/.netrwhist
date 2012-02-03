@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/bloopletech/key/third_party/html5/lib/html5'
-let g:netrw_dirhist_2='/etc/hostapd'
-let g:netrw_dirhist_3='/home/bloopletech/doc/classes/Closure'
-let g:netrw_dirhist_4='/home/bloopletech/.rvm/gems/ree-1.8.7-2011.03@global/gems/rake-0.8.7/lib/rake'
-let g:netrw_dirhist_5='/home/bloopletech/key/config/exec'
-let g:netrw_dirhist_6='/home/bloopletech/.rvm/gems/ruby-1.9.3-p0/gems/activerecord-3.0.10/lib/active_record/relation'

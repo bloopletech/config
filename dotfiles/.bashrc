@@ -50,10 +50,9 @@ fi
 
 
 
-
 shopt -s autocd
 
-export PATH="/home/bloopletech/key/config/exec:/home/bloopletech/key/apache-ant-1.8.2/bin:/home/bloopletech/key/jdk1.7.0_02/bin:/home/bloopletech/.npm/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH"
+export PATH="~/key/config/exec:~/.npm/bin:~/key/apache-ant-1.8.2/bin:~/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:~/work/yodlee/apache-ant-1.8.1/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH"
 export MANPATH="/home/bloopletech/.npm/man:$MANPATH"
 export JAVA_HOME="/home/bloopletech/key/jdk1.7.0_02/"
 export ANT_HOME="/home/bloopletech/key/apache-ant-1.8.2/" #EWWWW
@@ -79,6 +78,8 @@ alias cutout="git format-patch -1 "
 alias gapi="curl -g -i -H 'Accept: application/xml' "
 alias lopen="gnome-open $(ls --sort=time -1 | head -1)"
 
+#export PATH="$PATH:~/key/third_party/git-achievements"
+#alias git="git-achievements"
 alias vpn="sudo openvpn --config ~/Documents/seattle.ovpn --redirect-gateway def1 bypass-dns bypass-dhcp --daemon; sleep 30; sudo ifconfig tun0 mtu 1300; sudo ifconfig eth0 mtu 1300"
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
@@ -149,7 +150,7 @@ function __set_ps1_with_git_branch {
 if [ "$SHELL" = '/bin/bash' ]
 then
     case $TERM in
-      rxvt|*term)        
+      rxvt|*term*)        
           export PROMPT_COMMAND="__set_ps1_with_git_branch"
           trap 'echo -ne "\e]2;T: $BASH_COMMAND\007"' DEBUG
       ;;

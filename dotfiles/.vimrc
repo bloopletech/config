@@ -5,11 +5,13 @@ set backspace=indent,eol,start
 set guioptions-=T
 set guioptions-=t
 set showtabline=0
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
+set clipboard=unnamed
 set hidden
 set mouse=a
 set linebreak
 
+syntax on
 set t_Co=256
 colorscheme railscasts
 highlight Pmenu NONE
