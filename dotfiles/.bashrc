@@ -53,9 +53,10 @@ fi
 
 shopt -s autocd
 
-export PATH="/home/bloopletech/key/config/exec:/home/bloopletech/.npm/bin:/opt/android-sdk-linux_x86/tools:~/work/yodlee/apache-ant-1.8.1/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH"
+export PATH="/home/bloopletech/key/config/exec:/home/bloopletech/key/apache-ant-1.8.2/bin:/home/bloopletech/key/jdk1.7.0_02/bin:/home/bloopletech/.npm/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH"
 export MANPATH="/home/bloopletech/.npm/man:$MANPATH"
-export ANT_HOME="~/work/yodlee/apache-ant-1.8.1/" #EWWWW
+export JAVA_HOME="/home/bloopletech/key/jdk1.7.0_02/"
+export ANT_HOME="/home/bloopletech/key/apache-ant-1.8.2/" #EWWWW
 
 #alias rp="mate app config doc lib db public spec factories features features_integration test vendor/plugins vendor/gems vendor/generators vendor/blueprint &"]
 alias sad="psql -h localhost -U postgres "
@@ -63,7 +64,7 @@ alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
 alias lnode="ssh bloople@178.79.147.14"
 alias fixnet="sudo modprobe -r ath9k && sudo modprobe ath9k"
-alias specs="bundle exec rspec spec/*/**.rb"
+alias specs="bundle exec rspec spec/{api,capybara,controllers,coupa_lib,helpers,lib,mailers,models,requests,selenium,views}/**"
 #alias allspecs="spec spec/{controllers,models,views,helpers,coupa_lib}/**"
 #alias r3allspecs="rspec spec/{controllers,models,views,helpers,coupa_lib}/**"
 alias cuke="cucumber -r features "
@@ -76,10 +77,8 @@ alias suck="wget -r -k -p -np "
 alias tubes="aria2c -s 1 -j 4 -i "
 alias cutout="git format-patch -1 "
 alias gapi="curl -g -i -H 'Accept: application/xml' "
-alias lopen="gnome-open `ls --sort=time | head -1`"
+alias lopen="gnome-open $(ls --sort=time -1 | head -1)"
 
-export PATH="$PATH:~/key/third_party/git-achievements"
-alias git="git-achievements"
 alias vpn="sudo openvpn --config ~/Documents/seattle.ovpn --redirect-gateway def1 bypass-dns bypass-dhcp --daemon; sleep 30; sudo ifconfig tun0 mtu 1300; sudo ifconfig eth0 mtu 1300"
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
@@ -103,6 +102,7 @@ alias e2="e"
 #alias vi="e"
 #alias vim="e"
 
+alias ack="ack-grep"
 
 function gems () { cd "$GEM_HOME/gems"; }
 function fm () { e $(ack -1 -Q -l --type=ruby "def $1"); }
@@ -130,7 +130,10 @@ export RUNNING_LOCALLY=true
 export ACK_OPTIONS="-i --type-add ruby=haml"
 export VISUAL="vi"
 
+export JRUBY_OPTS="--1.9"
+
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi  
+rvm use 1.9.3 >/dev/null
 
 cd .
 
@@ -152,3 +155,4 @@ then
       ;;
     esac
 fi
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

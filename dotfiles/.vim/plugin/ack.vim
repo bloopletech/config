@@ -14,8 +14,8 @@ if !exists("g:ackprg")
 endif
 
 function! s:Ack(cmd, args)
-    redraw
-    echo "Searching ..."
+    "redraw
+    "echo "Searching ..."
 
     " If no pattern is provided, search for the word under the cursor
     if empty(a:args)
@@ -36,7 +36,9 @@ function! s:Ack(cmd, args)
     try
         let &grepprg=g:ackprg
         let &grepformat=g:ackformat
+        "redir >/tmp
         silent execute a:cmd . " " . shellescape(l:grepargs)
+        "redir END
     finally
         let &grepprg=grepprg_bak
         let &grepformat=grepformat_bak
@@ -62,7 +64,7 @@ function! s:Ack(cmd, args)
         set hlsearch
     end
 
-    redraw!
+    "redraw!
 endfunction
 
 function! s:AckFromSearch(cmd, args)
