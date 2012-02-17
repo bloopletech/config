@@ -59,11 +59,15 @@ nnoremap <S-B> :CtrlPBuffer<CR>
 nnoremap U <C-R>
 nnoremap <C-R> U
 
+"imap <Tab> <Esc>
+"nmap <Tab> <Esc>:
+
+set clipboard=unnamedplus
 vmap <C-c> "+y
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
-cmap <C-v> <C-r>"
+cmap <C-v> <C-r>+
 
 nnoremap j gj
 nnoremap k gk
@@ -89,3 +93,5 @@ au BufNewFile,BufRead *.less set filetype=less
 au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
 au BufRead,BufNewFile *.txt setlocal textwidth=100
 "au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
+
+"set lines=43

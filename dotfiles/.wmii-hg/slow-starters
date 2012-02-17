@@ -1,8 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -l
 sleep 120
 cd ~/key/stories
-rails server -p 30814 -e production -d >/dev/null 2>&1
+rvm --with-rubies default-with-rvmrc exec bundle exec rails server -p 30814 -e production -d >/dev/null 2>&1
 cd ~/key/mangar
-rails server -p 30813 -d >/dev/null 2>&1
+rvm --with-rubies default-with-rvmrc exec bundle exec rails server -p 30813 -d >/dev/null 2>&1
 cd ~
 super share
+while true; do gmailpopup && sleep 60; done &
