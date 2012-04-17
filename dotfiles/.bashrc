@@ -52,7 +52,7 @@ fi
 
 shopt -s autocd
 
-export PATH="~/key/config/exec:~/.npm/bin:~/key/apache-ant-1.8.2/bin:~/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:~/work/yodlee/apache-ant-1.8.1/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH"
+export PATH="/home/bloopletech/key/exec:~/key/config/exec:~/.npm/bin:~/key/apache-ant-1.8.2/bin:~/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:~/work/yodlee/apache-ant-1.8.1/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH"
 export MANPATH="/home/bloopletech/.npm/man:$MANPATH"
 export JAVA_HOME="/home/bloopletech/key/jdk1.7.0_02/"
 export ANT_HOME="/home/bloopletech/key/apache-ant-1.8.2/" #EWWWW
@@ -72,7 +72,7 @@ alias up="git stash && git svn rebase && git stash apply"
 alias r="ps -A -f | grep "
 alias here="gnome-open ."
 #alias nup="sudo ifconfig wlan0 up"
-alias suck="wget -r -k -p -np "
+alias suck="wget -r -k -p -np -U 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1081.2 Safari/536.5' "
 alias tubes="aria2c -s 1 -j 4 -i "
 alias cutout="git format-patch -1 "
 alias gapi="curl -g -i -H 'Accept: application/xml' "
@@ -83,6 +83,8 @@ alias lopen="gnome-open $(ls --sort=time -1 | head -1)"
 alias vpn="sudo openvpn --config ~/Documents/seattle.ovpn --redirect-gateway def1 bypass-dns bypass-dhcp --daemon; sleep 30; sudo ifconfig tun0 mtu 1300; sudo ifconfig eth0 mtu 1300"
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
+alias right="xrandr --current -o right"
+alias normal="xrandr --current -o normal"
 
 function exaudio () { ffmpeg -i "$1" -acodec copy "$1.mp3"; }
 function crush () { TMP_FILENAME="/tmp/png_crush_image_$RANDOM"; echo $TMP_FILENAME; pngcrush -rem cHRM -rem gAMA -rem iCCP -rem sRGB "$1" $TMP_FILENAME; mv $TMP_FILENAME "$1"; }
@@ -157,3 +159,5 @@ then
     esac
 fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

@@ -1,0 +1,16 @@
+#!/home/bloopletech/.rvm/rubies/ruby-1.9.3-p125/bin/ruby
+
+class File
+  def self.escape_name(filename)
+    filename.gsub(/([ \[\]\(\)\{\}'"&!\\])/) { |r| "\\#{$1}" }
+  end
+end
+
+in_file = ARGV[0]
+out_file = "#{File.basename(in_file).gsub(/\..*{3}/, '').gsub(/[^A-z0-9_-]/, '_')}.mp4"
+
+#This is basically just to get the file into a decent format for playback, hopefully fixing dodgy encoding
+x = "mencoder #{File.escape_name in_file} -of lavf -oac mp3lame -ovc x264 -x264encopts bframes=0:global_header -noskip -mc 0 -o #{File.escape_name out_file}"
+puts x
+system x
+

@@ -5,8 +5,8 @@ set backspace=indent,eol,start
 set guioptions-=T
 set guioptions-=t
 set showtabline=0
-"set clipboard=unnamedplus
-set clipboard=unnamed
+set clipboard=unnamedplus
+"set clipboard=unnamed
 set hidden
 set mouse=a
 set linebreak
@@ -46,7 +46,7 @@ set shellpipe=">"
 "cmap ack Ack
 
 let g:ctrlp_map = '<Tab>'
-let g:ctrlp_max_height = 38
+let g:ctrlp_max_height = 150
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_lazy_update = 1
@@ -62,7 +62,6 @@ nnoremap <C-R> U
 "imap <Tab> <Esc>
 "nmap <Tab> <Esc>:
 
-set clipboard=unnamedplus
 vmap <C-c> "+y
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
@@ -91,7 +90,7 @@ imap <Tab> <C-P>
 au BufNewFile,BufRead *.less set filetype=less
 
 au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
-au BufRead,BufNewFile *.txt setlocal textwidth=100
+au BufRead,BufNewFile *.txt setlocal wrap linebreak textwidth=100
 "au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
 
-"set lines=43
+imap <C-s> <C-x>s
