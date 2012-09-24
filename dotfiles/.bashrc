@@ -16,6 +16,10 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+shopt -s expand_aliases
+
+shopt -s cdable_vars
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -52,7 +56,7 @@ fi
 
 shopt -s autocd
 
-export PATH="/home/bloopletech/key/exec:~/key/config/exec:~/.npm/bin:~/key/apache-ant-1.8.2/bin:~/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:~/work/yodlee/apache-ant-1.8.1/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH"
+export PATH="/home/bloopletech/key/exec:~/key/config/exec:~/.npm/bin:~/key/apache-ant-1.8.2/bin:~/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:~/work/yodlee/apache-ant-1.8.1/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
 export MANPATH="/home/bloopletech/.npm/man:$MANPATH"
 export JAVA_HOME="/home/bloopletech/key/jdk1.7.0_02/"
 export ANT_HOME="/home/bloopletech/key/apache-ant-1.8.2/" #EWWWW
@@ -85,6 +89,9 @@ alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=m
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
 alias right="xrandr --current -o right"
 alias normal="xrandr --current -o normal"
+alias playdvd="play dvd:////dev/dvd1"
+#alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -gravity center -extent 480x800 +repage -colorspace Gray -quality 90 "
+alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -extent 480x800 +repage -colorspace Gray -quality 90 "
 
 function exaudio () { ffmpeg -i "$1" -acodec copy "$1.mp3"; }
 function crush () { TMP_FILENAME="/tmp/png_crush_image_$RANDOM"; echo $TMP_FILENAME; pngcrush -rem cHRM -rem gAMA -rem iCCP -rem sRGB "$1" $TMP_FILENAME; mv $TMP_FILENAME "$1"; }
@@ -135,7 +142,8 @@ export VISUAL="vi"
 
 export JRUBY_OPTS="--1.9"
 
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi  
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 rvm use 1.9.3 >/dev/null
 
 cd .
@@ -158,6 +166,3 @@ then
       ;;
     esac
 fi
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

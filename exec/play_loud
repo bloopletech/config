@@ -1,0 +1,2 @@
+#!/bin/bash
+__GL_SYNC_TO_VBLANK=1 mplayer -really-quiet -nolirc -framedrop -dr -vo vdpau -fs -demuxer lavf -alang jpn,jp,eng,en -slang eng,en -ass -embeddedfonts -ao alsa -af volume=10 -volume 100 -cache 10000 "$1" 2>&1 >/dev/null 
