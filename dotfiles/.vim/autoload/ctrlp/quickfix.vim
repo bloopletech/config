@@ -4,7 +4,7 @@
 " Author:        Kien Nguyen <github.com/kien>
 " =============================================================================
 
-" Init 
+" Init {{{1
 if exists('g:loaded_ctrlp_quickfix') && g:loaded_ctrlp_quickfix
 	fini
 en
@@ -17,6 +17,7 @@ cal add(g:ctrlp_ext_vars, {
 	\ 'sname': 'qfx',
 	\ 'type': 'line',
 	\ 'sort': 0,
+	\ 'nolim': 1,
 	\ })
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
@@ -25,16 +26,16 @@ fu! s:lineout(dict)
 	retu printf('%s|%d:%d| %s', bufname(a:dict['bufnr']), a:dict['lnum'],
 		\ a:dict['col'], matchstr(a:dict['text'], '\s*\zs.*\S'))
 endf
-" Utilities 
+" Utilities {{{1
 fu! s:syntax()
 	if !ctrlp#nosy()
 		cal ctrlp#hicheck('CtrlPqfLineCol', 'Search')
 		sy match CtrlPqfLineCol '|\zs\d\+:\d\+\ze|'
 	en
 endf
-" Public 
+" Public {{{1
 fu! ctrlp#quickfix#init()
-"	cal s:syntax()
+	cal s:syntax()
 	retu map(getqflist(), 's:lineout(v:val)')
 endf
 
@@ -53,6 +54,6 @@ endf
 fu! ctrlp#quickfix#id()
 	retu s:id
 endf
-"
+"}}}
 
-" vim:fen:fdm=marker:fmr=,:fdl=0:fdc=1:ts=2:sw=2:sts=2
+" vim:fen:fdm=marker:fmr={{{,}}}:fdl=0:fdc=1:ts=2:sw=2:sts=2

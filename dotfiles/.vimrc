@@ -51,19 +51,12 @@ let g:ctrlp_max_height = 150
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_lazy_update = 1
-"let g:ctrlp_extensions = ['quickfix']
 let g:ctrlp_extensions = ['']
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
-"nnoremap <S-T> :Gtags -i ^
-"nnoremap <S-B> :Gtags -fi %<CR>
 nnoremap <S-T> :CtrlP<CR>
-"nnoremap <S-B> :CtrlPBufTag<CR>
-"nnoremap <C-S-B> :CtrlPBufTagAll<CR>
-
-"let g:Gtags_OpenQuickfixWindow = 0
-"let g:Dont_Jump_Automatically = 1
-"au BufReadPost quickfix cclose | colder | CtrlPQuickfix Let's never talk about this one again.
+nnoremap <S-B> :CtrlPBufTag<CR>
+nnoremap <C-S-B> :CtrlPBufTagAll<CR>
 
 nnoremap U <C-R>
 nnoremap <C-R> U
