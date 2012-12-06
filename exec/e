@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
-if [[ "$1" == "" ]] || [[ "$1" == "." ]]; then
-  vim -c "cd $PWD"
-else
+CMD="lcd $PWD"
+if [[ "$1" != "" ]] && [[ "$1" != "." ]]; then
   IFS=":" read -ra FP <<< "$1"
   if [ ${#FP[@]} == '1' ]; then
     FP[1]="0"
   fi
 
-  vim -c "cd $PWD" +${FP[1]} "${FP[0]}"
+  CMD="$CMD | :e +${FP[1]} ${FP[0]}"
+fi
+
+ps -A | grep -q gvim
+if [[ $? == 1 ]]; then
+  gvim -c "$CMD" >/dev/null 2>&1
+else
+  gvim --remote-send "<ESC>:tabnew<CR><ESC>:$CMD<CR>" >/dev/null 2>&1
+  gvim --remote-expr "foreground()" >/dev/null 2>&1
 fi
