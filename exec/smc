@@ -1,0 +1,46 @@
+#!/bin/bash
+
+MCSPATH="/home/bloopletech/key/third_party/minecraft"
+
+function list_worlds () {
+  echo;
+  echo "You have these worlds:";
+  ls -1 "$MCSPATH/worlds";
+  echo;
+}
+
+echo
+
+netstat -ln | grep ':25565 ' | grep -q 'LISTEN'
+if [ $? -eq 0 ]; then
+  echo "There is already a Minecraft server running!";
+  echo;
+  exit 1;
+fi
+
+if [ "$#" == "0" ]; then
+  echo "You must specify the world name!";
+  list_worlds;
+  exit 1;
+fi
+
+if [[ ! "$1" =~ ^[A-Za-z0-9_]+$ ]]; then
+  echo "The world name you entered is badly formatted!";
+  list_worlds;
+  exit 1;
+fi
+
+WORLDPATH="$MCSPATH/worlds/$1";
+
+if [ ! -d "$WORLDPATH" ]; then
+  echo "The world name you entered doesn't exist!";
+  list_worlds;
+  exit 1;
+fi
+
+cd "$WORLDPATH"
+
+echo "=========================================================="
+echo "Starting world $1"
+echo "=========================================================="
+java -Xmx1024M -Xms1024M -jar "$MCSPATH/minecraft_server.jar" nogui
