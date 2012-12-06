@@ -20,6 +20,8 @@ shopt -s expand_aliases
 
 shopt -s cdable_vars
 
+shopt -s globstar
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -56,12 +58,12 @@ fi
 
 shopt -s autocd
 
-export PATH="/home/bloopletech/key/exec:~/key/config/exec:~/.npm/bin:~/key/apache-ant-1.8.2/bin:~/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:~/work/yodlee/apache-ant-1.8.1/bin:~/key/exec:~/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
-export MANPATH="/home/bloopletech/.npm/man:$MANPATH"
-export JAVA_HOME="/home/bloopletech/key/jdk1.7.0_02/"
-export ANT_HOME="/home/bloopletech/key/apache-ant-1.8.2/" #EWWWW
+H="/home/bloopletech"
+export PATH="$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/work/yodlee/apache-ant-1.8.1/bin:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
+export MANPATH="$H/.npm/man:$MANPATH"
+export JAVA_HOME="$H/key/jdk1.7.0_02/"
+export ANT_HOME="$H/key/apache-ant-1.8.2/" #EWWWW
 
-#alias rp="mate app config doc lib db public spec factories features features_integration test vendor/plugins vendor/gems vendor/generators vendor/blueprint &"]
 alias sad="psql -h localhost -U postgres "
 alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
@@ -84,7 +86,7 @@ alias lopen="gnome-open $(ls --sort=time -1 | head -1)"
 
 #export PATH="$PATH:~/key/third_party/git-achievements"
 #alias git="git-achievements"
-alias vpn="sudo openvpn --config ~/Documents/seattle.ovpn --redirect-gateway def1 bypass-dns bypass-dhcp --daemon; sleep 30; sudo ifconfig tun0 mtu 1300; sudo ifconfig eth0 mtu 1300"
+alias vpn="sudo openvpn --config ~/Documents/seattle.ovpn --redirect-gateway def1 bypass-dns bypass-dhcp --daemon; sleep 30; sudo ifconfig tun0 mtu 1300; sudo ifconfig eth1 mtu 1300; sudo ifconfig wlan0 mtu 1300"
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
 alias right="xrandr --current -o right"
@@ -92,25 +94,26 @@ alias normal="xrandr --current -o normal"
 alias playdvd="play dvd:////dev/dvd1"
 #alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -gravity center -extent 480x800 +repage -colorspace Gray -quality 90 "
 alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -extent 480x800 +repage -colorspace Gray -quality 90 "
+alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
+alias minify="java -jar $H/key/third_party/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar "
 
 function exaudio () { ffmpeg -i "$1" -acodec copy "$1.mp3"; }
 function crush () { TMP_FILENAME="/tmp/png_crush_image_$RANDOM"; echo $TMP_FILENAME; pngcrush -rem cHRM -rem gAMA -rem iCCP -rem sRGB "$1" $TMP_FILENAME; mv $TMP_FILENAME "$1"; }
 function log_and_run () { echo "" > log/test.log; spec "$1"; cat log/test.log; }
 function r3lar () { echo "" > log/test.log; rspec "$1"; cat log/test.log; }
 function ptb () { scp -P 9979 "$1" bloople@bloople.net:~/www/bloople.net/public; echo "http://bloople.net/$1"; }
-function __e ()
-{
-  if [[ "$1" == "" ]] || [[ "$1" == "." ]]; then
-    start_redcar "$PWD";
-  else
-    start_redcar "$1";
-  fi
+
+function galaxy() {
+  avconv -i "$1" -s 1280x720 -acodec libvo_aacenc -ar 22050 -ab 128k -vcodec libx264 -scodec copy -map 0 -threads 0 "small_$1.mkv";
 }
 
-alias e2="e"
+function galaxy_generic() {
+  avconv -i "$1" -acodec libvo_aacenc -ar 22050 -ab 128k -vcodec libx264 -threads 0 "small_$1.mkv";
+}
 
-#alias vi="e"
-#alias vim="e"
+function comics() {
+  convert "$1/*.png" "$1/*.jpg" -background white -colorspace Gray -quality 90 "$1.pdf";
+}
 
 alias ack="ack-grep"
 
@@ -141,6 +144,21 @@ export ACK_OPTIONS="-i --type-add ruby=haml"
 export VISUAL="vi"
 
 export JRUBY_OPTS="--1.9"
+
+function gtags_global_path () {
+  export GTAGSLIBPATH=`
+  files=( )
+  i=0
+  while IFS= read -r -d $'\0' file; do
+    files[i++]="${file:1}"
+  done < <(cd ~/.global && find . -type f -name 'GTAGS' -printf '%h\0')
+  IFS=:
+  echo "${files[*]}"
+  `
+}
+
+export MAKEOBJDIRPREFIX=/home/bloopletech/.global
+gtags_global_path
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
