@@ -1,15 +1,7 @@
-set showtabline=2
-
-autocmd BufEnter * :let t:wd = getcwd()
-"autocmd BufNewFile * :let t:wd = getcwd()
-
-function! GuiTabLabel()
-  return gettabvar(v:lnum, "wd")
-endfunction
-
-set guitablabel=%{GuiTabLabel()}
-
+set guioptions-=m
 set guifont=Monospace\ 11
 
+set showtabline=1
+map <C-T> <ESC>:tabnew<CR>
 
-map <C-T> :tabnew<CR>
+autocmd GuiEnter * silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz

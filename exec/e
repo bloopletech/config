@@ -1,6 +1,11 @@
-#!/usr/bin/env bash
-CMD="lcd $PWD"
+#!/bin/bash
+CMD="cd $PWD"
 if [[ "$1" != "" ]] && [[ "$1" != "." ]]; then
+  if [[ ! -e "$1" ]]; then
+    echo "$1 doesn't exist."
+    exit
+  fi
+
   IFS=":" read -ra FP <<< "$1"
   if [ ${#FP[@]} == '1' ]; then
     FP[1]="0"
@@ -9,10 +14,15 @@ if [[ "$1" != "" ]] && [[ "$1" != "." ]]; then
   CMD="$CMD | :e +${FP[1]} ${FP[0]}"
 fi
 
-ps -A | grep -q gvim
+SERVER_NAME="$PWD"
+if [[ "$HOME" == ${SERVER_NAME:0:${#HOME}} ]] ; then
+  SERVER_NAME="~${SERVER_NAME:${#HOME}}"
+fi
+
+vim --serverlist | grep -i -q "$SERVER_NAME"
 if [[ $? == 1 ]]; then
-  gvim -c "$CMD" >/dev/null 2>&1
+  gvim --servername "$SERVER_NAME" -c "$CMD" >/dev/null 2>&1
 else
-  gvim --remote-send "<ESC>:tabnew<CR><ESC>:$CMD<CR>" >/dev/null 2>&1
-  gvim --remote-expr "foreground()" >/dev/null 2>&1
+  gvim --servername "$SERVER_NAME" --remote-send "<ESC>:$CMD<CR>" >/dev/null 2>&1
+  gvim --servername "$SERVER_NAME" --remote-expr "foreground()" >/dev/null 2>&1
 fi

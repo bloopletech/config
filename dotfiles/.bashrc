@@ -131,6 +131,11 @@ function pull ()
 }
 alias push="git push"
 
+function nlessc () {
+  filename="${1%.*}"
+  ~/.npm/less/1.3.0/package/bin/lessc $filename.less > $filename.css
+}
+
 alias storytime="setsid _storytime"
 alias worktime="setsid _worktime"
 
