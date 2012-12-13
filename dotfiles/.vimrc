@@ -2,9 +2,6 @@ set nocompatible
 set noswapfile
 set backspace=indent,eol,start
 "set number
-set guioptions-=T
-set guioptions-=t
-set showtabline=0
 set clipboard=unnamedplus
 "set clipboard=unnamed
 set hidden
@@ -43,8 +40,12 @@ set hls
 "set selectmode=mouse
 "set mousemode=popup
 
-set shellpipe=">"
-"cmap ack Ack
+set shell=bash
+set shellpipe=\ 2>&1\ >
+let g:ackprg = "ag --nocolor --nogroup --column "
+let g:ack_qhandler = "CtrlPQuickfix"
+
+nnoremap <C-G> :Ack 
 
 let g:ctrlp_map = '<Tab>'
 let g:ctrlp_max_height = 150
@@ -52,11 +53,13 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_lazy_update = 1
 let g:ctrlp_extensions = ['']
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_user_command = "ag --nocolor -g '.' %s"
 
 nnoremap <S-T> :CtrlP<CR>
-nnoremap <S-B> :CtrlPBufTag<CR>
-nnoremap <C-S-B> :CtrlPBufTagAll<CR>
+nnoremap <S-B> :CtrlPBuffer<CR>
+"nnoremap <S-B> :CtrlPBufTag<CR>
+"nnoremap <C-S-B> :CtrlPBufTagAll<CR>
 
 nnoremap U <C-R>
 nnoremap <C-R> U
