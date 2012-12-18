@@ -12,7 +12,5 @@ fi
 FILENAME="$TAGSPATH/tags_dump.txt"
 
 rm -f "$FILENAME"
-global --result=ctags-x -e '.*' >> "$FILENAME"
-global --result=ctags-x -P >> "$FILENAME"
-perl -i -pe 's/^([^ ]+) +(\d+) +([^ ]+?) +(.+?)$/\1\t\4\t\3\t\2/g' "$FILENAME"
-
+global --result=ctags-x -e '.*' | perl -pe 's/^([^ ]+) +(\d+) +([^ ]+?) +(.+?)$/\1\t\4\t\3\t\2/g'  >> "$FILENAME"
+global --result=ctags-x -P | perl -pe 's/^([^ ]+) +(\d+) +([^ ]+?) +$/\3\t\1\t\3\t\2/g' >> "$FILENAME"
