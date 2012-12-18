@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #for f in **/*.rb **/*.js; do sed -i -e '$a\' $f; done
-ag --search-files --nocolor -g '.' | xclude_packed_files | gtags -f - -O
+ag --search-files --nocolor -g '.' | xclude_packed_files | gtags -f - -O -i
 
 TAGSPATH=`global -p`
 if [[ "$TAGSPATH" == "" ]]; then
