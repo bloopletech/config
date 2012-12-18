@@ -1,16 +1,19 @@
 #!/bin/bash
 
 #for f in **/*.rb **/*.js; do sed -i -e '$a\' $f; done
-ag --search-files --nocolor -g '.' | xclude_packed_files | gtags -f - -O -i
+FILE_LIST=$(ag --search-files --nocolor -g '.')
+echo "$FILE_LIST" | xclude_packed_files | gtags -f - -O
 
-TAGSPATH=`global -p`
-if [[ "$TAGSPATH" == "" ]]; then
+TAGS_PATH=`global -p`
+if [[ "$TAGS_PATH" == "" ]]; then
   echo "This directory doesn't have any GTAGS yet."
   exit 1;
 fi
 
-FILENAME="$TAGSPATH/tags_dump.txt"
+DUMP_FILE="$TAGS_PATH/tags_dump.txt"
 
-rm -f "$FILENAME"
-global --result=ctags-x -e '.*' | perl -pe 's/^([^ ]+) +(\d+) +([^ ]+?) +(.+?)$/\1\t\4\t\3\t\2/g'  >> "$FILENAME"
-global --result=ctags-x -P | perl -pe 's/^([^ ]+) +(\d+) +([^ ]+?) +$/\3\t\1\t\3\t\2/g' >> "$FILENAME"
+rm -f "$DUMP_FILE"
+global --result=ctags-x -e '.*' | perl -pe 's/^([^ ]+) +(\d+) +([^ ]+?) +(.+?)$/\1\t\4\t\3\t\2/g'  >> "$DUMP_FILE"
+global --result=ctags-x -P | perl -pe 's/^([^ ]+) +(\d+) +([^ ]+?) +$/\3\t\1\t\3\t\2/g' >> "$DUMP_FILE"
+echo "$FILE_LIST" | perl -pe 's/^(.*)$/\1\tpath\t\1\t1/g' >> "$DUMP_FILE"
+sort -u -o "$DUMP_FILE" "$DUMP_FILE"
