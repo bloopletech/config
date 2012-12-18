@@ -1,0 +1,17 @@
+#!/bin/bash
+
+while read FILE
+do
+  PRINT=1
+  while read -n 1001 LINE
+  do
+    if [[ "${#LINE}" -gt 1000 ]]; then
+      PRINT=0;
+      break;
+    fi
+  done < "$FILE"
+  if [[ "$PRINT" == "1" ]]; then
+    echo "$FILE";
+  fi
+done
+

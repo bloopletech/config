@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#for f in **/*.rb **/*.js; do sed -i -e '$a\' $f; done
+ag --search-files --nocolor -g '.' | xclude_packed_files | gtags -f - -O
+
+TAGSPATH=`global -p`
+if [[ "$TAGSPATH" == "" ]]; then
+  echo "This directory doesn't have any GTAGS yet."
+  exit 1;
+fi
+
+FILENAME="$TAGSPATH/tags_dump.txt"
+
+rm -f "$FILENAME"
+global --result=ctags-x -e '.*' >> "$FILENAME"
+global --result=ctags-x -P >> "$FILENAME"
+perl -i -pe 's/^([^ ]+) +(\d+) +([^ ]+?) +(.+?)$/\1\t\4\t\3\t\2/g' "$FILENAME"
+

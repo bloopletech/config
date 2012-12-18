@@ -56,10 +56,11 @@ let g:ctrlp_extensions = ['']
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_user_command = "ag --nocolor -g '.' %s"
 
-nnoremap <S-T> :CtrlP<CR>
 nnoremap <S-B> :CtrlPBuffer<CR>
 "nnoremap <S-B> :CtrlPBufTag<CR>
 "nnoremap <C-S-B> :CtrlPBufTagAll<CR>
+
+nnoremap <S-T> :RtGrep<CR>
 
 nnoremap U <C-R>
 nnoremap <C-R> U

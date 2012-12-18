@@ -1,0 +1,4 @@
+*.pack.js
+*.min.js
+*-min.js
+log/*.log
