@@ -14,6 +14,8 @@ function! s:RtGrep()
   let l:locators = readfile(l:output)
   if !empty(l:locators)
     execute "e +".l:locators[1]." ".l:locators[0]
+  else
+    redraw!
   endif
 endfunction
 
