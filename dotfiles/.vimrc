@@ -60,7 +60,8 @@ nnoremap <S-B> :CtrlPBuffer<CR>
 "nnoremap <S-B> :CtrlPBufTag<CR>
 "nnoremap <C-S-B> :CtrlPBufTagAll<CR>
 
-nnoremap <S-T> :RtGrep<CR>
+nnoremap <S-T> :RtGrepAll<CR>
+nnoremap <C-S-T> :RtGrepBuffer<CR>
 
 nnoremap U <C-R>
 nnoremap <C-R> U
