@@ -20,7 +20,7 @@ shopt -s checkwinsize
 
 shopt -s expand_aliases
 
-shopt -s cdable_vars
+#shopt -s cdable_vars
 
 shopt -s globstar
 
