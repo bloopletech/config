@@ -43,23 +43,11 @@ set hls
 set shell=bash
 set shellpipe=\ 2>&1\ >
 let g:ackprg = "ag --nocolor --nogroup --column "
-let g:ack_qhandler = "CtrlPQuickfix"
+"let g:ack_qhandler = "CtrlPQuickfix"
 
 nnoremap <C-G> :Ack 
 
-let g:ctrlp_map = '<Tab>'
-let g:ctrlp_max_height = 150
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_lazy_update = 1
-let g:ctrlp_extensions = ['']
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_user_command = "ag --nocolor -g '.' %s"
-
-nnoremap <S-B> :CtrlPBuffer<CR>
-"nnoremap <S-B> :CtrlPBufTag<CR>
-"nnoremap <C-S-B> :CtrlPBufTagAll<CR>
-
+nnoremap <S-B> :BuffersRtGrep
 nnoremap <S-T> :BtagsAll<CR>
 nnoremap <C-S-T> :BtagsBuffer<CR>
 
