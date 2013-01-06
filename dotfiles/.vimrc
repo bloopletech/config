@@ -47,7 +47,7 @@ let g:ackprg = "ag --nocolor --nogroup --column "
 
 nnoremap <C-G> :Ack 
 
-nnoremap <S-B> :BuffersRtGrep
+nnoremap <S-B> :BuffersRtGrep<CR>
 nnoremap <S-T> :BtagsAll<CR>
 nnoremap <C-S-T> :BtagsBuffer<CR>
 
