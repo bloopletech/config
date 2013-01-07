@@ -61,7 +61,7 @@ fi
 shopt -s autocd
 
 H="/home/bloopletech"
-export PATH="$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/work/yodlee/apache-ant-1.8.1/bin:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
+export PATH="$H/key/btags:$H/key/rtgrep:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/work/yodlee/apache-ant-1.8.1/bin:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
 export MANPATH="$H/.npm/man:$MANPATH"
 export JAVA_HOME="$H/key/jdk1.7.0_02/"
 export ANT_HOME="$H/key/apache-ant-1.8.2/" #EWWWW
@@ -151,21 +151,6 @@ export ACK_OPTIONS="-i --type-add ruby=haml"
 export VISUAL="vi"
 
 export JRUBY_OPTS="--1.9"
-
-function gtags_global_path () {
-  export GTAGSLIBPATH=`
-  files=( )
-  i=0
-  while IFS= read -r -d $'\0' file; do
-    files[i++]="${file:1}"
-  done < <(cd ~/.global && find . -type f -name 'GTAGS' -printf '%h\0')
-  IFS=:
-  echo "${files[*]}"
-  `
-}
-
-export MAKEOBJDIRPREFIX=/home/bloopletech/.global
-gtags_global_path
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

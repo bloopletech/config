@@ -42,10 +42,8 @@ set hls
 
 set shell=bash
 set shellpipe=\ 2>&1\ >
-let g:ackprg = "ag --nocolor --nogroup --column "
-"let g:ack_qhandler = "CtrlPQuickfix"
 
-nnoremap <C-G> :Ack 
+nnoremap <C-G> :AgSearch 
 
 nnoremap <S-B> :BuffersRtGrep<CR>
 nnoremap <S-T> :BtagsAll<CR>
