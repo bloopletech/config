@@ -6,7 +6,7 @@ function! s:BuffersRtGrep()
 
   let l:output = tempname()
   let l:pattern = '^\s*\(\d\+\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)"\(.\{-}\)" \+line *\(\d\+\)\s*$'
-  let l:replacement = '\=fnamemodify(submatch(8), ":.")." current".(submatch(3) == "%" ? " buffer" : "")." ".submatch(9)." ".fnamemodify(submatch(8), ":.")." current".(submatch(3) == "%" ? " buffer" : "")'
+  let l:replacement = '\=fnamemodify(submatch(8), ":.")." ".(submatch(3) == "%" ? " current " : "")."buffer ".submatch(9)." ".fnamemodify(submatch(8), ":.")." ".(submatch(3) == "%" ? "current " : "")."buffer"'
   call map(l:buffers, 'substitute(l:buffers[v:key], l:pattern, l:replacement, "")')
   echo l:buffers
   call writefile(l:buffers, l:output)
