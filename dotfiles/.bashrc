@@ -99,6 +99,12 @@ alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white 
 alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
 alias minify="java -jar $H/key/third_party/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar "
 
+function cdbtags () {
+  TAGSFILE=$(btags)
+  DIR=$(dirname "$TAGSFILE")
+  cd "$DIR"
+}
+
 function exaudio () { ffmpeg -i "$1" -acodec copy "$1.mp3"; }
 function crush () { TMP_FILENAME="/tmp/png_crush_image_$RANDOM"; echo $TMP_FILENAME; pngcrush -rem cHRM -rem gAMA -rem iCCP -rem sRGB "$1" $TMP_FILENAME; mv $TMP_FILENAME "$1"; }
 function log_and_run () { echo "" > log/test.log; spec "$1"; cat log/test.log; }
@@ -144,7 +150,6 @@ alias worktime="setsid _worktime"
 export CLICOLOR=TRUE
 
 export CAMPING_ENV=development
-export RUBYOPT="-rubygems -Ku"
 export RUNNING_LOCALLY=true
 
 export ACK_OPTIONS="-i --type-add ruby=haml"
@@ -152,17 +157,13 @@ export VISUAL="vi"
 
 export JRUBY_OPTS="--1.9"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-rvm use 1.9.3 >/dev/null
-
-cd .
+[[ -s "/home/bloopletech/.rvm/scripts/rvm" ]] && source "/home/bloopletech/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 function __set_ps1_with_git_branch {
     __git_branch="$(git branch 2>/dev/null | sed -e "/^\s/d" -e "s/^\*\s//")"
     [ "$__git_branch" = "master" ] && __git_branch="▲"
     test -n "$__git_branch" && __git_branch="\[\033[1;32m\]:\[\033[0m\033[0;32m\]$__git_branch\[\033[0m\]"
-    export PS1="\w$__git_branch\[\033[1;37m\]$\[\033[0m\] \[\e]0;T: bash\007\]"    
+    export PS1="\w$__git_branch\[\033[1;37m\]$\[\033[0m\] \[\e]0;bash\007\]"    
     return 0
 }
 
@@ -172,7 +173,7 @@ then
     case $TERM in
       rxvt|*term*)        
           export PROMPT_COMMAND="__set_ps1_with_git_branch"
-          trap 'echo -ne "\e]2;T: $BASH_COMMAND\007"' DEBUG
+          trap 'echo -ne "\e]2;$BASH_COMMAND\007"' DEBUG
       ;;
     esac
 fi
