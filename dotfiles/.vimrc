@@ -55,7 +55,7 @@ nnoremap <S-T> :BtagsAll<CR>
 nnoremap <C-S-T> :BtagsBuffer<CR>
 
 "Completion
-imap <Tab> <C-X><C-O>
+imap <Tab> <C-X><C-N>
 inoremap <CR> <C-R>=pumvisible() ? "\<lt>C-Y>" : "\<lt>CR>"<CR>
 
 "Undo/redo
