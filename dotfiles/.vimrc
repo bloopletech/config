@@ -25,7 +25,7 @@ highlight! link SpellLocal SpellBad
 "highlight MBENormal gui=NONE guifg=#BC9458
 highlight LineNr ctermfg=240 ctermbg=NONE
 highlight clear CursorLine
-highlight CursorLine ctermbg=233
+highlight CursorLine ctermbg=234
 highlight clear CursorLineNr
 highlight CursorLineNr ctermfg=249 ctermbg=NONE
 
