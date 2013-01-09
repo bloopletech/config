@@ -7,6 +7,7 @@ set clipboard=unnamedplus
 set hidden
 set mouse=a
 set linebreak
+set cursorline
 filetype plugin on
 
 "Syntax highlighting
@@ -23,6 +24,10 @@ highlight! link SpellLocal SpellBad
 "highlight PmenuSel guifg=#E6E1DC guibg=#5A647E
 "highlight MBENormal gui=NONE guifg=#BC9458
 highlight LineNr ctermfg=240 ctermbg=NONE
+highlight clear CursorLine
+highlight CursorLine ctermbg=233
+highlight clear CursorLineNr
+highlight CursorLineNr ctermfg=249 ctermbg=NONE
 
 "set showmatch
 "set matchtime=500
