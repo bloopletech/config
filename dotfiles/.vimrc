@@ -63,6 +63,8 @@ nnoremap <C-S-T> :BtagsBuffer<CR>
 inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-X>\<lt>C-N>"<CR>
 "inoremap <Space> <C-R>=pumvisible() ? "\<lt>CR>" : "\<lt>Space>"<CR>
 let g:acp_behaviorKeywordCommand = "\<C-X>\<C-N>"
+let g:acp_mappingDriven = 1
+let g:acp_behaviorRubyOmniSymbolLength = -1
 
 "Undo/redo
 nnoremap U <C-R>
