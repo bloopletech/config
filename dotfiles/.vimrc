@@ -40,7 +40,7 @@ set softtabstop=2
 "Indenting
 set autoindent
 set cindent
-filetype plugin on
+filetype indent on
 
 "Searching
 set ignorecase
