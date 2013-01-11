@@ -61,7 +61,8 @@ nnoremap <C-S-T> :BtagsBuffer<CR>
 
 "Completion
 inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-X>\<lt>C-N>"<CR>
-inoremap <CR> <C-R>=pumvisible() ? "\<lt>C-Y>" : "\<lt>CR>"<CR>
+"inoremap <Space> <C-R>=pumvisible() ? "\<lt>CR>" : "\<lt>Space>"<CR>
+let g:acp_behaviorKeywordCommand = "\<C-X>\<C-N>"
 
 "Undo/redo
 nnoremap U <C-R>
