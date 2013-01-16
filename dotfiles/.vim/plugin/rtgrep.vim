@@ -1,6 +1,6 @@
 function! g:RtGrep(path)
   let l:output = tempname()
-  let l:cmd = "~/key/rtgrep/rtgrep ".a:path." 2>".l:output
+  let l:cmd = "RTGREP_MAP_KIND=1 ~/key/rtgrep/rtgrep ".a:path." 2>".l:output
   execute "silent !".l:cmd
   let l:locators = readfile(l:output)
   if !empty(l:locators)
