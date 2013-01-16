@@ -55,13 +55,14 @@ set shellpipe=\ 2>&1\ >
 "File navigation and search plugins
 nnoremap <C-G> :AgSearch 
 
-nnoremap <S-B> :BuffersRtGrep<CR>
-nnoremap <S-T> :BtagsAll<CR>
-nnoremap <C-S-T> :BtagsBuffer<CR>
+"nnoremap <S-B> :BuffersRtGrep<CR>
+nnoremap <S-T> :CombinedRtGrep<CR>
+"nnoremap <C-S-T> :BtagsBuffer<CR>
 
 "Completion
 inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-X>\<lt>C-N>"<CR>
 "inoremap <Space> <C-R>=pumvisible() ? "\<lt>CR>" : "\<lt>Space>"<CR>
+let g:acp_enableAtStartup = 0
 let g:acp_behaviorKeywordCommand = "\<C-X>\<C-N>"
 let g:acp_mappingDriven = 1
 let g:acp_behaviorRubyOmniSymbolLength = -1
