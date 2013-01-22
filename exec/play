@@ -1,2 +1,31 @@
 #!/bin/bash
-__GL_SYNC_TO_VBLANK=1 mplayer -really-quiet -nolirc -framedrop -dr -vo vdpau -fs -demuxer lavf -alang jpn,jp,eng,en -slang eng,en -ass -embeddedfonts -ao alsa -cache 10000 "$1" 2>&1 >/dev/null 
+
+RANDOM_PREFIX="$RANDOM"
+
+function parse_variable() {
+  IFS='=' read -ra PARTS <<< "$(grep "$1" /tmp/play_$RANDOM_PREFIX)"
+  echo ${PARTS[1]}
+}
+
+function execute_mplayer() {
+  export __GL_SYNC_TO_VBLANK=1
+  mplayer --nolirc --framedrop --dr --vo=xv --fs --no-zoom --alang=jpn,jp,eng,en --slang=eng,en --ass --embeddedfonts --ao=alsa --af=volnorm=2 --cache=10000 "$@" >/dev/null 2>&1 
+}
+
+mplayer --identify --frames=0 --nomsgcolor "$1" 2>/dev/null >/tmp/play_$RANDOM_PREFIX
+
+WIDTH=$(parse_variable ID_VIDEO_WIDTH)
+HEIGHT=$(parse_variable ID_VIDEO_HEIGHT)
+
+rm /tmp/play_$RANDOM_PREFIX
+
+if [[ $WIDTH -lt 601 || $HEIGHT -lt 501 ]]; then
+  NEW_WIDTH=$(expr $WIDTH \* 2)
+  execute_mplayer "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$1"
+elif [[ $WIDTH -lt 1001 || $HEIGHT -lt 901 ]]; then
+  NEW_WIDTH=$(expr \( $WIDTH \* 3 \) / 2)
+  execute_mplayer "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$1"
+else
+  execute_mplayer "--vf=expand=1920:1080" "$1"
+fi
+
