@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo -n "javascript:((function(){" >> bookmarklet
+java -jar ~/key/third_party/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar "$1" >> bookmarklet
+echo "}));" >> bookmarklet

@@ -80,15 +80,12 @@ alias up="git stash && git svn rebase && git stash apply"
 alias r="ps -A -f | grep "
 alias here="gnome-open ."
 #alias nup="sudo ifconfig wlan0 up"
-alias suck="wget -r -k -p -np -U 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1081.2 Safari/536.5' "
-alias tubes="aria2c -s 1 -j 4 -i "
 alias cutout="git format-patch -1 "
 alias gapi="curl -g -i -H 'Accept: application/xml' "
 alias lopen="gnome-open $(ls --sort=time -1 | head -1)"
 
 #export PATH="$PATH:~/key/third_party/git-achievements"
 #alias git="git-achievements"
-alias vpn="sudo openvpn --config ~/Documents/seattle.ovpn --redirect-gateway def1 bypass-dns bypass-dhcp --daemon; sleep 30; sudo ifconfig tun0 mtu 1300; sudo ifconfig eth1 mtu 1300; sudo ifconfig wlan0 mtu 1300"
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
 alias right="xrandr --current -o right"
@@ -105,7 +102,6 @@ function cdbtags () {
   cd "$DIR"
 }
 
-function exaudio () { ffmpeg -i "$1" -acodec copy "$1.mp3"; }
 function crush () { TMP_FILENAME="/tmp/png_crush_image_$RANDOM"; echo $TMP_FILENAME; pngcrush -rem cHRM -rem gAMA -rem iCCP -rem sRGB "$1" $TMP_FILENAME; mv $TMP_FILENAME "$1"; }
 function log_and_run () { echo "" > log/test.log; spec "$1"; cat log/test.log; }
 function r3lar () { echo "" > log/test.log; rspec "$1"; cat log/test.log; }
@@ -129,6 +125,13 @@ function gems () { cd "$GEM_HOME/gems"; }
 function fm () { e $(ack -1 -Q -l --type=ruby "def $1"); }
 function validutf8 () { iconv -f UTF-8 "$1" -o /dev/null; echo "$?"; }
 
+function railssrc () {
+  TAG
+  cd ~/key/third_party/rails
+  git checkout 
+}
+alias railssrc="cd ~/key/third_party/rails && git checkout v3.0.10 && e"
+
 function pull ()
 {
   git fetch --all
@@ -143,6 +146,8 @@ function nlessc () {
   filename="${1%.*}"
   ~/.npm/less/1.3.0/package/bin/lessc $filename.less > $filename.css
 }
+
+source ~/key/pillage/shell/shell_functions.sh
 
 alias storytime="setsid _storytime"
 alias worktime="setsid _worktime"
@@ -161,7 +166,7 @@ export JRUBY_OPTS="--1.9"
 
 function __set_ps1_with_git_branch {
     __git_branch="$(git branch 2>/dev/null | sed -e "/^\s/d" -e "s/^\*\s//")"
-    [ "$__git_branch" = "master" ] && __git_branch="▲"
+    [ "$__git_branch" = "master" ] && __git_branch="@"
     test -n "$__git_branch" && __git_branch="\[\033[1;32m\]:\[\033[0m\033[0;32m\]$__git_branch\[\033[0m\]"
     export PS1="\w$__git_branch\[\033[1;37m\]$\[\033[0m\] \[\e]0;bash\007\]"    
     return 0
