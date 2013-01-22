@@ -61,7 +61,7 @@ fi
 shopt -s autocd
 
 H="/home/bloopletech"
-export PATH="$H/key/btags:$H/key/rtgrep:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/work/yodlee/apache-ant-1.8.1/bin:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
+export PATH="$H/key/btags:$H/key/rtgrep:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
 export MANPATH="$H/.npm/man:$MANPATH"
 export JAVA_HOME="$H/key/jdk1.7.0_02/"
 export ANT_HOME="$H/key/apache-ant-1.8.2/" #EWWWW
@@ -70,10 +70,10 @@ alias sad="psql -h localhost -U postgres "
 alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
 alias lnode="ssh bloople@178.79.147.14"
-alias specs="bundle exec rspec spec/{api,capybara,controllers,coupa_lib,helpers,lib,mailers,models,requests,selenium,views}/**"
+alias specs="bundle exec rspec spec/{api,capybara,controllers,helpers,lib,mailers,models,requests,selenium,views}/**"
 alias fixnet="sudo modprobe -r ath9k && sudo modprobe ath9k; sudo service network-manager restart"
-#alias allspecs="spec spec/{controllers,models,views,helpers,coupa_lib}/**"
-#alias r3allspecs="rspec spec/{controllers,models,views,helpers,coupa_lib}/**"
+#alias allspecs="spec spec/{controllers,models,views,helpers}/**"
+#alias r3allspecs="rspec spec/{controllers,models,views,helpers}/**"
 alias cuke="cucumber -r features "
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
 alias up="git stash && git svn rebase && git stash apply"
