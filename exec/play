@@ -12,19 +12,19 @@ function execute_mplayer() {
   mplayer --nolirc --framedrop --dr --vo=xv --fs --no-zoom --alang=jpn,jp,eng,en --slang=eng,en --ass --embeddedfonts --ao=alsa --af=volnorm=2 --cache=10000 "$@" >/dev/null 2>&1 
 }
 
-mplayer --identify --frames=0 --nomsgcolor "$1" 2>/dev/null >/tmp/play_$RANDOM_PREFIX
+mplayer --identify --frames=0 --nomsgcolor "$@" 2>/dev/null >/tmp/play_$RANDOM_PREFIX
 
 WIDTH=$(parse_variable ID_VIDEO_WIDTH)
 HEIGHT=$(parse_variable ID_VIDEO_HEIGHT)
 
 rm /tmp/play_$RANDOM_PREFIX
 
-if [[ $WIDTH -lt 601 || $HEIGHT -lt 501 ]]; then
+if [[ $WIDTH -lt 601 || $HEIGHT -lt 401 ]]; then
   NEW_WIDTH=$(expr $WIDTH \* 2)
-  execute_mplayer "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$1"
+  execute_mplayer "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$@"
 elif [[ $WIDTH -lt 1001 || $HEIGHT -lt 901 ]]; then
   NEW_WIDTH=$(expr \( $WIDTH \* 3 \) / 2)
-  execute_mplayer "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$1"
+  execute_mplayer "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$@"
 else
   execute_mplayer "--vf=expand=1920:1080" "$1"
 fi
