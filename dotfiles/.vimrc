@@ -61,6 +61,8 @@ nnoremap <S-T> :CombinedRtGrep<CR>
 
 "Completion
 inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-X>\<lt>C-N>"<CR>
+inoremap <S-Tab> <C-R>=pumvisible() ? "\<lt>C-Y>\<lt>Esc>]seli\<lt>C-X>s\<lt>C-P>" : "\<lt>Esc>]seli\<lt>C-X>s\<lt>C-P>"<CR>
+inoremap <S-E> <C-R>=pumvisible() ? "\<lt>C-E>\<lt>Esc>zg]seli\<lt>C-X>s\<lt>C-P>" : "E"<CR>
 "inoremap <Space> <C-R>=pumvisible() ? "\<lt>CR>" : "\<lt>Space>"<CR>
 let g:acp_enableAtStartup = 0
 let g:acp_behaviorKeywordCommand = "\<C-X>\<C-N>"
@@ -104,6 +106,6 @@ au BufNewFile,BufRead *.less set filetype=less
 
 "Text file editing
 au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
-au BufRead,BufNewFile *.txt setlocal wrap linebreak textwidth=100
+au BufRead,BufNewFile *.nsf setlocal wrap linebreak textwidth=100
 
 imap <C-s> <C-x>s
