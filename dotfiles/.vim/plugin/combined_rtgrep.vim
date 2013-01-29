@@ -1,5 +1,14 @@
+let s:combined_rtgrep_path = "/tmp/rtgrep_".getpid()
+call mkdir(s:combined_rtgrep_path)
+
+function! s:RemoveCombinedRtGrepPath()
+  call system("rm -r ".s:combined_rtgrep_path)
+endfunction
+
+autocmd VimLeave * call s:RemoveCombinedRtGrepPath()
+
 function! s:BuffersXref()
-  let l:output = "/tmp/buffers_xref_".getpid()
+  let l:output = s:combined_rtgrep_path."/buffers_xref"
 
   if bufname("%") == ""
     call writefile([], l:output)
@@ -22,7 +31,7 @@ function! s:BuffersXref()
 endfunction
 
 function! s:BtagsXref(path, type)
-  let l:output = "/tmp/btags_xref_".a:type."_".getpid()
+  let l:output = s:combined_rtgrep_path."/btags_xref_".a:type
 
   if a:path == ""
     call writefile([], l:output)
