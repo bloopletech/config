@@ -39,6 +39,10 @@ function! s:BtagsXref(path, type)
   end
 
   let l:btags_path = expand("$HOME")."/.btags".(isdirectory(a:path) ? a:path."/tags.tags" : "/".a:path.".tags")
+  let l:link_current_path = system("readlink -n ".l:output) 
+  if l:link_current_path != "" && l:link_current_path == l:btags_path
+    return l:output
+  end
   call system("ln -nfs ".shellescape(l:btags_path)." ".l:output)
 
   return l:output
