@@ -6,7 +6,11 @@
 #AFAIK this line is not needed because the only way this file will EVER be loaded in a non-interactive shell is if people put /bin/bash -l as the shebang line
 #[ -z "$PS1" ] && return
 
-export TERM=xterm-256color
+if [ "$TERM" == "screen" ]; then
+  export TERM=screen-256color
+else
+  export TERM=xterm-256color
+fi
 
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoreboth
@@ -182,3 +186,5 @@ then
       ;;
     esac
 fi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

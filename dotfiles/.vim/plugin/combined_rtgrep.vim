@@ -1,34 +1,45 @@
 function! s:BuffersXref()
+  let l:output = "/tmp/buffers_xref_".getpid()
+
+  if bufname("%") == ""
+    call writefile([], l:output)
+    return l:output
+  end
+
   silent redir => l:ls
   silent ls
   silent redir END
   let l:buffers = filter(split(l:ls, "\n"), "len(v:val) > 0")
 
-  let l:output = tempname()
   let l:pattern = '^\s*\(\d\+\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)"\(.\{-}\)" \+line *\(\d\+\)\s*$'
   let l:replacement = '\=fnamemodify(submatch(8), ":.")." ".(submatch(3) == "%" ? " current " : "")."buffer ".submatch(9)." ".fnamemodify(submatch(8), ":.")." ".(submatch(3) == "%" ? "current " : "")."buffer"'
   call map(l:buffers, 'substitute(l:buffers[v:key], l:pattern, l:replacement, "")')
+  call add(l:buffers, "")
+
   call writefile(l:buffers, l:output)
 
   return l:output
 endfunction
 
-function! s:BtagsXref(path)
-  let l:srcpath = system("realpath ".shellescape(a:path))
-  let l:tagspath = substitute(system("~/key/btags/btags ".l:srcpath), "\n", "", "")
+function! s:BtagsXref(path, type)
+  let l:output = "/tmp/btags_xref_".a:type."_".getpid()
 
-  return l:tagspath
+  if a:path == ""
+    call writefile([], l:output)
+    return l:output
+  end
+
+  let l:btags_path = expand("$HOME")."/.btags".(isdirectory(a:path) ? a:path."/tags.tags" : "/".a:path.".tags")
+  call system("ln -nfs ".shellescape(l:btags_path)." ".l:output)
+
+  return l:output
 endfunction
 
 function! s:CombinedRtGrep()
   let l:files = []
-  if bufname("%") != ""
-    call add(l:files, s:BuffersXref())
-  endif
-  if glob(expand("%")) != ""
-    call add(l:files, s:BtagsXref(expand("%")))
-  endif
-  call add(l:files, s:BtagsXref(getcwd()))
+  call add(l:files, s:BuffersXref())
+  call add(l:files, s:BtagsXref(expand("%:p"), "current_file"))
+  call add(l:files, s:BtagsXref(getcwd(), "directory"))
 
   call g:RtGrep(join(l:files, " "))
 endfunction

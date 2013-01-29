@@ -1,8 +1,9 @@
 function! g:RtGrep(path)
-  let l:output = tempname()
-  let l:cmd = "RTGREP_MAP_KIND=1 ~/key/rtgrep/rtgrep ".a:path." 2>".l:output
-  execute "silent !".l:cmd
-  let l:locators = readfile(l:output)
+  let l:path_hash = "rtgrepvim_".getpid()
+  execute "silent !~/key/rtgrep/rtgrep_stay ".a:path." ".l:path_hash
+
+  let l:locators = readfile("/tmp/rtgrep_stay_".l:path_hash)
+  "delete(l:locators)
   if !empty(l:locators)
     execute "e +".l:locators[1]." ".l:locators[0]
   endif
