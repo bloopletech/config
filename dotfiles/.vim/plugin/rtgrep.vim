@@ -1,22 +1,28 @@
-function! g:RtGrep(path)
-  let l:path_hash = "_".getpid()
-  execute "silent !~/key/rtgrep/rtgrep_stay ".a:path." ".l:path_hash
+let g:rtgrep_tmpdir = "/tmp/rtgrep_vim_".getpid()
+call mkdir(g:rtgrep_tmpdir)
 
-  let l:locators = readfile("/tmp/rtgrep_stay_".l:path_hash)
+function! s:RemoveRtGrepTmpdir()
+  let l:stay_files = glob(g:rtgrep_tmpdir."/stay_*", 1, 1)
+  for l:file in l:stay_files
+    let l:stay_part = substitute(l:file, "^\\(.*\\)stay_\\([A-Za-z0-9]\\+\\).*$", "\\1stay_\\2", "g")
+    call system("~/key/rtgrep/rtgrep_stay --kill ".l:stay_part)
+  endfor
+
+  call system("rm -r ".g:rtgrep_tmpdir)
+endfunction
+
+autocmd VimLeave * call s:RemoveRtGrepTmpdir()
+
+function! g:RtGrep(path)
+  let l:rtgrep_path = g:rtgrep_tmpdir."/stay_".md5#md5(a:path)
+  execute "silent !~/key/rtgrep/rtgrep_stay ".a:path." ".l:rtgrep_path
+
+  let l:locators = readfile(l:rtgrep_path."_output")
   "delete(l:locators)
   if !empty(l:locators)
     execute "e +".l:locators[1]." ".l:locators[0]
   endif
   redraw!
 endfunction
-
-function! s:RemoveRtGrepStay()
-  let l:path_hash = "_".getpid()
-
-  call system("~/key/rtgrep/rtgrep_stay --kill ".l:path_hash)
-  call delete("/tmp/rtgrep_stay_".l:path_hash)
-endfunction
-
-autocmd VimLeave * call s:RemoveRtGrepStay()
 
 command! RtGrep -nargs=1 call g:RtGrep(<args>)
