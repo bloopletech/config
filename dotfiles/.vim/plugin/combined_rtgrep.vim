@@ -1,5 +1,5 @@
 function! s:BuffersXref()
-  let l:output = g:rtgrep_tmpdir."/buffers_xref"
+  let l:output = g:rtgrep_tmpdir."/currently_open_buffers"
 
   if bufname("%") == ""
     call writefile([], l:output)
@@ -14,15 +14,13 @@ function! s:BuffersXref()
   let l:pattern = '^\s*\(\d\+\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)"\(.\{-}\)" \+line *\(\d\+\)\s*$'
   let l:replacement = '\=fnamemodify(submatch(8), ":.")." ".(submatch(3) == "%" ? " current " : "")."buffer ".submatch(9)." ".fnamemodify(submatch(8), ":.")." ".(submatch(3) == "%" ? "current " : "")."buffer"'
   call map(l:buffers, 'substitute(l:buffers[v:key], l:pattern, l:replacement, "")')
-  call add(l:buffers, "")
-
   call writefile(l:buffers, l:output)
 
   return l:output
 endfunction
 
 function! s:BtagsXref(path, type)
-  let l:output = g:rtgrep_tmpdir."/btags_xref_".a:type
+  let l:output = g:rtgrep_tmpdir."/".a:type."_tags"
 
   if a:path == ""
     call writefile([], l:output)
@@ -43,7 +41,7 @@ function! s:CombinedRtGrep()
   let l:files = []
   call add(l:files, s:BuffersXref())
   call add(l:files, s:BtagsXref(expand("%:p"), "current_file"))
-  call add(l:files, s:BtagsXref(getcwd(), "directory"))
+  call add(l:files, s:BtagsXref(getcwd(), "project_wide"))
 
   call g:RtGrep(join(l:files, " "))
 endfunction

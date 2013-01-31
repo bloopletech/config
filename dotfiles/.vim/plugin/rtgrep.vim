@@ -17,12 +17,13 @@ function! g:RtGrep(path)
   let l:rtgrep_path = g:rtgrep_tmpdir."/stay_".md5#md5(a:path)
   execute "silent !~/key/rtgrep/rtgrep_stay ".a:path." ".l:rtgrep_path
 
-  let l:locators = readfile(l:rtgrep_path."_output")
-  "delete(l:locators)
-  if !empty(l:locators)
-    execute "e +".l:locators[1]." ".l:locators[0]
+  if filereadable(l:rtgrep_path."_output")
+    let l:locators = readfile(l:rtgrep_path."_output")
+    if !empty(l:locators)
+      execute "e +".l:locators[1]." ".l:locators[0]
+    endif
+    redraw!
   endif
-  redraw!
 endfunction
 
 command! RtGrep -nargs=1 call g:RtGrep(<args>)
