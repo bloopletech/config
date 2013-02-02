@@ -43,7 +43,7 @@ function! s:CombinedRtGrep()
   call add(l:files, s:BtagsXref(expand("%:p"), "current_file"))
   call add(l:files, s:BtagsXref(getcwd(), "project_wide"))
 
-  call g:RtGrep(join(l:files, " "))
+  call g:RtGrep(join(l:files, " "), "cd ".shellescape(getcwd())." && btags")
 endfunction
 
 command! CombinedRtGrep call s:CombinedRtGrep()
