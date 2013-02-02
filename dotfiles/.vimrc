@@ -77,10 +77,11 @@ nnoremap <C-R> U
 "nmap <Tab> <Esc>:
 
 "Copy and Paste
-vnoremap <C-c> "+y
-vnoremap <C-x> "+c
-vnoremap <C-v> c<ESC>"+p
+vnoremap <C-x> "+d
+vnoremap <C-c> "+d"+gP
+vnoremap <C-v> "_d"+gP
 inoremap <C-v> <ESC>"+pa
+nnoremap <C-v> "+gP
 cnoremap <C-v> <C-r>+
 noremap <C-a> gg"+yG
 
