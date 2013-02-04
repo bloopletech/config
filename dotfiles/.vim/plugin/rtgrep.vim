@@ -5,7 +5,7 @@ function! s:RemoveRtGrepTmpdir()
   let l:stay_files = glob(g:rtgrep_tmpdir."/stay_*", 1, 1)
   for l:file in l:stay_files
     let l:stay_part = substitute(l:file, "^\\(.*\\)stay_\\([A-Za-z0-9]\\+\\).*$", "\\1stay_\\2", "g")
-    call system("RTGREP_PATH=".shellescape(l:stay_part)." ~/key/rtgrep/rtgrep_stay --kill")
+    call system("RTGREP_PATH=".shellescape(l:stay_part)." rtgrep_stay --kill")
   endfor
 
   call system("rm -r ".g:rtgrep_tmpdir)
@@ -19,7 +19,7 @@ function! g:RtGrep(path, tagger)
   if a:tagger != ""
     let l:cmd .= "RTGREP_TAGGER=".shellescape(a:tagger)." "
   endif
-  let l:cmd .= "RTGREP_PATH=".shellescape(l:rtgrep_path)." RTGREP_MAP_KIND=1 ~/key/rtgrep/rtgrep_stay ".a:path
+  let l:cmd .= "RTGREP_PATH=".shellescape(l:rtgrep_path)." RTGREP_MAP_KIND=1 rtgrep_stay ".a:path
   execute l:cmd
 
   if filereadable(l:rtgrep_path."_output")
