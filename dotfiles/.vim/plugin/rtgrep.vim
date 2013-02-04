@@ -5,7 +5,7 @@ function! s:RemoveRtGrepTmpdir()
   let l:stay_files = glob(g:rtgrep_tmpdir."/stay_*", 1, 1)
   for l:file in l:stay_files
     let l:stay_part = substitute(l:file, "^\\(.*\\)stay_\\([A-Za-z0-9]\\+\\).*$", "\\1stay_\\2", "g")
-    call system("~/key/rtgrep/rtgrep_stay --kill ".l:stay_part)
+    call system("RTGREP_PATH=".shellescape(l:stay_part)." ~/key/rtgrep/rtgrep_stay --kill")
   endfor
 
   call system("rm -r ".g:rtgrep_tmpdir)
