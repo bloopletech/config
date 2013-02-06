@@ -77,6 +77,7 @@ nnoremap <C-R> U
 "nmap <Tab> <Esc>:
 
 "Copy and Paste
+set virtualedit=onemore
 vnoremap <C-x> "+d
 vnoremap <C-c> "+d"+gP
 vnoremap <C-v> "_d"+gP
@@ -110,3 +111,6 @@ au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
 au BufRead,BufNewFile *.nsf setlocal wrap linebreak textwidth=100
 
 imap <C-s> <C-x>s
+
+"Splitting
+set splitright

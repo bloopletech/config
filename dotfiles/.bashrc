@@ -8,7 +8,7 @@
 
 if [ "$TERM" == "screen" ]; then
   export TERM=screen-256color
-else
+elif [ "$TERM" == "xterm" ]; then
   export TERM=xterm-256color
 fi
 
@@ -99,6 +99,7 @@ alias playdvd="play dvd:////dev/dvd1"
 alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -extent 480x800 +repage -colorspace Gray -quality 90 "
 alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
 alias minify="java -jar $H/key/third_party/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar "
+alias cores="cat /proc/cpuinfo  | grep --color=never 'cpu MHz' | grep --color=never -v '1600.000'"
 
 function cdbtags () {
   TAGSFILE=$(btags)
@@ -166,6 +167,8 @@ export VISUAL="vi"
 
 export JRUBY_OPTS="--1.9"
 
+export NNTPSERVER="nntp.olduse.net"
+
 [[ -s "/home/bloopletech/.rvm/scripts/rvm" ]] && source "/home/bloopletech/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 function __set_ps1_with_git_branch {
@@ -180,7 +183,7 @@ function __set_ps1_with_git_branch {
 if [ "$SHELL" = '/bin/bash' ]
 then
     case $TERM in
-      rxvt|*term*)        
+      rxvt|*term*|*screen*)
           export PROMPT_COMMAND="__set_ps1_with_git_branch"
           trap 'echo -ne "\e]2;$BASH_COMMAND\007"' DEBUG
       ;;
