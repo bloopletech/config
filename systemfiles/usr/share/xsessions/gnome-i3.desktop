@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=i3 + GNOME
+Comment=improved dynamic tiling window manager
+Exec=gnome-session --session=gnome-i3
+Type=Application

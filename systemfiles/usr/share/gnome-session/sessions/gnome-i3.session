@@ -1,0 +1,6 @@
+[GNOME Session]
+Name=gnome-i3
+RequiredComponents=gnome-settings-daemon;
+RequiredProviders=windowmanager;
+DefaultProvider-windowmanager=gnome-i3
+DesktopName=i3
