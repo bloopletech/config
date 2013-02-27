@@ -38,12 +38,18 @@ function! s:BtagsXref(path, type)
 endfunction
 
 function! s:CombinedRtGrep()
+  let l:tagger = "cd ".shellescape(getcwd())." && btags"
+
+  if system(l:tagger." path") == "Not a btags project\n"
+    execute "silent !clear && echo 'Creating btags project...' && ".l:tagger
+  end
+
   let l:files = []
   call add(l:files, s:BuffersXref())
   call add(l:files, s:BtagsXref(expand("%:p"), "current_file"))
   call add(l:files, s:BtagsXref(getcwd(), "project_wide"))
 
-  call g:RtGrep(join(l:files, " "), "cd ".shellescape(getcwd())." && btags")
+  call g:RtGrep(join(l:files, " "), l:tagger)
 endfunction
 
 command! CombinedRtGrep call s:CombinedRtGrep()
