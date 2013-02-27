@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CASE_TEMP=$(cat /sys/bus/platform/devices/it87.656/temp3_input)
+
+dc -e "$CASE_TEMP 1000 / n"
+echo " C"

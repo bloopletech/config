@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat /proc/cpuinfo | grep --color=never "cpu MHz" | grep -c 3901

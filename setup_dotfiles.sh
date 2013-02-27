@@ -24,4 +24,6 @@ rm -i .tmux.conf
 ln -nfs ~/key/config/dotfiles/.tmux.conf
 rm -i -r .i3
 ln -nfs ~/key/config/dotfiles/.i3
+rm -i .indicator-sysmonitor.json
+ln -nfs ~/key/config/dotfiles/.indicator-sysmonitor.json
 

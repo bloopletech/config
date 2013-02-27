@@ -1,0 +1,11 @@
+#!/bin/bash
+# Prints proportional 1-minute load average
+
+NUMBER_OF_CORES=$(cat /proc/cpuinfo | grep -c "^processor")
+
+LOAD_PARTS=($(cat /proc/loadavg))
+
+OUTPUT=$(dc -e "2 k ${LOAD_PARTS[0]} $NUMBER_OF_CORES / n")
+
+echo "${OUTPUT/#./0.}"
+
