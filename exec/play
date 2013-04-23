@@ -9,7 +9,7 @@ function parse_variable() {
 
 function execute_mplayer() {
   export __GL_SYNC_TO_VBLANK=1
-  mplayer --nolirc --framedrop --dr --vo=xv --fs --no-zoom --alang=jpn,jp,eng,en --slang=eng,en --ass --embeddedfonts --ao=alsa --af=volnorm=2 --cache=10000 "$@" >/dev/null 2>&1 
+  mplayer --nolirc --framedrop --dr --vo=vdpau --fs --no-zoom --alang=jpn,jp,eng,en --slang=eng,en --ass --embeddedfonts --ao=alsa --af=volnorm=2 --cache=10000 "$@" >/dev/null 2>&1
 }
 
 mplayer --identify --frames=0 --nomsgcolor "$@" 2>/dev/null >/tmp/play_$RANDOM_PREFIX
@@ -19,7 +19,9 @@ HEIGHT=$(parse_variable ID_VIDEO_HEIGHT)
 
 rm /tmp/play_$RANDOM_PREFIX
 
-if [[ $WIDTH -lt 601 || $HEIGHT -lt 401 ]]; then
+if [[ $WIDTH -eq 1920 && $HEIGHT -eq 1080 ]]; then
+  execute_mplayer "$1"
+elif [[ $WIDTH -lt 601 || $HEIGHT -lt 401 ]]; then
   NEW_WIDTH=$(expr $WIDTH \* 2)
   execute_mplayer "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$@"
 elif [[ $WIDTH -lt 1001 || $HEIGHT -lt 901 ]]; then
