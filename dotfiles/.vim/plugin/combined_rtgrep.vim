@@ -37,7 +37,7 @@ function! s:BtagsXref(path, type)
   return l:output
 endfunction
 
-function! s:CombinedRtGrep()
+function! s:MixedRtGrep(...)
   let l:tagger = "cd ".shellescape(getcwd())." && btags"
 
   if system(l:tagger." path") == "Not a btags project\n"
@@ -45,11 +45,22 @@ function! s:CombinedRtGrep()
   end
 
   let l:files = []
-  call add(l:files, s:BuffersXref())
-  call add(l:files, s:BtagsXref(expand("%:p"), "current_file"))
-  call add(l:files, s:BtagsXref(getcwd(), "project_wide"))
+
+  if index(a:000, "buffers") >= 0
+    call add(l:files, s:BuffersXref())
+  end
+
+  if index(a:000, "current_file") >= 0
+    call add(l:files, s:BtagsXref(expand("%:p"), "current_file"))
+  end
+
+  if index(a:000, "project_wide") >= 0
+    call add(l:files, s:BtagsXref(getcwd(), "project_wide"))
+  end
 
   call g:RtGrep(join(l:files, " "), l:tagger)
 endfunction
 
-command! CombinedRtGrep call s:CombinedRtGrep()
+command! CurrentRtGrep call s:MixedRtGrep("current_file")
+command! BuffersRtGrep call s:MixedRtGrep("buffers")
+command! CombinedRtGrep call s:MixedRtGrep("buffers", "current_file", "project_wide")

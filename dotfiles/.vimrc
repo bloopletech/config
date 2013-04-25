@@ -53,11 +53,13 @@ set shell=bash
 set shellpipe=\ 2>&1\ >
 
 "File navigation and search plugins
-nnoremap <C-G> :AgSearch 
-
-"nnoremap <S-B> :BuffersRtGrep<CR>
+nnoremap <C-G> :AgSearch
 nnoremap <S-T> :CombinedRtGrep<CR>
-"nnoremap <C-S-T> :BtagsBuffer<CR>
+
+nnoremap / :AgSearch 
+nnoremap <M-Space> :BuffersRtGrep<CR>
+nnoremap <Space> :CombinedRtGrep<CR>
+nnoremap <C-@> :CurrentRtGrep<CR>
 
 "Completion
 inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-X>\<lt>C-N>"<CR>
@@ -78,13 +80,13 @@ nnoremap <C-R> U
 
 "Copy and Paste
 set virtualedit=onemore
-vnoremap <C-x> "+d
-vnoremap <C-c> "+d"+gP
-vnoremap <C-v> "_d"+gP
-inoremap <C-v> <ESC>"+pa
-nnoremap <C-v> "+gP
+vnoremap <C-x> d
+vnoremap <C-c> m`y``
+vnoremap <C-v> ""dgP
+inoremap <C-v> <ESC>pa
+nnoremap <C-v> gP
 cnoremap <C-v> <C-r>+
-noremap <C-a> gg"+yG
+noremap <C-a> ggyG
 
 "Navigation treating wrapped lines as separate
 nnoremap j gj
@@ -114,3 +116,10 @@ imap <C-s> <C-x>s
 
 "Splitting
 set splitright
+
+"Navigating between files
+"already have gf for go to file
+nnoremap gl <C-^>
+nnoremap <Tab> <C-^>
+nnoremap gr :R<CR>
+nnoremap ga :A<CR>
