@@ -1,2 +1,6 @@
 exec/.gitignore
 dotfiles/.vim/.netrwhist
+dotfiles/.vim/doc/tags
+dotfiles/.vim/doc/tags-ja
+dotfiles/.vim/spell/en.utf-8.add
+dotfiles/.vim/spell/en.utf-8.add.spl
