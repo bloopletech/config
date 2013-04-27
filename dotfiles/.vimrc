@@ -1,5 +1,6 @@
 "Options
 set nocompatible
+set ttyfast
 set noswapfile
 set backspace=indent,eol,start
 set number
