@@ -54,13 +54,18 @@ set shell=bash
 set shellpipe=\ 2>&1\ >
 
 "File navigation and search plugins
-nnoremap <C-G> :AgSearch
-nnoremap <S-T> :CombinedRtGrep<CR>
-
+nnoremap <F1> :CombinedRtGrep<CR>
+nnoremap <F2> :CurrentRtGrep<CR>
+nnoremap <F3> :BuffersRtGrep<CR>
+nnoremap <Space> gf
+nnoremap <Tab> <C-^>
 nnoremap / :AgSearch 
-nnoremap <M-Space> :BuffersRtGrep<CR>
-nnoremap <Space> :CombinedRtGrep<CR>
-nnoremap <C-@> :CurrentRtGrep<CR>
+
+"Navigating between files
+"already have gf for go to file
+nnoremap gl <C-^>
+nnoremap gr :R<CR>
+nnoremap ga :A<CR>
 
 "Completion
 inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-X>\<lt>C-N>"<CR>
@@ -103,7 +108,6 @@ vnoremap <Up> gk
 inoremap <Down> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-o>gj"<CR>
 inoremap <Up> <C-R>=pumvisible() ? "\<lt>C-P>" : "\<lt>C-o>gk"<CR>
 
-
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 "set statusline=wc:%{WordCount()}
 
@@ -118,9 +122,3 @@ imap <C-s> <C-x>s
 "Splitting
 set splitright
 
-"Navigating between files
-"already have gf for go to file
-nnoremap gl <C-^>
-nnoremap <Tab> <C-^>
-nnoremap gr :R<CR>
-nnoremap ga :A<CR>
