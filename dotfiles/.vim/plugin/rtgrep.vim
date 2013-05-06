@@ -25,7 +25,7 @@ function! g:RtGrep(path, tagger)
   if filereadable(l:rtgrep_path."_output")
     let l:locators = readfile(l:rtgrep_path."_output")
     if !empty(l:locators)
-      execute "e +".l:locators[1]." ".l:locators[0]
+      execute "e +".l:locators[1]." ".escape(l:locators[0], ' \')
     endif
   endif
   redraw!

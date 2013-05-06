@@ -28,6 +28,10 @@ function! s:BtagsXref(path, type)
   end
 
   let l:btags_path = system("btags path ".shellescape(isdirectory(a:path) ? a:path."/tags.tags" : "/".a:path.".tags"))
+  if glob(l:btags_path) == ""
+    let l:btags_path = "/dev/null"
+  end
+
   let l:link_current_path = system("readlink -n ".l:output) 
   if l:link_current_path != "" && l:link_current_path == l:btags_path
     return l:output
