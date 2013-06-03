@@ -27,7 +27,7 @@ function! s:BtagsXref(path, type)
     return l:output
   end
 
-  let l:btags_path = system("btags path ".shellescape(isdirectory(a:path) ? a:path."/tags.tags" : "/".a:path.".tags"))
+  let l:btags_path = system("btags path ".shellescape(a:path))
   if glob(l:btags_path) == ""
     let l:btags_path = "/dev/null"
   end
