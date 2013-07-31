@@ -45,6 +45,7 @@ filetype indent on
 
 "Searching
 set ignorecase
+set infercase
 set gdefault
 set incsearch
 set hls
@@ -66,9 +67,10 @@ nnoremap / :AgSearch
 nnoremap gl <C-^>
 nnoremap gr :R<CR>
 nnoremap ga :A<CR>
+nnoremap gt <C-]>
 
 "Completion
-inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-X>\<lt>C-N>"<CR>
+inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-N>"<CR>
 inoremap <S-Tab> <C-R>=pumvisible() ? "\<lt>C-Y>\<lt>Esc>]seli\<lt>C-X>s\<lt>C-P>" : "\<lt>Esc>]seli\<lt>C-X>s\<lt>C-P>"<CR>
 inoremap <S-E> <C-R>=pumvisible() ? "\<lt>C-E>\<lt>Esc>zg]seli\<lt>C-X>s\<lt>C-P>" : "E"<CR>
 "inoremap <Space> <C-R>=pumvisible() ? "\<lt>CR>" : "\<lt>Space>"<CR>
@@ -122,3 +124,10 @@ imap <C-s> <C-x>s
 "Splitting
 set splitright
 
+"Keywords for ruby
+set iskeyword+=58
+
+"Btags support for tags
+set notagbsearch
+set notagrelative
+au BufRead,BufNewFile * execute "setlocal tags=".fnameescape(system("btags vimpath"))

@@ -6,6 +6,12 @@
 #AFAIK this line is not needed because the only way this file will EVER be loaded in a non-interactive shell is if people put /bin/bash -l as the shebang line
 #[ -z "$PS1" ] && return
 
+if [ "$TERM" == "screen" ]; then
+  export TERM=screen-256color
+elif [ "$TERM" == "xterm" ]; then
+  export TERM=xterm-256color
+fi
+
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoreboth
 
