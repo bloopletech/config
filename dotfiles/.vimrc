@@ -67,7 +67,6 @@ nnoremap / :AgSearch
 nnoremap gl <C-^>
 nnoremap gr :R<CR>
 nnoremap ga :A<CR>
-nnoremap gt <C-]>
 
 "Completion
 inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<lt>C-N>"<CR>
@@ -127,7 +126,9 @@ set splitright
 "Keywords for ruby
 set iskeyword+=58
 
-"Btags support for tags
+"Tags
+nnoremap gt :execute ':tag /\V'.escape(expand('<cword>'), '/\')<CR>
+
 set notagbsearch
 set notagrelative
 au BufRead,BufNewFile * execute "setlocal tags=".fnameescape(system("btags vimpath"))

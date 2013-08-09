@@ -65,7 +65,7 @@ fi
 shopt -s autocd
 
 H="/home/bloopletech"
-export PATH="$H/key/btags:$H/key/rtgrep:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
+export PATH="$H/key/third_party/phantomjs-1.9.1-linux-x86_64/bin:$H/key/btags:$H/key/rtgrep:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
 export MANPATH="$H/.npm/man:$MANPATH"
 export JAVA_HOME="$H/key/jdk1.7.0_02/"
 export ANT_HOME="$H/key/apache-ant-1.8.2/" #EWWWW
@@ -152,6 +152,44 @@ function nlessc () {
   ~/.npm/less/1.3.0/package/bin/lessc $filename.less > $filename.css
 }
 
+#function hitme () {
+#  count="$1"
+#  if [[ "$count" == "" ]]; then
+#    count="1";
+#  fi
+#  separator=$(for i in $(seq $COLUMNS); do echo -n "="; done)
+#  files=(./*)
+#
+#  (
+#    echo "$separator"
+#    for i in $(seq $count); do
+#      echo
+#      cat "${files[RANDOM % ${#files[@]}]}"
+#      echo
+#      echo
+#      echo "$separator"
+#    done
+#  ) | sed -e 's/\xa0/ /g' | less -e -r
+#}
+
+function hitme () {
+  separator=$(for i in $(seq $COLUMNS); do echo -n "⏤"; done)
+  files=(./*)
+
+  while true; do
+    echo "$separator"
+    echo
+    echo
+    cat "${files[RANDOM % ${#files[@]}]}" | sed -e 's/\xa0/ /g'
+    echo
+    echo
+    echo
+    echo "$separator"
+    read -s -r
+    echo
+  done
+}
+
 source ~/key/pillage/shell/shell_functions.sh
 
 alias storytime="setsid _storytime"
@@ -168,6 +206,10 @@ export VISUAL="vi"
 export JRUBY_OPTS="--1.9"
 
 export NNTPSERVER="nntp.olduse.net"
+
+export DB_USER_NAME=postgres
+export DB_PWD=postgres
+export PGPASSWORD="$DB_PWD"
 
 [[ -s "/home/bloopletech/.rvm/scripts/rvm" ]] && source "/home/bloopletech/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
