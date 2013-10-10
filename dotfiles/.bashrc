@@ -100,6 +100,8 @@ alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white 
 alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
 alias minify="java -jar $H/key/third_party/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar "
 alias cores="cat /proc/cpuinfo  | grep --color=never 'cpu MHz' | grep --color=never -v '1600.000'"
+alias home="ssh -p 1984 bloopletech@14.202.195.135"
+alias vnchome="((sleep 30 && xtightvncviewer -encodings tight -compresslevel 9 -quality 4 -x11cursor -fullscreen localhost) &); ssh -p 1984 -L 5900:localhost:5900 bloopletech@14.202.195.135 -t './startvnc'"
 
 function cdbtags () {
   TAGSFILE=$(btags)
