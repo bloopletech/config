@@ -57,3 +57,5 @@ XTerm*scrollBar: false
 XTerm*saveLines: 65535
 
 XTerm*jumpScroll: true
+
+xtightvncviewer*grabKeyboard: true
