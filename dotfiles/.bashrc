@@ -65,7 +65,7 @@ fi
 shopt -s autocd
 
 H="/home/bloopletech"
-export PATH="$H/key/third_party/phantomjs-1.9.1-linux-x86_64/bin:$H/key/btags:$H/key/rtgrep:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
+export PATH="$H/key/third_party/phantomjs-1.9.2-linux-x86_64/bin:$H/key/btags:$H/key/rtgrep:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
 export MANPATH="$H/.npm/man:$MANPATH"
 export JAVA_HOME="$H/key/jdk1.7.0_02/"
 export ANT_HOME="$H/key/apache-ant-1.8.2/" #EWWWW
@@ -207,11 +207,13 @@ export JRUBY_OPTS="--1.9"
 
 export NNTPSERVER="nntp.olduse.net"
 
+export DB_HOST=127.0.0.1
 export DB_USER_NAME=postgres
 export DB_PWD=postgres
 export PGPASSWORD="$DB_PWD"
 
 [[ -s "/home/bloopletech/.rvm/scripts/rvm" ]] && source "/home/bloopletech/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 function __set_ps1_with_git_branch {
     __git_branch="$(git branch 2>/dev/null | sed -e "/^\s/d" -e "s/^\*\s//")"
@@ -232,4 +234,3 @@ then
     esac
 fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
