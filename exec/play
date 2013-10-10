@@ -1,33 +1,23 @@
 #!/bin/bash
 
-RANDOM_PREFIX="$RANDOM"
-
-function parse_variable() {
-  IFS='=' read -ra PARTS <<< "$(grep "$1" /tmp/play_$RANDOM_PREFIX)"
-  echo ${PARTS[1]}
+function execute_player() {
+  mpv --no-lirc --framedrop=yes --fs --alang=jpn,jp,eng,en --slang=eng,en --cache=10000 "$@" >/dev/null 2>&1
 }
 
-function execute_mplayer() {
-  export __GL_SYNC_TO_VBLANK=1
-  mplayer --nolirc --framedrop --dr --vo=vdpau --fs --no-zoom --alang=jpn,jp,eng,en --slang=eng,en --ass --embeddedfonts --ao=alsa --af=volnorm=2 --cache=10000 "$@" >/dev/null 2>&1
-}
+. /home/bloopletech/key/third_party/mpv-build/mpv/TOOLS/mpv_identify.sh ID_ "$@"
 
-mplayer --identify --frames=0 --nomsgcolor "$@" 2>/dev/null >/tmp/play_$RANDOM_PREFIX
-
-WIDTH=$(parse_variable ID_VIDEO_WIDTH)
-HEIGHT=$(parse_variable ID_VIDEO_HEIGHT)
-
-rm /tmp/play_$RANDOM_PREFIX
+WIDTH=$ID_width
+HEIGHT=$ID_height
 
 if [[ $WIDTH -eq 1920 && $HEIGHT -eq 1080 ]]; then
-  execute_mplayer "$1"
+  execute_player "$1"
 elif [[ $WIDTH -lt 601 || $HEIGHT -lt 401 ]]; then
   NEW_WIDTH=$(expr $WIDTH \* 2)
-  execute_mplayer "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$@"
+  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$@"
 elif [[ $WIDTH -lt 1001 || $HEIGHT -lt 901 ]]; then
   NEW_WIDTH=$(expr \( $WIDTH \* 3 \) / 2)
-  execute_mplayer "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$@"
+  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$@"
 else
-  execute_mplayer "--vf=expand=1920:1080" "$1"
+  execute_player "--vf=expand=1920:1080" "$1"
 fi
 
