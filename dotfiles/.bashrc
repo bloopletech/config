@@ -67,8 +67,6 @@ shopt -s autocd
 H="/home/bloopletech"
 export PATH="$H/key/third_party/phantomjs-1.9.2-linux-x86_64/bin:$H/key/btags:$H/key/rtgrep:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
 export MANPATH="$H/.npm/man:$MANPATH"
-export JAVA_HOME="$H/key/jdk1.7.0_02/"
-export ANT_HOME="$H/key/apache-ant-1.8.2/" #EWWWW
 
 alias sad="psql -h localhost -U postgres "
 alias mad="mysql -u root "
@@ -76,8 +74,6 @@ alias sslice="ssh -p 9979 bloople@67.207.142.56"
 alias lnode="ssh bloople@178.79.147.14"
 alias specs="bundle exec rspec spec/{api,capybara,controllers,helpers,lib,mailers,models,requests,selenium,views}/**"
 alias fixnet="sudo modprobe -r ath9k && sudo modprobe ath9k; sudo service network-manager restart"
-#alias allspecs="spec spec/{controllers,models,views,helpers}/**"
-#alias r3allspecs="rspec spec/{controllers,models,views,helpers}/**"
 alias cuke="cucumber -r features "
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
 alias up="git stash && git svn rebase && git stash apply"
@@ -117,6 +113,7 @@ function crush () { TMP_FILENAME="/tmp/png_crush_image_$RANDOM"; echo $TMP_FILEN
 function log_and_run () { echo "" > log/test.log; spec "$1"; cat log/test.log; }
 function r3lar () { echo "" > log/test.log; rspec "$1"; cat log/test.log; }
 function ptb () { scp -P 9979 "$1" bloople@bloople.net:~/www/bloople.net/public; echo "http://bloople.net/$1"; }
+function ptbh () { scp -P 9979 "$1" bloople@bloople.net:~/www/bloople.net/public/h; echo "http://bloople.net/h/$1"; }
 
 function galaxy() {
   avconv -i "$1" -s 1280x720 -acodec libvo_aacenc -ar 22050 -ab 128k -vcodec libx264 -scodec copy -map 0 -threads 0 "small_$1.mkv";
