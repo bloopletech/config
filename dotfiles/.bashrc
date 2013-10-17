@@ -82,7 +82,6 @@ alias here="gnome-open ."
 #alias nup="sudo ifconfig wlan0 up"
 alias cutout="git format-patch -1 "
 alias gapi="curl -g -i -H 'Accept: application/xml' "
-alias lopen="gnome-open $(ls --sort=time -1 | head -1)"
 
 #export PATH="$PATH:~/key/third_party/git-achievements"
 #alias git="git-achievements"
@@ -97,6 +96,8 @@ alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
 alias minify="java -jar $H/key/third_party/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar "
 alias cores="cat /proc/cpuinfo  | grep --color=never 'cpu MHz' | grep --color=never -v '1600.000'"
 alias home="ssh -p 1984 bloopletech@14.202.195.135"
+
+alias gf="git flow "
 
 function vnchome () {
   ( (sleep 30 && xtightvncviewer -encodings tight -compresslevel 9 -quality 4 -x11cursor localhost) &);
@@ -127,8 +128,6 @@ function comics() {
   convert "$1/*.png" "$1/*.jpg" -background white -colorspace Gray -quality 90 "$1.pdf";
 }
 
-alias ack="ack-grep"
-
 function gems () { cd "$GEM_HOME/gems"; }
 function fm () { e $(ack -1 -Q -l --type=ruby "def $1"); }
 function validutf8 () { iconv -f UTF-8 "$1" -o /dev/null; echo "$?"; }
@@ -139,16 +138,6 @@ function railssrc () {
   git checkout 
 }
 alias railssrc="cd ~/key/third_party/rails && git checkout v3.0.10 && e"
-
-function pull ()
-{
-  git fetch --all
-  for branch in "$@"; do
-    git checkout "$branch"      || exit 1
-    git pull || exit 1
-  done
-}
-alias push="git push"
 
 function nlessc () {
   filename="${1%.*}"

@@ -1,0 +1,9 @@
+[roxterm profile]
+colour_scheme=
+font=Ubuntu Mono 13
+maximise=1
+show_tab_num=0
+tab_pos=2
+disable_menu_access=1
+disable_menu_shortcuts=1
+disable_tab_menu_shortcuts=0
