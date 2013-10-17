@@ -26,4 +26,5 @@ rm -i -r .i3
 ln -nfs ~/key/config/dotfiles/.i3
 rm -i .indicator-sysmonitor.json
 ln -nfs ~/key/config/dotfiles/.indicator-sysmonitor.json
-
+rm -i -r .config/roxterm.sourceforge.net
+ln -nfs ~/key/config/dotfiles/.config/roxterm.sourceforge.net .config/roxterm.sourceforge.net
