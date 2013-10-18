@@ -7,3 +7,7 @@ tab_pos=2
 disable_menu_access=1
 disable_menu_shortcuts=1
 disable_tab_menu_shortcuts=0
+visible_bell=1
+scroll_on_keystroke=1
+show_tab_status=1
+middle_click_tab=1

@@ -29,6 +29,7 @@ highlight clear CursorLine
 highlight CursorLine ctermbg=234
 highlight clear CursorLineNr
 highlight CursorLineNr ctermfg=249 ctermbg=NONE
+highlight clear SignColumn
 
 "set showmatch
 "set matchtime=500
