@@ -204,6 +204,10 @@ export DB_USER_NAME=postgres
 export DB_PWD=postgres
 export PGPASSWORD="$DB_PWD"
 
+if [ -f ~/.bashrc_private ]; then
+    . ~/.bashrc_private
+fi
+
 [[ -s "/home/bloopletech/.rvm/scripts/rvm" ]] && source "/home/bloopletech/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
