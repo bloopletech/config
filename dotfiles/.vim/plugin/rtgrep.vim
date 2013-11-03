@@ -19,7 +19,7 @@ function! g:RtGrep(path, tagger)
   if a:tagger != ""
     let l:cmd .= "RTGREP_TAGGER=".shellescape(a:tagger)." "
   endif
-  let l:cmd .= "RTGREP_PATH=".shellescape(l:rtgrep_path)." RTGREP_MAP_KIND=1 rtgrep_stay ".a:path
+  let l:cmd .= "RTGREP_PATH=".shellescape(l:rtgrep_path)." rtgrep_stay ".a:path
   execute l:cmd
 
   if filereadable(l:rtgrep_path."_output")

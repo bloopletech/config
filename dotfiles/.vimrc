@@ -129,7 +129,9 @@ set iskeyword+=58
 
 "Tags
 nnoremap gt :execute ':tag /\V'.escape(expand('<cword>'), '/\')<CR>
+nnoremap <F4> :execute ':tselect /\V'.escape(expand('<cword>'), '/\')<CR>
 
 set notagbsearch
 set notagrelative
-au BufRead,BufNewFile * execute "setlocal tags=".fnameescape(system("btags vimpath"))
+execute "set tags=".fnameescape(system("btags path"))
+au BufRead,BufNewFile * execute "setlocal tags=".fnameescape(system("btags path"))

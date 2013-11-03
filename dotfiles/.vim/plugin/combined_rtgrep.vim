@@ -12,7 +12,7 @@ function! s:BuffersXref()
   let l:buffers = filter(split(l:ls, "\n"), "len(v:val) > 0")
 
   let l:pattern = '^\s*\(\d\+\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)"\(.\{-}\)" \+line *\(\d\+\)\s*$'
-  let l:replacement = '\=fnamemodify(submatch(8), ":.")." ".(submatch(3) == "%" ? " current " : "")."buffer ".submatch(9)." ".fnamemodify(submatch(8), ":.")." ".(submatch(3) == "%" ? "current " : "")."buffer"'
+  let l:replacement = '\=fnamemodify(submatch(8), ":.")."\t".fnamemodify(submatch(8), ":.")."\t".submatch(9).";\"\t".(submatch(3) == "%" ? "B" : "b")'
   call map(l:buffers, 'substitute(l:buffers[v:key], l:pattern, l:replacement, "")')
   call writefile(l:buffers, l:output)
 
