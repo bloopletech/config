@@ -9,7 +9,8 @@ function! s:BuffersXref()
   silent redir => l:ls
   silent ls
   silent redir END
-  let l:buffers = filter(split(l:ls, "\n"), "len(v:val) > 0")
+  let l:buffers = ["!_TAG_COLLECTION_NAME\tCurrently Open Buffers"]
+  call extend(l:buffers, filter(split(l:ls, "\n"), "len(v:val) > 0"))
 
   let l:pattern = '^\s*\(\d\+\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)"\(.\{-}\)" \+line *\(\d\+\)\s*$'
   let l:replacement = '\=fnamemodify(submatch(8), ":.")."\t".fnamemodify(submatch(8), ":.")."\t".submatch(9).";\"\t".(submatch(3) == "%" ? "B" : "b")'
@@ -55,11 +56,17 @@ function! s:MixedRtGrep(...)
   end
 
   if index(a:000, "current_file") >= 0
-    call add(l:files, s:BtagsXref(expand("%:p"), "current_file"))
+    if !exists("b:combined_rtgrep_current_file")
+      let b:combined_rtgrep_current_file = s:BtagsXref(expand("%:p"), "current_file")
+    end
+    call add(l:files, b:combined_rtgrep_current_file)
   end
 
   if index(a:000, "project_wide") >= 0
-    call add(l:files, s:BtagsXref(getcwd(), "project_wide"))
+    if !exists("b:combined_rtgrep_project_wide")
+      let b:combined_rtgrep_project_wide = s:BtagsXref(getcwd(), "project_wide")
+    end
+    call add(l:files, b:combined_rtgrep_project_wide)
   end
 
   call g:RtGrep(join(l:files, " "), l:tagger)

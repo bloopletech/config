@@ -65,7 +65,7 @@ fi
 shopt -s autocd
 
 H="/home/bloopletech"
-export PATH="$H/key/third_party/phantomjs-1.9.2-linux-x86_64/bin:$H/key/btags:$H/key/rtgrep:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
+export PATH="$H/key/third_party/phantomjs-1.9.2-linux-x86_64/bin:$H/key/btags:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
 export MANPATH="$H/.npm/man:$MANPATH"
 
 alias sad="psql -h localhost -U postgres "

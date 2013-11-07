@@ -14,19 +14,13 @@ endfunction
 autocmd VimLeave * call s:RemoveRtGrepTmpdir()
 
 function! g:RtGrep(path, tagger)
-  let l:rtgrep_path = g:rtgrep_tmpdir."/stay_".md5#md5(a:path)
-  let l:cmd = "silent !"
-  if a:tagger != ""
-    let l:cmd .= "RTGREP_TAGGER=".shellescape(a:tagger)." "
-  endif
-  let l:cmd .= "RTGREP_PATH=".shellescape(l:rtgrep_path)." rtgrep_stay ".a:path
-  execute l:cmd
+  let l:output = tempname()
+  let l:cmd = "RTGREP_TAGGER=".shellescape(a:tagger)." rtgrep ".a:path." 2>".l:output
+  execute "silent !".l:cmd
 
-  if filereadable(l:rtgrep_path."_output")
-    let l:locators = readfile(l:rtgrep_path."_output")
-    if !empty(l:locators)
-      execute "e +".l:locators[1]." ".escape(l:locators[0], ' \')
-    endif
+  let l:locators = readfile(l:output)
+  if !empty(l:locators)
+    execute "e +".l:locators[1]." ".escape(l:locators[0], ' \')
   endif
   redraw!
 endfunction
