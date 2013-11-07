@@ -1,5 +1,5 @@
 function! s:BuffersXref()
-  let l:output = g:rtgrep_tmpdir."/currently_open_buffers"
+  let l:output = tempname()
 
   if bufname("%") == ""
     call writefile([], l:output)
@@ -21,11 +21,8 @@ function! s:BuffersXref()
 endfunction
 
 function! s:BtagsXref(path, type)
-  let l:output = g:rtgrep_tmpdir."/".a:type."_tags"
-
   if a:path == ""
-    call writefile([], l:output)
-    return l:output
+    return "/dev/null"
   end
 
   let l:btags_path = system("btags path ".shellescape(a:path))
@@ -33,40 +30,29 @@ function! s:BtagsXref(path, type)
     let l:btags_path = "/dev/null"
   end
 
-  let l:link_current_path = system("readlink -n ".l:output) 
-  if l:link_current_path != "" && l:link_current_path == l:btags_path
-    return l:output
-  end
-  call system("ln -nfs ".shellescape(l:btags_path)." ".l:output)
-
-  return l:output
+  return l:btags_path
 endfunction
 
 function! s:MixedRtGrep(...)
   let l:tagger = "cd ".shellescape(getcwd())." && btags"
 
-  if system(l:tagger." path") == "Not a btags project\n"
-    execute "silent !clear && echo 'Creating btags project...' && ".l:tagger
-  end
+  "if system(l:tagger." path") == "Not a btags project\n"
+  "  execute "silent !clear && echo 'Creating btags project...' && ".l:tagger
+  "end
 
   let l:files = []
+
 
   if index(a:000, "buffers") >= 0
     call add(l:files, s:BuffersXref())
   end
 
   if index(a:000, "current_file") >= 0
-    if !exists("b:combined_rtgrep_current_file")
-      let b:combined_rtgrep_current_file = s:BtagsXref(expand("%:p"), "current_file")
-    end
-    call add(l:files, b:combined_rtgrep_current_file)
+    call add(l:files, s:BtagsXref(expand("%:p"), "current_file"))
   end
 
   if index(a:000, "project_wide") >= 0
-    if !exists("b:combined_rtgrep_project_wide")
-      let b:combined_rtgrep_project_wide = s:BtagsXref(getcwd(), "project_wide")
-    end
-    call add(l:files, b:combined_rtgrep_project_wide)
+    call add(l:files, s:BtagsXref(getcwd(), "project_wide"))
   end
 
   call g:RtGrep(join(l:files, " "), l:tagger)

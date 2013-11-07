@@ -52,7 +52,7 @@ set incsearch
 set hls
 
 "Settings for system() and :! commands
-set shell=bash
+set shell=/bin/dash
 set shellpipe=\ 2>&1\ >
 
 "File navigation and search plugins
@@ -135,3 +135,4 @@ set notagbsearch
 set notagrelative
 execute "set tags=".fnameescape(system("btags path"))
 au BufRead,BufNewFile * execute "setlocal tags=".fnameescape(system("btags path"))
+let g:rtgrep_executable = "/home/bloopletech/.rvm/gems/ruby-1.9.3-p448@avetars/gems/rtgrep-0.0.1/bin/rtgrep"

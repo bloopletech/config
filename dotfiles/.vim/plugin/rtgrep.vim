@@ -1,3 +1,7 @@
+if !exists("g:rtgrep_executable")
+  let g:rtgrep_executable = "rtgrep"
+endif
+
 let g:rtgrep_tmpdir = "/tmp/rtgrep_vim_".getpid()
 call mkdir(g:rtgrep_tmpdir)
 
@@ -15,7 +19,7 @@ autocmd VimLeave * call s:RemoveRtGrepTmpdir()
 
 function! g:RtGrep(path, tagger)
   let l:output = tempname()
-  let l:cmd = "RTGREP_TAGGER=".shellescape(a:tagger)." rtgrep ".a:path." 2>".l:output
+  let l:cmd = "RTGREP_TAGGER=".shellescape(a:tagger)." ".g:rtgrep_executable." ".a:path." 2>".l:output
   execute "silent !".l:cmd
 
   let l:locators = readfile(l:output)
