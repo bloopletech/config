@@ -34,6 +34,10 @@ highlight clear SignColumn
 "set showmatch
 "set matchtime=500
 
+"Line lengths
+let &colorcolumn=join(range(120,999),",")
+highlight ColorColumn ctermbg=234
+
 "Spaces instead of tabs
 set expandtab
 set shiftwidth=2
