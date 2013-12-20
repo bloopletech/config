@@ -41,6 +41,7 @@ highlight ColorColumn ctermbg=234
 "Spaces instead of tabs
 set expandtab
 set shiftwidth=2
+set tabstop=2
 set softtabstop=2
 
 "Indenting
@@ -120,8 +121,8 @@ inoremap <Up> <C-R>=pumvisible() ? "\<lt>C-P>" : "\<lt>C-o>gk"<CR>
 au BufNewFile,BufRead *.less set filetype=less
 
 "Text file editing
-au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au
-au BufRead,BufNewFile *.nsf setlocal wrap linebreak textwidth=100
+au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au colorcolumn=""
+au BufRead,BufNewFile *.nsf setlocal wrap linebreak textwidth=100 colorcolumn=""
 
 imap <C-s> <C-x>s
 
