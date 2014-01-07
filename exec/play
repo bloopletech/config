@@ -1,23 +1,26 @@
 #!/bin/bash
 
+VIDEO="$1"
+VIDEO="${VIDEO/#play:\/\//}"
+
 function execute_player() {
   mpv --no-lirc --framedrop=yes --fs --alang=jpn,jp,eng,en --slang=eng,en --cache=10000 "$@" >/dev/null 2>&1
 }
 
-. /home/bloopletech/key/third_party/mpv-build/mpv/TOOLS/mpv_identify.sh ID_ "$@"
+. /home/bloopletech/key/third_party/mpv-build/mpv/TOOLS/mpv_identify.sh ID_ "$VIDEO"
 
 WIDTH=$ID_width
 HEIGHT=$ID_height
 
-if [[ $WIDTH -eq 1920 && $HEIGHT -eq 1080 ]]; then
-  execute_player "$1"
+if [[ $WIDTH -eq 1440 && $HEIGHT -eq 900 ]]; then
+  execute_player "$VIDEO"
 elif [[ $WIDTH -lt 601 || $HEIGHT -lt 401 ]]; then
   NEW_WIDTH=$(expr $WIDTH \* 2)
-  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$@"
+  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1440:900" --sws=9 "$VIDEO"
 elif [[ $WIDTH -lt 1001 || $HEIGHT -lt 901 ]]; then
   NEW_WIDTH=$(expr \( $WIDTH \* 3 \) / 2)
-  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080" --sws=9 "$@"
+  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1440:900" --sws=9 "$VIDEO"
 else
-  execute_player "--vf=expand=1920:1080" "$1"
+  execute_player "--vf=expand=1440:900" "$VIDEO"
 fi
 
