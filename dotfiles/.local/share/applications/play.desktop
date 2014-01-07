@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Play
+Exec=/home/bloopletech/key/config/exec/play %u
+Icon=video-player
+Type=Application
+Categories=GTK;GNOME;Utility;
+MimeType=x-scheme-handler/play;

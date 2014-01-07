@@ -28,3 +28,7 @@ rm -i .indicator-sysmonitor.json
 ln -nfs ~/key/config/dotfiles/.indicator-sysmonitor.json
 rm -i -r .config/roxterm.sourceforge.net
 ln -nfs ~/key/config/dotfiles/.config/roxterm.sourceforge.net .config/roxterm.sourceforge.net
+rm -i -r .local/share/applications/mimeapps.list
+ln -nfs ~/key/config/dotfiles/.local/share/applications/mimeapps.list .local/share/applications/mimeapps.list
+rm -i -r .local/share/applications/play.desktop
+ln -nfs ~/key/config/dotfiles/.local/share/applications/play.desktop .local/share/applications/play.desktop
