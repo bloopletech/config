@@ -12,4 +12,6 @@ scroll_on_keystroke=1
 show_tab_status=1
 middle_click_tab=1
 tab_close_btn=0
-scrollback_lines=5000
+scrollback_lines=100000
+background_type=0
+saturation=0.000000
