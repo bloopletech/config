@@ -93,6 +93,7 @@ alias playdvd="play dvd:////dev/dvd1"
 #alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -gravity center -extent 480x800 +repage -colorspace Gray -quality 90 "
 alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -extent 480x800 +repage -colorspace Gray -quality 90 "
 alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
+#alias serve="ruby -run -ehttpd . -p9292 >/dev/null 2>&1"
 alias minify="java -jar $H/key/third_party/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar "
 alias cores="cat /proc/cpuinfo  | grep --color=never 'cpu MHz' | grep --color=never -v '1600.000'"
 alias home="ssh -p 1984 bloopletech@14.202.195.135"
@@ -198,13 +199,6 @@ export VISUAL="vi"
 export JRUBY_OPTS="--1.9"
 
 export NNTPSERVER="nntp.olduse.net"
-
-export DB_HOST=127.0.0.1
-export DB_USER_NAME=postgres
-export DB_PWD=postgres
-export PGPASSWORD="$DB_PWD"
-
-export USE_SQLVCR=true
 
 if [ -f ~/.bashrc_private ]; then
     . ~/.bashrc_private
