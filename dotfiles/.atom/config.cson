@@ -1,0 +1,19 @@
+'exception-reporting':
+  'userId': '033b1fef-754e-a7ed-c6fc-be7bb9b5ec7a'
+'release-notes':
+  'viewedVersion': '3371252'
+'welcome':
+  'showOnStartup': false
+'metrics':
+  'userId': '6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10'
+'editor':
+  'preferredLineLength': 120
+  'fontFamily': 'Ubuntu Mono'
+  'fontSize': 18
+'core':
+  'themes': [
+    'atom-light-ui'
+    'railscast-theme'
+  ]
+'tree-view':
+  'showOnRightSide': true

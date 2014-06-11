@@ -2,6 +2,8 @@
 cd ~
 rm -i .agignore
 ln -nfs ~/key/config/dotfiles/.agignore
+rm -i .atom
+ln -nfs ~/key/config/dotfiles/.atom
 rm -i .bash_profile
 ln -nfs ~/key/config/dotfiles/.bash_profile
 rm -i .bashrc
