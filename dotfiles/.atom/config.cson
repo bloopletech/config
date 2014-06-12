@@ -17,3 +17,5 @@
   ]
 'tree-view':
   'showOnRightSide': true
+'whitespace':
+  'ensureSingleTrailingNewline': false
