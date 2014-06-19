@@ -19,3 +19,5 @@
   'showOnRightSide': true
 'whitespace':
   'ensureSingleTrailingNewline': false
+'atom-rspec':
+  'command': 'bundle exec rspec'
