@@ -21,3 +21,5 @@
   'ensureSingleTrailingNewline': false
 'atom-rspec':
   'command': 'bundle exec rspec'
+'linter':
+  'lintOnChange': false
