@@ -90,7 +90,6 @@ alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white 
 alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
 #alias serve="ruby -run -ehttpd . -p9292 >/dev/null 2>&1"
 alias minify="java -jar $H/key/third_party/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar "
-alias home="ssh -p 1984 bloopletech@14.202.195.135"
 alias e="atom"
 
 alias gf="git flow "
