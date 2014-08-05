@@ -15,9 +15,15 @@
     'atom-light-ui'
     'railscast-theme'
   ]
+  'disabledPackages': [
+    'linter'
+  ]
+  'useReactEditor': true
 'tree-view':
   'showOnRightSide': true
 'whitespace':
   'ensureSingleTrailingNewline': false
 'atom-rspec':
   'command': 'bundle exec rspec'
+'linter':
+  'lintOnChange': false

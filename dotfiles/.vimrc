@@ -119,6 +119,7 @@ inoremap <Up> <C-R>=pumvisible() ? "\<lt>C-P>" : "\<lt>C-o>gk"<CR>
 "set statusline=wc:%{WordCount()}
 
 au BufNewFile,BufRead *.less set filetype=less
+au BufRead,BufNewFile *.css setlocal nocindent
 
 "Text file editing
 au BufRead,BufNewFile *.txt setlocal spell spelllang=en_au colorcolumn=""
@@ -141,3 +142,6 @@ set notagrelative
 execute "set tags=".fnameescape(system("btags path"))
 au BufRead,BufNewFile * execute "setlocal tags=".fnameescape(system("btags path"))
 let g:rtgrep_executable = "/home/bloopletech/.rvm/gems/ruby-1.9.3-p448@avetars/gems/rtgrep-0.0.1/bin/rtgrep"
+
+"Workarounds
+set regexpengine=1
