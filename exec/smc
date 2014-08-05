@@ -5,7 +5,7 @@ MCSPATH="/home/bloopletech/key/third_party/minecraft"
 function list_worlds () {
   echo;
   echo "You have these worlds:";
-  ls -1 "$MCSPATH/worlds";
+  ls -1 "$MCSPATH";
   echo;
 }
 
@@ -24,13 +24,13 @@ if [ "$#" == "0" ]; then
   exit 1;
 fi
 
-if [[ ! "$1" =~ ^[A-Za-z0-9_]+$ ]]; then
+if [[ ! "$1" =~ ^[A-Za-z0-9_\.]+$ ]]; then
   echo "The world name you entered is badly formatted!";
   list_worlds;
   exit 1;
 fi
 
-WORLDPATH="$MCSPATH/worlds/$1";
+WORLDPATH="$MCSPATH/$1";
 
 if [ ! -d "$WORLDPATH" ]; then
   echo "The world name you entered doesn't exist!";
@@ -43,4 +43,9 @@ cd "$WORLDPATH"
 echo "=========================================================="
 echo "Starting world $1"
 echo "=========================================================="
-java -Xmx1024M -Xms1024M -jar "$MCSPATH/minecraft_server.jar" nogui
+
+if [ -f "server.jar" ]; then
+  java -Xmx1024M -Xms1024M -jar "server.jar" nogui
+else
+  java -Xmx1024M -Xms1024M -jar "minecraft_server.jar" nogui
+fi
