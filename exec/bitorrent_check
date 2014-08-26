@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'uri'
+require 'nokogiri'
+
+trackers = File.readlines(ARGV[0]).map { |l| l.chomp }
+trackers.reject! { |t| t.gsub(/\s+/, "") == "" }
+
+good_trackers = trackers.select do |t|
+  puts "Checking #{t}..."
+  url = URI(t)
+  result = `nmap -PN -oX - -p #{url.port} #{url.host}`
+  doc = Nokogiri::XML(result)
+  state = doc.css("nmaprun > host:first-of-type > ports > port > state")
+  !state.empty? && ["open", "filtered"].include?(state.attr("state").text)
+end
+
+puts "Good trackers:"
+puts "=============="
+good_trackers.each { |t| puts "#{t}\n" }

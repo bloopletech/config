@@ -1,0 +1,5 @@
+#!/bin/bash
+#echo "Denied!"
+~/key/third_party/MultiMC/MultiMC
+#cd ~/key/third_party/minecraft
+#java -jar minecraft.jar >/dev/null 2>&1 &
