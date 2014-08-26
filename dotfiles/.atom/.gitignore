@@ -1,4 +1,6 @@
+atom-shell/
 storage/
 compile-cache/
 .node-gyp/
 .npm/
+nohup.out
