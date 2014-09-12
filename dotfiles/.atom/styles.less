@@ -32,6 +32,10 @@ body {
   line-height: 27px;
 }
 
+.panel-heading {
+  font-size: 16px;
+}
+
 .rspec-console.rspec pre, .rspec-console.rspec pre div.editor, .rspec-console.rspec code, .rspec-console.rspec tt {
   font-size: 16px;
 }
@@ -83,3 +87,15 @@ body {
   border: 1px solid #daa520 !important;
   z-index: 10000;
 }*/
+
+ol.results-view {
+  > li {
+    margin-bottom: 20px;
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+  .path-name {
+    font-weight: bold;
+  }
+}

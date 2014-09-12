@@ -8,8 +8,8 @@
   'userId': '6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10'
 'editor':
   'preferredLineLength': 120
-  'fontFamily': 'Ubuntu Mono'
   'fontSize': 18
+  'fontFamily': 'Ubuntu Mono'
 'core':
   'themes': [
     'atom-light-ui'
@@ -21,6 +21,7 @@
   'useReactEditor': true
 'tree-view':
   'showOnRightSide': true
+  'hideVcsIgnoredFiles': true
 'whitespace':
   'ensureSingleTrailingNewline': false
 'atom-rspec':
