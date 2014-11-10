@@ -65,7 +65,8 @@ fi
 shopt -s autocd
 
 H="/home/bloopletech"
-export PATH="$H/key/third_party/slimerjs-0.9.0:$H/key/third_party/phantomjs-1.9.2-linux-x86_64/bin:$H/key/btags:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
+export GOPATH="$H/key/go"
+export PATH="$GOPATH/bin:$H/key/third_party/slimerjs-0.9.0:$H/key/third_party/phantomjs-1.9.2-linux-x86_64/bin:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
 export MANPATH="$H/.npm/man:$MANPATH"
 
 alias sad="psql -h localhost -U postgres "
@@ -77,10 +78,7 @@ alias up="git stash && git svn rebase && git stash apply"
 alias r="ps -A -f | grep "
 alias here="gnome-open ."
 alias cutout="git format-patch -1 "
-alias gapi="curl -g -i -H 'Accept: application/xml' "
 
-#export PATH="$PATH:~/key/third_party/git-achievements"
-#alias git="git-achievements"
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
 alias right="xrandr --current -o right"
@@ -99,29 +97,10 @@ function vnchome () {
   ssh -p 1984 -L 5900:localhost:5900 bloopletech@14.202.195.135 -t 'sudo killall -9 x11vnc; sudo x11vnc -env FD_XDM=1 -auth guess -forever -noxdamage -shared -usepw'
 }
 
-function cdbtags () {
-  TAGSFILE=$(btags)
-  DIR=$(dirname "$TAGSFILE")
-  cd "$DIR"
-}
-
 function crush () { TMP_FILENAME="/tmp/png_crush_image_$RANDOM"; echo $TMP_FILENAME; pngcrush -rem cHRM -rem gAMA -rem iCCP -rem sRGB "$1" $TMP_FILENAME; mv $TMP_FILENAME "$1"; }
-function log_and_run () { echo "" > log/test.log; spec "$1"; cat log/test.log; }
 function r3lar () { echo "" > log/test.log; rspec "$1"; cat log/test.log; }
 function ptb () { scp -P 9979 "$1" bloople@bloople.net:~/www/bloople.net/public; echo "http://bloople.net/$1"; }
 function ptbh () { scp -P 9979 "$1" bloople@bloople.net:~/www/bloople.net/public/h; echo "http://bloople.net/h/$1"; }
-
-function galaxy() {
-  avconv -i "$1" -s 1280x720 -acodec libvo_aacenc -ar 22050 -ab 128k -vcodec libx264 -scodec copy -map 0 -threads 0 "small_$1.mkv";
-}
-
-function galaxy_generic() {
-  avconv -i "$1" -acodec libvo_aacenc -ar 22050 -ab 128k -vcodec libx264 -threads 0 "small_$1.mkv";
-}
-
-function comics() {
-  convert "$1/*.png" "$1/*.jpg" -background white -colorspace Gray -quality 90 "$1.pdf";
-}
 
 function gems () { cd "$GEM_HOME/gems"; }
 function fm () { e $(ack -1 -Q -l --type=ruby "def $1"); }
@@ -139,48 +118,7 @@ function nlessc () {
   ~/.npm/less/1.3.0/package/bin/lessc $filename.less > $filename.css
 }
 
-#function hitme () {
-#  count="$1"
-#  if [[ "$count" == "" ]]; then
-#    count="1";
-#  fi
-#  separator=$(for i in $(seq $COLUMNS); do echo -n "="; done)
-#  files=(./*)
-#
-#  (
-#    echo "$separator"
-#    for i in $(seq $count); do
-#      echo
-#      cat "${files[RANDOM % ${#files[@]}]}"
-#      echo
-#      echo
-#      echo "$separator"
-#    done
-#  ) | sed -e 's/\xa0/ /g' | less -e -r
-#}
-
-function hitme () {
-  separator=$(for i in $(seq $COLUMNS); do echo -n "⏤"; done)
-  files=(./*)
-
-  while true; do
-    echo "$separator"
-    echo
-    echo
-    cat "${files[RANDOM % ${#files[@]}]}" | sed -e 's/\xa0/ /g'
-    echo
-    echo
-    echo
-    echo "$separator"
-    read -s -r
-    echo
-  done
-}
-
 source ~/key/pillage/shell/shell_functions.sh
-
-alias storytime="setsid _storytime"
-alias worktime="setsid _worktime"
 
 export CLICOLOR=TRUE
 
