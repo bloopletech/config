@@ -36,6 +36,10 @@ body {
   font-size: 16px;
 }
 
+atom-panel, .tool-panel {
+  text-shadow: none !important;
+}
+
 .rspec-console.rspec pre, .rspec-console.rspec pre div.editor, .rspec-console.rspec code, .rspec-console.rspec tt {
   font-size: 16px;
 }
@@ -44,10 +48,19 @@ body {
 atom-text-editor.editor {
   background-color: #000000;
   color: #ffffff;
-}
 
-atom-text-editor.editor .gutter {
-  background-color: #151515;
+  .gutter {
+    background-color: #151515;
+  }
+
+  &[mini] {
+    /*
+    background-color: #fefefe;
+    color: #6a6a6a;
+    */
+    background-color: #ffffff;
+    color: #000000;
+  }
 }
 
 atom-text-editor.editor.is-focused .line-number.cursor-line-no-selection, .editor.is-focused .line.cursor-line {
