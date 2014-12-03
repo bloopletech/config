@@ -11,6 +11,8 @@
     'preferredLineLength': 120
     'fontFamily': 'Ubuntu Mono'
     'fontSize': 18
+    'zoomFontWhenCtrlScrolling': false
+    'showInvisibles': true
   'core':
     'themes': [
       'atom-light-ui'
@@ -32,3 +34,5 @@
     'command': 'bundle exec rspec'
   'linter':
     'lintOnChange': false
+  'autocomplete-plus':
+    'enableAutoActivation': false

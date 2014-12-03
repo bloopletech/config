@@ -1,8 +1,10 @@
 '.editor':
   'f1': 'fuzzy-finder:toggle-file-finder'
   'f5': 'script:run'
+'atom-text-editor:not([mini])':
+  'tab': 'autocomplete-plus:activate'
 ".autocomplete-plus input.hidden-input":
-  "`": "autocomplete-plus:confirm"
+  "enter": "autocomplete-plus:confirm"
   "tab": "autocomplete-plus:select-next"
   "shift-tab": "autocomplete-plus:select-previous"
   "escape": "autocomplete-plus:cancel"
