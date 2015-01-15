@@ -1,4 +1,4 @@
-'global':
+'*':
   'exception-reporting':
     'userId': '033b1fef-754e-a7ed-c6fc-be7bb9b5ec7a'
   'release-notes':
@@ -8,26 +8,25 @@
   'metrics':
     'userId': '6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10'
   'editor':
-    'preferredLineLength': 120
     'fontFamily': 'Ubuntu Mono'
     'fontSize': 18
-    'zoomFontWhenCtrlScrolling': false
     'showInvisibles': true
+    'preferredLineLength': 120
+    'invisibles': {}
+    'zoomFontWhenCtrlScrolling': false
   'core':
-    'themes': [
-      'atom-light-ui'
-      'railscast-theme'
-    ]
     'disabledPackages': [
       'linter'
       'autocomplete-snippets'
       'autocomplete'
       'snippets'
     ]
-    'useReactEditor': true
+    'themes': [
+      'atom-light-ui'
+      'railscast-theme'
+    ]
   'tree-view':
     'showOnRightSide': true
-    'hideVcsIgnoredFiles': true
   'whitespace':
     'ensureSingleTrailingNewline': false
   'atom-rspec':
@@ -36,3 +35,4 @@
     'lintOnChange': false
   'autocomplete-plus':
     'enableAutoActivation': false
+  'git-blame': {}
