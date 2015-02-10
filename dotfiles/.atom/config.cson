@@ -1,38 +1,41 @@
-'*':
-  'exception-reporting':
-    'userId': '033b1fef-754e-a7ed-c6fc-be7bb9b5ec7a'
-  'release-notes':
-    'viewedVersion': '3371252'
-  'welcome':
-    'showOnStartup': false
-  'metrics':
-    'userId': '6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10'
-  'editor':
-    'fontFamily': 'Ubuntu Mono'
-    'fontSize': 18
-    'showInvisibles': true
-    'preferredLineLength': 120
-    'invisibles': {}
-    'zoomFontWhenCtrlScrolling': false
-  'core':
-    'disabledPackages': [
-      'linter'
-      'autocomplete-snippets'
-      'autocomplete'
-      'snippets'
+"*":
+  "exception-reporting":
+    userId: "033b1fef-754e-a7ed-c6fc-be7bb9b5ec7a"
+  "release-notes":
+    viewedVersion: "3371252"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10"
+  editor:
+    fontFamily: "Ubuntu Mono"
+    fontSize: 18
+    showInvisibles: true
+    preferredLineLength: 120
+    invisibles: {}
+    zoomFontWhenCtrlScrolling: false
+  core:
+    disabledPackages: [
+      "linter"
+      "autocomplete-snippets"
+      "autocomplete"
+      "snippets"
     ]
-    'themes': [
-      'atom-light-ui'
-      'railscast-theme'
+    themes: [
+      "atom-light-ui"
+      "railscast-theme"
     ]
-  'tree-view':
-    'showOnRightSide': true
-  'whitespace':
-    'ensureSingleTrailingNewline': false
-  'atom-rspec':
-    'command': 'bundle exec rspec'
-  'linter':
-    'lintOnChange': false
-  'autocomplete-plus':
-    'enableAutoActivation': false
-  'git-blame': {}
+  "tree-view":
+    showOnRightSide: true
+    hideVcsIgnoredFiles: true
+  whitespace:
+    ensureSingleTrailingNewline: false
+  "atom-rspec":
+    command: "bundle exec rspec"
+  linter:
+    lintOnChange: false
+  "atom-beautify":
+    _analyticsUserId: "72f5102b-6f28-4282-92e3-6ace3fbca528"
+  "autocomplete-plus":
+    enableAutoActivation: false
+  "git-blame": {}
