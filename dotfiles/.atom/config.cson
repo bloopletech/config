@@ -26,8 +26,8 @@
       "railscast-theme"
     ]
   "tree-view":
-    showOnRightSide: true
     hideVcsIgnoredFiles: true
+    showOnRightSide: true
   whitespace:
     ensureSingleTrailingNewline: false
   "atom-rspec":

@@ -74,8 +74,6 @@ alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
 alias lnode="ssh bloople@178.79.147.14"
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
-alias up="git stash && git svn rebase && git stash apply"
-alias r="ps -A -f | grep "
 alias here="gnome-open ."
 alias cutout="git format-patch -1 "
 
@@ -90,8 +88,6 @@ alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
 alias minify="java -jar $H/key/third_party/yuicompressor-2.4.7/build/yuicompressor-2.4.7.jar "
 alias e="atom"
 
-alias gf="git flow "
-
 function vnchome () {
   ( (sleep 30 && xtightvncviewer -encodings tight -compresslevel 9 -quality 4 -x11cursor localhost) &);
   ssh -p 1984 -L 5900:localhost:5900 bloopletech@14.202.195.135 -t 'sudo killall -9 x11vnc; sudo x11vnc -env FD_XDM=1 -auth guess -forever -noxdamage -shared -usepw'
@@ -103,19 +99,14 @@ function ptb () { scp -P 9979 "$1" bloople@bloople.net:~/www/bloople.net/public;
 function ptbh () { scp -P 9979 "$1" bloople@bloople.net:~/www/bloople.net/public/h; echo "http://bloople.net/h/$1"; }
 
 function gems () { cd "$GEM_HOME/gems"; }
-function fm () { e $(ack -1 -Q -l --type=ruby "def $1"); }
 function validutf8 () { iconv -f UTF-8 "$1" -o /dev/null; echo "$?"; }
 
-function railssrc () {
-  TAG
-  cd ~/key/third_party/rails
-  git checkout 
-}
-alias railssrc="cd ~/key/third_party/rails && git checkout v3.0.10 && e"
-
-function nlessc () {
-  filename="${1%.*}"
-  ~/.npm/less/1.3.0/package/bin/lessc $filename.less > $filename.css
+function app () {
+  reset
+  pkill -9 -f sidekiq
+  pkill -9 -f mailcatcher
+  pkill -9 -f puma
+  bundle exec foreman start
 }
 
 source ~/key/pillage/shell/shell_functions.sh
@@ -130,14 +121,12 @@ export VISUAL="vi"
 
 export JRUBY_OPTS="--1.9"
 
-export NNTPSERVER="nntp.olduse.net"
-
 if [ -f ~/.bashrc_private ]; then
     . ~/.bashrc_private
 fi
 
 [[ -s "/home/bloopletech/.rvm/scripts/rvm" ]] && source "/home/bloopletech/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 
 function __set_ps1_with_git_branch {
     __git_branch="$(git branch 2>/dev/null | sed -e "/^\s/d" -e "s/^\*\s//")"
