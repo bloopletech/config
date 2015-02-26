@@ -1,0 +1,41 @@
+namespace :ebooks do
+=begin
+  task compile: FINISHED_BOOKS
+=end
+  task :compile do
+    require 'tempfile'
+
+    mapping = Hash[FileList['Stories/*.html'].map do |source|
+      [source, source.pathmap('Kindle Stories/%f').ext('.azw3')]
+    end]
+
+    #Delete extraneous targets
+    (FileList['Kindle Stories/*.azw3'] - mapping.values).map { |e| rm e }
+
+    #Exclude up-to date files
+    mapping.reject! do |source, target|
+      File.exists?(target) && (File.mtime(source) <= File.mtime(target))
+    end
+
+    #Build the targets
+    tempfile = Tempfile.new('lines')
+    mapping.keys.each { |source| tempfile.puts source }
+    tempfile.close
+
+    $VERBOSE = nil
+    system('parallel', '--gnu', '-a', tempfile.path, 'ebook-convert', '{}', 'Kindle\\ Stories/{/.}.azw3')
+    $VERBOSE = 1
+
+    system("rsync -av --delete --include='*.azw3' --exclude='*' Kindle\\ Stories/ /media/bloopletech/Kindle/documents/Stories/")
+  end
+
+  task all: [:compile]
+end
+=begin
+rule '.azw3' => '.html' do |t|
+  sh
+  sh "pandoc -o #{t.name} #{t.source}"
+end
+=end
+
+task default: 'ebooks:all'
