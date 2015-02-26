@@ -39,3 +39,26 @@
   "autocomplete-plus":
     enableAutoActivation: false
   "git-blame": {}
+".js.rails.source source.jquery.js":
+  editor:
+    preferredLineLength: 120
+".rails.rjs.ruby.source":
+  editor:
+    preferredLineLength: 120
+".text.xml.xsl":
+  editor:
+    preferredLineLength: 120
+    nonWordCharacters: "dfhdhdf"
+".html.ruby.text":
+  editor:
+    preferredLineLength: 120
+".rails.ruby.source":
+  editor:
+    preferredLineLength: 120
+".ruby.source.sql":
+  editor:
+    preferredLineLength: 120
+".text.xml":
+  editor:
+    preferredLineLength: 120
+    nonWordCharacters: "dfhdhdfAq"
