@@ -26,7 +26,19 @@ namespace :ebooks do
     system('parallel', '--gnu', '-a', tempfile.path, 'ebook-convert', '{}', 'Kindle\\ Stories/{/.}.azw3')
     $VERBOSE = 1
 
-    system("rsync -av --delete --include='*.azw3' --exclude='*' Kindle\\ Stories/ /media/bloopletech/Kindle/documents/Stories/")
+    #Sync the targets to the kindle
+    rsync_command = [
+      'rsync',
+      '-av',
+      '--delete',
+      "--include='*.azw3'",
+      "--exclude='*'",
+      '--modify-window=1',
+      '--no-perms',
+      "Kindle\\ Stories/",
+      '/media/bloopletech/Kindle/documents/Stories/'
+    ]
+    system(rsync_command.join(' '))
   end
 
   task all: [:compile]
