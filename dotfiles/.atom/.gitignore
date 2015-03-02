@@ -4,3 +4,4 @@
 /.node-gyp/
 /.npm/
 /nohup.out
+/.apm/
