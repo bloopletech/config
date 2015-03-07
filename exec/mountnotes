@@ -1,5 +1,0 @@
-#!/bin/bash
-
-truecrypt /dev/sdd ~/key/notes
-cd ~/key/notes
-e

@@ -1,9 +1,0 @@
-#!/bin/bash
-killall -9 gnome-terminal >/dev/null 2>&1
-killall -9 firefox >/dev/null 2>&1
-killall -9 ruby >/dev/null 2>&1
-nmcli dev disconnect iface ttyUSB0 >/dev/null 2>&1 &
-nmcli dev disconnect iface wlan0 >/dev/null 2>&1 &
-nmcli dev disconnect iface eth0 >/dev/null 2>&1 &
-mountnotes
-#gnome-terminal --tab-with-profile=Default --tab-with-profile=Default -e "bash -c 'killall _storytime; e'"
