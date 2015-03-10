@@ -2,6 +2,7 @@ namespace :ebooks do
 =begin
   task compile: FINISHED_BOOKS
 =end
+  desc 'Translate ebook documents in .html format into Kindle format, and then sync them to the Kindle'
   task :compile do
     require 'tempfile'
 
@@ -41,6 +42,7 @@ namespace :ebooks do
     system(rsync_command.join(' '))
   end
 
+  desc 'Run all ebooks tasks'
   task all: [:compile]
 end
 =begin
@@ -50,4 +52,5 @@ rule '.azw3' => '.html' do |t|
 end
 =end
 
-task default: 'ebooks:all'
+desc 'Run all ebooks tasks'
+task ebooks: 'ebooks:all'
