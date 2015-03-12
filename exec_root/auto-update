@@ -1,0 +1,11 @@
+#!/bin/bash
+exec >>/var/log/auto-update.log 2>&1
+set -e
+set -x
+
+echo "Starting update..."
+date
+apt-fast update
+apt-fast -q -q upgrade
+date
+echo "Update finished"
