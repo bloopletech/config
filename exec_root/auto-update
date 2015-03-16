@@ -5,7 +5,7 @@ set -x
 
 echo "Starting update..."
 date
-apt-fast update
-apt-fast -q -q upgrade
+/usr/sbin/apt-fast update
+/usr/sbin/apt-fast -q -q upgrade
 date
 echo "Update finished"
