@@ -3,9 +3,11 @@ exec >>/var/log/auto-update.log 2>&1
 set -e
 set -x
 
+export PATH="/usr/local/sbin:/usr/sbin:/sbin:/bin"
+
 echo "Starting update..."
 date
-/usr/sbin/apt-fast update
-/usr/sbin/apt-fast -q -q upgrade
+apt-fast update
+apt-fast -q -q upgrade
 date
 echo "Update finished"
