@@ -3,7 +3,7 @@ exec >>/var/log/auto-update.log 2>&1
 set -e
 set -x
 
-export PATH="/usr/local/sbin:/usr/sbin:/sbin:/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 echo "Starting update..."
 date
