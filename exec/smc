@@ -45,7 +45,8 @@ echo "Starting world $1"
 echo "=========================================================="
 
 if [ -f "server.jar" ]; then
-  java -Xmx1024M -Xms1024M -jar "server.jar" nogui
+#  java -Xmx1024M -Xms1024M -jar "server.jar" nogui
+  java -Xms2048m -Xmx4096m -XX:PermSize=256m -jar "server.jar" nogui
 else
   java -Xmx1024M -Xms1024M -jar "minecraft_server.jar" nogui
 fi
