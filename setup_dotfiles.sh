@@ -2,8 +2,14 @@
 cd ~
 rm -i .agignore
 ln -nfs ~/key/config/dotfiles/.agignore
-rm -i .atom
-ln -nfs ~/key/config/dotfiles/.atom
+rm -i .atom/config.cson
+ln -nfs ~/key/config/dotfiles/.atom/config.cson .atom/config.cson
+rm -i .atom/keymaps.cson
+ln -nfs ~/key/config/dotfiles/.atom/keymaps.cson .atom/keymaps.cson
+rm -i .atom/packages.cson
+ln -nfs ~/key/config/dotfiles/.atom/packages.cson .atom/packages.cson
+rm -i .atom/styles.less
+ln -nfs ~/key/config/dotfiles/.atom/styles.less .atom/styles.less
 rm -i .bash_profile
 ln -nfs ~/key/config/dotfiles/.bash_profile
 rm -i .bashrc
