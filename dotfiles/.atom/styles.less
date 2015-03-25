@@ -36,6 +36,10 @@ body {
   font-size: 16px;
 }
 
+.list-group .selected::before, .list-tree .selected::before {
+  height: 27px;
+}
+
 atom-panel, .tool-panel {
   text-shadow: none !important;
 }
@@ -128,4 +132,12 @@ atom-text-editor::shadow .git-blame-mount .git-blame .git-blame-scroller {
       color: #E6E1DC;
     }
   }
+}
+
+.tab-bar {
+  display: none;
+}
+
+.tree-view-open-files {
+  max-height: 500px !important;
 }

@@ -128,6 +128,8 @@ fi
 [[ -s "/home/bloopletech/.rvm/scripts/rvm" ]] && source "/home/bloopletech/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 
+cd .
+
 function __set_ps1_with_git_branch {
     __git_branch="$(git branch 2>/dev/null | sed -e "/^\s/d" -e "s/^\*\s//")"
     [ "$__git_branch" = "master" ] && __git_branch="@"
