@@ -20,6 +20,8 @@ rm -i .gvimrc
 ln -nfs ~/key/config/dotfiles/.gvimrc
 rm -i -r .mplayer
 ln -nfs ~/key/config/dotfiles/.mplayer
+rm -i .psqlrc
+ln -nfs ~/key/config/dotfiles/.psqlrc
 rm -i -r .vim
 ln -nfs ~/key/config/dotfiles/.vim
 rm -i .vimrc
