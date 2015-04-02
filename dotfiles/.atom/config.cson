@@ -38,6 +38,7 @@
     _analyticsUserId: "72f5102b-6f28-4282-92e3-6ace3fbca528"
   "autocomplete-plus":
     enableAutoActivation: false
+    confirmCompletion: "enter"
   "git-blame": {}
 ".js.rails.source source.jquery.js":
   editor:
