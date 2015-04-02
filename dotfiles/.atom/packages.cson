@@ -1,6 +1,5 @@
 'packages': [
   'atom-beautify'
-  'atom-terminal'
   'autocomplete-paths'
   'autocomplete-plus'
   'autocomplete-snippets'
@@ -11,7 +10,6 @@
   'railscast-theme'
   'rspec'
   'script'
-  'squint-test'
   'symbol-gen'
   'tab-smart-sort'
   'tree-view-open-files'
