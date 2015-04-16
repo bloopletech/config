@@ -1,46 +1,49 @@
 #!/bin/bash
 cd ~
-rm -i .agignore
+rm .agignore
 ln -nfs ~/key/config/dotfiles/.agignore
-rm -i .atom/config.cson
+rm .atom/config.cson
 ln -nfs ~/key/config/dotfiles/.atom/config.cson .atom/config.cson
-rm -i .atom/keymap.cson
+rm .atom/keymap.cson
 ln -nfs ~/key/config/dotfiles/.atom/keymap.cson .atom/keymap.cson
-rm -i .atom/packages.cson
+rm .atom/packages.cson
 ln -nfs ~/key/config/dotfiles/.atom/packages.cson .atom/packages.cson
-rm -i .atom/styles.less
+rm .atom/styles.less
 ln -nfs ~/key/config/dotfiles/.atom/styles.less .atom/styles.less
-rm -i -r .atom/packages/fuzzy-finder
+rm -r .atom/packages/fuzzy-finder
+mkdir -p .atom/packages
 ln -nfs ~/key/config/dotfiles/.atom/packages/fuzzy-finder .atom/packages/fuzzy-finder
-rm -i .bash_profile
+rm .bash_profile
 ln -nfs ~/key/config/dotfiles/.bash_profile
-rm -i .bashrc
+rm .bashrc
 ln -nfs ~/key/config/dotfiles/.bashrc
-rm -i .gvimrc
+rm .gemrc
+ln -nfs ~/key/config/dotfiles/.gemrc
+rm .gvimrc
 ln -nfs ~/key/config/dotfiles/.gvimrc
-rm -i -r .mplayer
+rm -r .mplayer
 ln -nfs ~/key/config/dotfiles/.mplayer
-rm -i .psqlrc
+rm .psqlrc
 ln -nfs ~/key/config/dotfiles/.psqlrc
-rm -i -r .vim
+rm -r .vim
 ln -nfs ~/key/config/dotfiles/.vim
-rm -i .vimrc
+rm .vimrc
 ln -nfs ~/key/config/dotfiles/.vimrc
-rm -i -r .wmii-hg
+rm -r .wmii-hg
 ln -nfs ~/key/config/dotfiles/.wmii-hg
-rm -i .xprofile
+rm .xprofile
 ln -nfs ~/key/config/dotfiles/.xprofile
-rm -i .Xresources
+rm .Xresources
 ln -nfs ~/key/config/dotfiles/.Xresources
-rm -i .tmux.conf
+rm .tmux.conf
 ln -nfs ~/key/config/dotfiles/.tmux.conf
-rm -i -r .i3
+rm -r .i3
 ln -nfs ~/key/config/dotfiles/.i3
-rm -i .indicator-sysmonitor.json
+rm .indicator-sysmonitor.json
 ln -nfs ~/key/config/dotfiles/.indicator-sysmonitor.json
-rm -i -r .config/roxterm.sourceforge.net
+rm -r .config/roxterm.sourceforge.net
 ln -nfs ~/key/config/dotfiles/.config/roxterm.sourceforge.net .config/roxterm.sourceforge.net
-rm -i -r .local/share/applications/mimeapps.list
+rm .local/share/applications/mimeapps.list
 ln -nfs ~/key/config/dotfiles/.local/share/applications/mimeapps.list .local/share/applications/mimeapps.list
-rm -i -r .local/share/applications/play.desktop
+rm .local/share/applications/play.desktop
 ln -nfs ~/key/config/dotfiles/.local/share/applications/play.desktop .local/share/applications/play.desktop
