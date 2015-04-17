@@ -59,9 +59,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-
-
-
 shopt -s autocd
 
 H="/home/bloopletech"
@@ -125,8 +122,8 @@ if [ -f ~/.bashrc_private ]; then
     . ~/.bashrc_private
 fi
 
-[[ -s "/home/bloopletech/.rvm/scripts/rvm" ]] && source "/home/bloopletech/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 cd .
 
