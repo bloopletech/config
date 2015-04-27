@@ -109,7 +109,9 @@ function app () {
   bundle exec foreman start
 }
 
-source ~/key/pillage/shell/shell_functions.sh
+if [ -f ~/key/pillage/shell/shell_functions.sh ]; then
+  source ~/key/pillage/shell/shell_functions.sh
+fi
 
 export CLICOLOR=TRUE
 
