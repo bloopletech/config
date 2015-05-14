@@ -1,6 +1,10 @@
 '.editor':
   'f1': 'fuzzy-finder:toggle-file-finder'
+  'f2': 'symbols-view:toggle-project-symbols'
   'f5': 'script:run'
+  'ctrl-space': 'symbols-view:go-to-declaration'
+'.platform-linux atom-text-editor':
+  'f3': 'symbols-view:toggle-file-symbols'
 'atom-text-editor:not(.autocomplete-active):not([mini])':
   'tab': 'autocomplete-plus:activate'
 'atom-text-editor.autocomplete-active':
