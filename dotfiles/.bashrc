@@ -83,7 +83,7 @@ alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white 
 alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
 #alias serve="ruby -run -ehttpd . -p9292 >/dev/null 2>&1"
 alias recent="git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
-alias e="atom"
+alias e="atom ."
 
 function vnchome () {
   ( (sleep 30 && xtightvncviewer -encodings tight -compresslevel 9 -quality 4 -x11cursor localhost) &);
