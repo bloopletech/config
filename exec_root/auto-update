@@ -8,6 +8,6 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 echo "Starting update..."
 date
 apt-fast update
-apt-fast -q -q upgrade
+apt-fast -q -q dist-upgrade
 date
 echo "Update finished"
