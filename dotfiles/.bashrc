@@ -61,10 +61,9 @@ fi
 
 shopt -s autocd
 
-H="/home/bloopletech"
-export GOPATH="$H/key/go"
-export PATH="$GOPATH/bin:$H/key/third_party/slimerjs-0.9.0:$H/key/third_party/phantomjs-1.9.2-linux-x86_64/bin:$H/key/exec:$H/key/config/exec:$H/.npm/bin:$H/key/apache-ant-1.8.2/bin:$H/key/jdk1.7.0_02/bin:/opt/android-sdk-linux_x86/tools:$H/key/exec/git-svn-clone-externals:/opt/google/chrome/:$PATH:."
-export MANPATH="$H/.npm/man:$MANPATH"
+export GOPATH="$HOME/key/go"
+export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
+export MANPATH="$HOME/.npm/man:$MANPATH"
 
 alias sad="psql -h localhost -U postgres "
 alias mad="mysql -u root "

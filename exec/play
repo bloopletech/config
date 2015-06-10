@@ -14,15 +14,15 @@ function execute_player() {
 WIDTH=$ID_width
 HEIGHT=$ID_height
 
-if [[ $WIDTH -eq 1920 && $HEIGHT -eq 1080 ]]; then
-  execute_player
-elif [[ $WIDTH -lt 601 || $HEIGHT -lt 401 ]]; then
-  NEW_WIDTH=$(expr $WIDTH \* 2)
-  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080"
-elif [[ $WIDTH -lt 1001 || $HEIGHT -lt 901 ]]; then
-  NEW_WIDTH=$(expr \( $WIDTH \* 3 \) / 2)
-  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1920:1080"
-else
-  execute_player "--vf=expand=1920:1080"
-fi
+#if [[ $WIDTH -eq 1440 && $HEIGHT -eq 900 ]]; then
+  execute_player "$VIDEO"
+#elif [[ $WIDTH -lt 601 || $HEIGHT -lt 401 ]]; then
+#  NEW_WIDTH=$(expr $WIDTH \* 2)
+#  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1440:900" --sws=9 "$VIDEO"
+#elif [[ $WIDTH -lt 1001 || $HEIGHT -lt 901 ]]; then
+#  NEW_WIDTH=$(expr \( $WIDTH \* 3 \) / 2)
+#  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1440:900" --sws=9 "$VIDEO"
+#else
+#  execute_player "--vf=expand=1440:900" "$VIDEO"
+#fi
 
