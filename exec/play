@@ -6,7 +6,7 @@ VIDEO="${VIDEO/play/http}"
 #VIDEO="${VIDEO/#play:\/\//}"
 
 function execute_player() {
-  mpv --fs --alang=jpn,jp,eng,en --slang=eng,en --cache=10000 "$@" $ARGUMENTS "$VIDEO" >/dev/null 2>&1
+  mpv --vo=opengl-hq --fs --alang=jpn,jp,eng,en --slang=eng,en --cache=10000 "$@" $ARGUMENTS "$VIDEO" >/dev/null 2>&1
 }
 
 . /home/bloopletech/key/third_party/mpv-build/mpv/TOOLS/mpv_identify.sh ID_ "$VIDEO"
