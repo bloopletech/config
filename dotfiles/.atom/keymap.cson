@@ -9,6 +9,6 @@
   'tab': 'autocomplete-plus:activate'
 'atom-text-editor.autocomplete-active':
   'enter': 'autocomplete-plus:confirm'
-  'tab': 'autocomplete-plus:select-next'
-  'shift-tab': 'autocomplete-plus:select-previous'
+  'tab': 'core:move-down'
+  'shift-tab': 'core:move-up'
   'escape': 'autocomplete-plus:cancel'
