@@ -20,6 +20,7 @@
       "autocomplete-snippets"
       "autocomplete"
       "snippets"
+      "tab-smart-sort"
     ]
     themes: [
       "atom-light-ui"
@@ -40,6 +41,10 @@
     enableAutoActivation: false
     confirmCompletion: "enter"
   "git-blame": {}
+  "symbols-tree-view":
+    autoToggle: true
+    scrollAnimation: false
+  "tab-smart-sort": {}
 ".js.rails.source source.jquery.js":
   editor:
     preferredLineLength: 120
