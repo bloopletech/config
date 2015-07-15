@@ -10,5 +10,7 @@ $HOME/key/jdk1.7.0_02/bin
 $HOME/key/exec/git-svn-clone-externals
 $HOME/key/third_party/activator-1.3.4-minimal
 /opt/google/chrome/
+$HOME/key/third_party/packer
+$HOME/key/third_party/terraform
 $PATH
 .
