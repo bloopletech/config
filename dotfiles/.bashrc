@@ -109,6 +109,12 @@ if [ -f ~/key/pillage/shell/shell_functions.sh ]; then
   source ~/key/pillage/shell/shell_functions.sh
 fi
 
+if [ -f "$HOME/.docker/host" ]; then
+  export DOCKER_TLS_VERIFY="1"
+  export DOCKER_CERT_PATH="$HOME/.docker/tls"
+  export DOCKER_HOST="$(<~/.docker/host)"
+fi
+
 export CLICOLOR=TRUE
 
 export CAMPING_ENV=development
