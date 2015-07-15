@@ -57,7 +57,6 @@ set incsearch
 set hls
 
 "Settings for system() and :! commands
-set shell=/bin/dash
 set shellpipe=\ 2>&1\ >
 
 "File navigation and search plugins
@@ -139,9 +138,9 @@ nnoremap <F4> :execute ':tselect /\V'.escape(expand('<cword>'), '/\')<CR>
 
 set notagbsearch
 set notagrelative
-execute "set tags=".fnameescape(system("btags path"))
-au BufRead,BufNewFile * execute "setlocal tags=".fnameescape(system("btags path"))
-let g:rtgrep_executable = "/home/bloopletech/.rvm/gems/ruby-1.9.3-p448@avetars/gems/rtgrep-0.0.1/bin/rtgrep"
+"execute "set tags=".fnameescape(system("btags path"))
+"au BufRead,BufNewFile * execute "setlocal tags=".fnameescape(system("btags path"))
+"let g:rtgrep_executable = "/home/bloopletech/.rvm/gems/ruby-1.9.3-p448@avetars/gems/rtgrep-0.0.1/bin/rtgrep"
 
 "Workarounds
 set regexpengine=1

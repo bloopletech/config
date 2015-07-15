@@ -137,7 +137,7 @@ function __set_ps1_with_git_branch {
 }
 
 #This must be the last command in this file, I'm not completely sure why, but I think it relates to any further lines in this file being used as a $BASH_COMMAND which fails the shell
-if [ "$SHELL" = '/bin/bash' ]
+if [ "$SHELL" = '/bin/bash' -o "$SHELL" = '/usr/local/bin/bash' ]
 then
     case $TERM in
       rxvt|*term*|*screen*)
