@@ -4,4 +4,4 @@ vagrant up
 
 vagrant ssh -c "sudo cp -r /var/lib/boot2docker/tls $HOME/.docker/tls/"
 host="$(vagrant ssh-config | sed -n "s/[ ]*HostName[ ]*//gp")"
-echo "tcp://$host:2376" > ~/.docker/host)"
+echo "tcp://$host:2376" > ~/.docker/host
