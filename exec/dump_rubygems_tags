@@ -1,7 +1,0 @@
-#!/bin/bash
-
-cd "$GEM_HOME/gems"
-latest_gems_only | while read DIR
-do
-  ag --search-files --nocolor -p ~/.gemagignore -g '.' "$DIR"
-done

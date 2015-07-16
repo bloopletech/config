@@ -1,5 +1,0 @@
-#!/bin/bash
-
-declare -x $(cat /proc/meminfo | sed -n 's/\([A-Za-z]\+\): \+\([0-9]\+\)\( kB\)\?/MEMINFO_\1=\2/gp' | paste -s -d ' ')
-dc -e "1 k $MEMINFO_MemTotal $MEMINFO_MemFree - $MEMINFO_Buffers - $MEMINFO_Cached - 1048576 / n"
-echo " GB"
