@@ -135,10 +135,10 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 cd .
 
 function __set_ps1_with_git_branch {
-    __git_branch="$(git branch 2>/dev/null | sed -e "/^\s/d" -e "s/^\*\s//")"
+    __git_branch="$(git symbolic-ref --short HEAD 2>/dev/null)"
     [ "$__git_branch" = "master" ] && __git_branch="@"
     test -n "$__git_branch" && __git_branch="\[\033[1;32m\]:\[\033[0m\033[0;32m\]$__git_branch\[\033[0m\]"
-    export PS1="\w$__git_branch\[\033[1;37m\]$\[\033[0m\] \[\e]0;bash\007\]"    
+    export PS1="\w$__git_branch\[\033[1;37m\]$\[\033[0m\] \[\e]0;bash\007\]"
     return 0
 }
 
