@@ -71,7 +71,6 @@ alias sslice="ssh -p 9979 bloople@67.207.142.56"
 alias lnode="ssh bloople@178.79.147.14"
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
 alias here="gnome-open ."
-alias cutout="git format-patch -1 "
 
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
@@ -83,6 +82,7 @@ alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
 #alias serve="ruby -run -ehttpd . -p9292 >/dev/null 2>&1"
 alias recent="git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 alias e="atom ."
+alias getin="cd $HOME/key/config-vagrant/ && vagrant ssh"
 
 function vnchome () {
   ( (sleep 30 && xtightvncviewer -encodings tight -compresslevel 9 -quality 4 -x11cursor localhost) &);
