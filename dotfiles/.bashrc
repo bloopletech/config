@@ -61,6 +61,12 @@ fi
 
 shopt -s autocd
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  export OS="linux"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  export OS="osx"
+fi
+
 export GOPATH="$HOME/key/go"
 export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
 export MANPATH="$HOME/.npm/man:$MANPATH"

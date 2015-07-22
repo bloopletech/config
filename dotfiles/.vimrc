@@ -4,7 +4,6 @@ set ttyfast
 set noswapfile
 set backspace=indent,eol,start
 set number
-set clipboard=unnamedplus
 set hidden
 set mouse=a
 set linebreak
@@ -91,6 +90,12 @@ nnoremap <C-R> U
 "nmap <Tab> <Esc>:
 
 "Copy and Paste
+if has('unix')
+  set clipboard=unnamedplus
+elseif has('mac')
+  set clipboard=unnamed
+end
+
 set virtualedit=onemore
 vnoremap <C-x> d
 vnoremap <C-c> m`y``
