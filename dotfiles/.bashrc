@@ -131,8 +131,12 @@ export VISUAL="vi"
 
 export JRUBY_OPTS="--1.9"
 
+if [ -f ~/work/environment ]; then
+  . ~/work/environment
+fi
+
 if [ -f ~/.bashrc_private ]; then
-    . ~/.bashrc_private
+  . ~/.bashrc_private
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
