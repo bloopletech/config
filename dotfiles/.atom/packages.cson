@@ -15,4 +15,5 @@ packages: [
   "tab-smart-sort"
   "tree-view-open-files"
   "xml-formatter"
+  "language-terraform"
 ]
