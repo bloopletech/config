@@ -47,3 +47,7 @@ rm .local/share/applications/mimeapps.list
 ln -nfs ~/key/config/home/.local/share/applications/mimeapps.list .local/share/applications/mimeapps.list
 rm .local/share/applications/play.desktop
 ln -nfs ~/key/config/home/.local/share/applications/play.desktop .local/share/applications/play.desktop
+rm ~/Library/Preferences/org.pqrs.Karabiner.plist
+ln -nfs ~/key/config/home/Library/Preferences/org.pqrs.Karabiner.plist Library/Preferences/org.pqrs.Karabiner.plist
+rm ~/Library/Preferences/com.googlecode.iterm2.plist
+ln -nfs ~/key/config/home/Library/Preferences/com.googlecode.iterm2.plist Library/Preferences/com.googlecode.iterm2.plist
