@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#When you invoke this script, your current working directory should be the directory containing the Vagrantfile.
+
+CACHE_NAME=".vagrant-ssh-config-cache"
+CACHED_HOST="vagrant-ssh-cached"
+
+if [[ ( ! -f "$CACHE_NAME" ) || "$1" == "refresh" ]]; then
+  vagrant ssh-config --host "$CACHED_HOST" > "$CACHE_NAME"
+fi
+
+ssh -F "$CACHE_NAME" "$CACHED_HOST"
