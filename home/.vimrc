@@ -148,4 +148,4 @@ set notagrelative
 "let g:rtgrep_executable = "/home/bloopletech/.rvm/gems/ruby-1.9.3-p448@avetars/gems/rtgrep-0.0.1/bin/rtgrep"
 
 "Workarounds
-set regexpengine=1
+silent! set regexpengine=1
