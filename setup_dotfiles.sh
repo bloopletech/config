@@ -23,6 +23,8 @@ rm .gvimrc
 ln -nfs ~/key/config/home/.gvimrc
 rm -r .mplayer
 ln -nfs ~/key/config/home/.mplayer
+rm -r .npmrc
+ln -nfs ~/key/config/home/.npmrc
 rm .psqlrc
 ln -nfs ~/key/config/home/.psqlrc
 rm -r .vim

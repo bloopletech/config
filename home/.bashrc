@@ -69,7 +69,7 @@ fi
 
 export GOPATH="$HOME/key/go"
 export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
-export MANPATH="$HOME/.npm/man:$MANPATH"
+export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)")"
 
 alias sad="psql -h localhost -U postgres "
 alias mad="mysql -u root "
@@ -120,6 +120,8 @@ if [ -f "$HOME/.docker/host" ]; then
   export DOCKER_CERT_PATH="$HOME/.docker/tls"
   export DOCKER_HOST="$(<~/.docker/host)"
 fi
+
+export NODE_PATH="$HOME/.npm-packages/lib/node_modules:$NODE_PATH"
 
 export CLICOLOR=TRUE
 
