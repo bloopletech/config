@@ -21,6 +21,8 @@ rm .gemrc
 ln -nfs ~/key/config/home/.gemrc
 rm .gvimrc
 ln -nfs ~/key/config/home/.gvimrc
+rm .inputrc
+ln -nfs ~/key/config/home/.inputrc
 rm -r .mplayer
 ln -nfs ~/key/config/home/.mplayer
 rm -r .npmrc
