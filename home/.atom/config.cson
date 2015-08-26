@@ -8,8 +8,8 @@
   metrics:
     userId: "6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10"
   editor:
-    fontFamily: "Ubuntu Mono"
-    fontSize: 18
+    fontFamily: "Ubuntu Mono, Monaco"
+    fontSize: 16
     showInvisibles: true
     preferredLineLength: 120
     invisibles: {}
@@ -55,7 +55,6 @@
 ".text.xml.xsl":
   editor:
     preferredLineLength: 120
-    nonWordCharacters: "dfhdhdf"
 ".html.ruby.text":
   editor:
     preferredLineLength: 120
@@ -68,4 +67,3 @@
 ".text.xml":
   editor:
     preferredLineLength: 120
-    nonWordCharacters: "dfhdhdfAq"

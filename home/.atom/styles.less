@@ -1,40 +1,7 @@
 /* font sizing */
-body {
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-.tab-bar .tab {
-  font-size: 16px;
-  max-width: 220px;
-}
-
-.tab-bar .tab .close-icon:before {
-  font-size: 16px;
-
-}
-
-.form-horizontal .control-label, .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline,
-  .form-horizontal .checkbox-inline {
-  padding-top: 18px;
-}
-
-.status-bar {
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-.tree-view {
-  font-size: 16px;
-}
-
-.editor.mini {
-  font-size: 16px;
-  line-height: 27px;
-}
-
-.panel-heading {
-  font-size: 16px;
+@font-size: 16px;
+html, body, .tree-view, .tab-bar .tab, .status-bar, .settings-view, .btn, .editor.mini, .panel-heading {
+  font-size: @font-size;
 }
 
 .list-group .selected::before, .list-tree .selected::before {
