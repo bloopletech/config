@@ -52,16 +52,16 @@
 ".rails.rjs.ruby.source":
   editor:
     preferredLineLength: 120
-".text.xml.xsl":
-  editor:
-    preferredLineLength: 120
-".html.ruby.text":
+".ruby.source.sql":
   editor:
     preferredLineLength: 120
 ".rails.ruby.source":
   editor:
     preferredLineLength: 120
-".ruby.source.sql":
+".html.ruby.text":
+  editor:
+    preferredLineLength: 120
+".text.xml.xsl":
   editor:
     preferredLineLength: 120
 ".text.xml":
