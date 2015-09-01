@@ -1,3 +1,2 @@
 $HOME/.npm-packages/share/man
 $HOME/.npm/man
-$(manpath)
