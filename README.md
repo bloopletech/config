@@ -1,7 +1,7 @@
 # System Setup
 
 1. Copy ssh private keys etc into `~/.ssh/`
-2. `sudo apt-get install build-essential git curl`
+2. `sudo apt-get install build-essential git curl python-pip`
 3. `git clone git@github.com:bloopletech/config.git ~/key/config`
 4. `cd ~/key/config && ./setup_dotfiles.sh`
 5. Open a new shell.
@@ -20,4 +20,5 @@
    * fzf: `git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; ~/.fzf/install`
    * fzf-fs: https://github.com/D630/fzf-fs
    * glances: `curl -L http://bit.ly/glances | /bin/bash`
+   * youtube-dl: `sudo pip install youtube-dl`
 
