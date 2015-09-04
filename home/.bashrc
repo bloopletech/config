@@ -12,11 +12,13 @@ elif [ "$TERM" == "xterm" ]; then
   export TERM=xterm-256color
 fi
 
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
+shopt -s histverify histreedit histappend
+export HISTCONTROL=erasedups
+export HISTFILE="${HOME}/.history/$(date +%Y/%m/%d/%H:%M:%S_%p)_${HOSTNAME_SHORT}_$$"
+export HISTSIZE="NOTHING"
+export HISTFILESIZE="NOTHING"
+export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+mkdir -p "$(dirname "$HISTFILE")"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -160,7 +162,7 @@ if [ "$SHELL" = '/bin/bash' -o "$SHELL" = '/usr/local/bin/bash' ]
 then
     case $TERM in
       rxvt|*term*|*screen*)
-          export PROMPT_COMMAND="__set_ps1_with_git_branch"
+          export PROMPT_COMMAND="__set_ps1_with_git_branch;$PROMPT_COMMAND"
           trap 'echo -ne "\e]2;$BASH_COMMAND\007"' DEBUG
       ;;
     esac
