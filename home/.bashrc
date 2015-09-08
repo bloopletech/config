@@ -14,11 +14,9 @@ fi
 
 shopt -s histverify histreedit histappend
 export HISTCONTROL=erasedups
-export HISTFILE="${HOME}/.history/$(date +%Y/%m/%d/%H:%M:%S_%p)_${HOSTNAME_SHORT}_$$"
 export HISTSIZE="NOTHING"
 export HISTFILESIZE="NOTHING"
 export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
-mkdir -p "$(dirname "$HISTFILE")"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
