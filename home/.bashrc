@@ -83,7 +83,6 @@ alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=m
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
 alias right="xrandr --current -o right"
 alias normal="xrandr --current -o normal"
-#alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -gravity center -extent 480x800 +repage -colorspace Gray -quality 90 "
 alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -extent 480x800 +repage -colorspace Gray -quality 90 "
 alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
 #alias serve="ruby -run -ehttpd . -p9292 >/dev/null 2>&1"
@@ -140,6 +139,10 @@ fi
 
 if [ -f ~/.bashrc_private ]; then
   . ~/.bashrc_private
+fi
+
+if [[ "$OS" == "linux" ]]; then
+  eval `keychain --eval --quiet id_rsa`
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
