@@ -3,7 +3,7 @@
 1. Copy ssh private keys etc into `~/.ssh/`
 3. `git clone git@github.com:bloopletech/config.git ~/key/config`
 4. `cd ~/key/config && ./setup_dotfiles.sh`
-5. Open a new shell.
+5. Open a new shell
 6. Download and install GUI apps:
    * Google Chrome
    * On Ubuntu:
@@ -25,7 +25,7 @@ Run this configuration before doing the Install GUI Apps setup.
 Open a terminal and run:
 
 ````
-xcode-select --install #Click 'Install' when prompted.
+xcode-select --install #Click 'Install' when prompted
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install bash
 brew install git
@@ -43,34 +43,34 @@ Install the following:
 
 #### BetterTouchTool configuration
 
-1. Open BetterTouchTool.
-2. Click the BetterTouchTool menu bar icon, and click `Preferences...`.
-3. If prompted, enable window snapping.
-4. Click `Advanced` in the top-left of the window.
-5. Click `Advanced Settings`.
-6. Check `Launch BetterTouchTool on startup`.
-7. Click `Gestures`.
-8. Click `Global`.
-9. Click `+ Configure New Trigger`.
-10. Click `Please Select a Gesture`, and select `Leftclick Green Window Button`.
-11. Click `No Action`, and select `Window Interation` -> `Zoom Window Below Cursor`.
-12. Close the BetterTouchTool window.
+1. Open BetterTouchTool
+2. Click the BetterTouchTool menu bar icon, and click `Preferences...`
+3. If prompted, enable window snapping
+4. Click `Advanced` in the top-left of the window
+5. Click `Advanced Settings`
+6. Check `Launch BetterTouchTool on startup`
+7. Click `Gestures`
+8. Click `Global`
+9. Click `+ Configure New Trigger`
+10. Click `Please Select a Gesture`, and select `Leftclick Green Window Button`
+11. Click `No Action`, and select `Window Interation` -> `Zoom Window Below Cursor`
+12. Close the BetterTouchTool window
 
 #### MenuBarHider configuration
 
-1. Download the zip file from the above url, and extract the zip file.
-2. Copy the .bundle file to `~/Library/Application Support/SIMBL/Plugins`.
-3. Open the EasySIMBL application.
-4. Check `Use SIMBL`.
-5. Close the EasySIMBL window.
+1. Download the zip file from the above url, and extract the zip file
+2. Copy the .bundle file to `~/Library/Application Support/SIMBL/Plugins`
+3. Open the EasySIMBL application
+4. Check `Use SIMBL`
+5. Close the EasySIMBL window
 
 ### iTerm2 configuration:
 
-1. Open iTerm2.
-2. Open Preferences.
-3. Click `Profiles`.
-4. Check `Command:` and enter `/usr/local/bin/bash -l` in the text box.
-4. In `Send text at start:`, enter `getin`.
+1. Open iTerm2
+2. Open Preferences
+3. Click `Profiles`
+4. Check `Command:` and enter `/usr/local/bin/bash -l` in the text box
+4. In `Send text at start:`, enter `getin`
 
 ### General configuration
 
