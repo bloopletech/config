@@ -40,6 +40,7 @@ Install the following:
 * EasySIMBL: https://github.com/norio-nomura/EasySIMBL
 * MenuBarHider: https://github.com/Crazor/MenuBarHider/releases
 * Atom: https://atom.io/download/mac
+* mpv: http://sva.wakku.to/~chris/mpv_builds/mpv_latest.zip
 
 #### BetterTouchTool configuration
 

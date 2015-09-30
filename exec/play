@@ -5,24 +5,16 @@ VIDEO="${!#}" #video file path
 VIDEO="${VIDEO/play/http}"
 #VIDEO="${VIDEO/#play:\/\//}"
 
-function execute_player() {
+function execute_player_ubuntu() {
   mpv --vo=opengl-hq --fs --alang=jpn,jp,eng,en --slang=eng,en --cache=10000 "$@" $ARGUMENTS "$VIDEO" >/dev/null 2>&1
 }
 
-. /home/bloopletech/key/third_party/mpv-build/mpv/TOOLS/mpv_identify.sh ID_ "$VIDEO"
+function execute_player_osx() {
+  /Applications/mpv.app/Contents/MacOS/mpv --terminal --really-quiet "$@" $ARGUMENTS "$VIDEO" >/dev/null 2>&1 &
+}
 
-WIDTH=$ID_width
-HEIGHT=$ID_height
-
-#if [[ $WIDTH -eq 1440 && $HEIGHT -eq 900 ]]; then
-  execute_player "$VIDEO"
-#elif [[ $WIDTH -lt 601 || $HEIGHT -lt 401 ]]; then
-#  NEW_WIDTH=$(expr $WIDTH \* 2)
-#  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1440:900" --sws=9 "$VIDEO"
-#elif [[ $WIDTH -lt 1001 || $HEIGHT -lt 901 ]]; then
-#  NEW_WIDTH=$(expr \( $WIDTH \* 3 \) / 2)
-#  execute_player "--vf=scale=$NEW_WIDTH:-2,expand=1440:900" --sws=9 "$VIDEO"
-#else
-#  execute_player "--vf=expand=1440:900" "$VIDEO"
-#fi
-
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  execute_player_ubuntu
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  execute_player_osx
+fi
