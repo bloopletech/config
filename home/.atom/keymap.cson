@@ -1,6 +1,7 @@
 '.editor':
   'f1': 'fuzzy-finder:toggle-file-finder'
   'f2': 'symbols-view:toggle-project-symbols'
+  'f4': 'git-blame:toggle'
   'f5': 'rspec:run'
   'ctrl-space': 'symbols-view:go-to-declaration'
 '.platform-linux atom-text-editor':
