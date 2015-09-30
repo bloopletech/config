@@ -65,13 +65,20 @@ Install the following:
 4. Check `Use SIMBL`
 5. Close the EasySIMBL window
 
-### iTerm2 configuration:
+### iTerm2 configuration
 
 1. Open iTerm2
 2. Open Preferences
 3. Click `Profiles`
 4. Check `Command:` and enter `/usr/local/bin/bash -l` in the text box
 4. In `Send text at start:`, enter `getin`
+
+### mpv / youtube-dl configuration
+
+Open a terminal and run:
+````
+brew install youtube-dl --with-rtmpdump --HEAD
+````
 
 ### General configuration
 
