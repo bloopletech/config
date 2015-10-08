@@ -144,6 +144,15 @@ fi
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# enhancd
+export ENHANCD_FILTER="fzf"
+if [ -f ~/.enhancd/bash/enhancd.bash ]; then
+    source ~/.enhancd/bash/enhancd.bash
+fi
+
+
 cd .
 
 function __set_ps1_with_git_branch {
