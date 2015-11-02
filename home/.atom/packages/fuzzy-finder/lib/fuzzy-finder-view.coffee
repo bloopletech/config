@@ -1,41 +1,95 @@
 path = require 'path'
-{Point} = require 'atom'
-{$$, SelectListView} = require 'atom-space-pen-views'
+{Point, CompositeDisposable} = require 'atom'
+{$, $$, SelectListView} = require 'atom-space-pen-views'
+{repositoryForPath} = require './helpers'
 fs = require 'fs-plus'
+fuzzaldrin = require 'fuzzaldrin'
+fuzzaldrinPlus = require 'fuzzaldrin-plus'
 
 module.exports =
 class FuzzyFinderView extends SelectListView
   filePaths: null
   projectRelativePaths: null
+  subscriptions: null
+  alternateScoring: false
 
   initialize: ->
     super
 
     @addClass('fuzzy-finder')
-    @setMaxItems(50)
+    @setMaxItems(10)
+    @subscriptions = new CompositeDisposable
 
     atom.commands.add @element,
       'pane:split-left': =>
-        @splitOpenPath (pane, item) -> pane.splitLeft(items: [item])
+        @splitOpenPath (pane) -> pane.splitLeft.bind(pane)
       'pane:split-right': =>
-        @splitOpenPath (pane, item) -> pane.splitRight(items: [item])
+        @splitOpenPath (pane) -> pane.splitRight.bind(pane)
       'pane:split-down': =>
-        @splitOpenPath (pane, item) -> pane.splitDown(items: [item])
+        @splitOpenPath (pane) -> pane.splitDown.bind(pane)
       'pane:split-up': =>
-        @splitOpenPath (pane, item) -> pane.splitUp(items: [item])
+        @splitOpenPath (pane) -> pane.splitUp.bind(pane)
+      'fuzzy-finder:invert-confirm': =>
+        @confirmInvertedSelection()
+
+    @alternateScoring = atom.config.get 'fuzzy-finder.useAlternateScoring'
+    @subscriptions.add atom.config.onDidChange 'fuzzy-finder.useAlternateScoring', ({newValue}) => @alternateScoring = newValue
+
 
   getFilterKey: ->
     'projectRelativePath'
 
+  cancel: ->
+    if atom.config.get('fuzzy-finder.preserveLastSearch')
+      lastSearch = @getFilterQuery()
+      super
+
+      @filterEditorView.setText(lastSearch)
+      @filterEditorView.getModel().selectAll()
+    else
+      super
+
   destroy: ->
     @cancel()
     @panel?.destroy()
+    @subscriptions?.dispose()
+    @subscriptions = null
 
   viewForItem: ({filePath, projectRelativePath}) ->
+
+    # Style matched characters in search results
+    filterQuery = @getFilterQuery()
+
+    if @alternateScoring
+      matches = fuzzaldrinPlus.match(projectRelativePath, filterQuery)
+    else
+      matches = fuzzaldrin.match(projectRelativePath, filterQuery)
+
     $$ ->
+
+      highlighter = (path, matches, offsetIndex) =>
+        lastIndex = 0
+        matchedChars = [] # Build up a set of matched chars to be more semantic
+
+        for matchIndex in matches
+          matchIndex -= offsetIndex
+          continue if matchIndex < 0 # If marking up the basename, omit path matches
+          unmatched = path.substring(lastIndex, matchIndex)
+          if unmatched
+            @span matchedChars.join(''), class: 'character-match' if matchedChars.length
+            matchedChars = []
+            @text unmatched
+          matchedChars.push(path[matchIndex])
+          lastIndex = matchIndex + 1
+
+        @span matchedChars.join(''), class: 'character-match' if matchedChars.length
+
+        # Remaining characters are plain text
+        @text path.substring(lastIndex)
+
+
       @li class: 'two-lines', =>
-        [repo] = atom.project.getRepositories()
-        if repo?
+        if (repo = repositoryForPath(filePath))?
           status = repo.getCachedPathStatus(filePath)
           if repo.isStatusNew(status)
             @div class: 'status status-added icon icon-diff-added'
@@ -57,13 +111,14 @@ class FuzzyFinderView extends SelectListView
           typeClass = 'icon-file-text'
 
         fileBasename = path.basename(filePath)
+        baseOffset = projectRelativePath.length - fileBasename.length
 
-        @div projectRelativePath, class: "primary-line file icon #{typeClass}", 'data-name': fileBasename, 'data-path': projectRelativePath
-        @div '', class: 'secondary-line path no-icon'
+        @div class: "primary-line file icon #{typeClass}", 'data-name': fileBasename, 'data-path': projectRelativePath, -> highlighter(projectRelativePath, matches, 0)
+        @div class: 'secondary-line path no-icon', -> ''
 
-  openPath: (filePath, lineNumber) ->
+  openPath: (filePath, lineNumber, openOptions) ->
     if filePath
-      atom.workspace.open(filePath).done => @moveToLine(lineNumber)
+      atom.workspace.open(filePath, openOptions).then => @moveToLine(lineNumber)
 
   moveToLine: (lineNumber=-1) ->
     return unless lineNumber >= 0
@@ -74,20 +129,19 @@ class FuzzyFinderView extends SelectListView
       textEditor.setCursorBufferPosition(position)
       textEditor.moveToFirstCharacterOfLine()
 
-  splitOpenPath: (fn) ->
+  splitOpenPath: (splitFn) ->
     {filePath} = @getSelectedItem() ? {}
+    lineNumber = @getLineNumber()
 
     if @isQueryALineJump() and editor = atom.workspace.getActiveTextEditor()
-      lineNumber = @getLineNumber()
       pane = atom.workspace.getActivePane()
-      fn(pane, pane.copyActiveItem())
+      splitFn(pane)(copyActiveItem: true)
       @moveToLine(lineNumber)
     else if not filePath
       return
     else if pane = atom.workspace.getActivePane()
-      atom.project.open(filePath).done (editor) =>
-        fn(pane, editor)
-        @moveToLine(lineNumber)
+      splitFn(pane)()
+      @openPath(filePath, lineNumber)
     else
       @openPath(filePath, lineNumber)
 
@@ -95,14 +149,55 @@ class FuzzyFinderView extends SelectListView
     if @isQueryALineJump()
       @list.empty()
       @setError('Jump to line in active editor')
+    else if @alternateScoring
+      @populateAlternateList()
     else
       super
 
+
+  # Unfortunately  SelectListView do not allow inheritor to handle their own filtering.
+  # That would be required to use external knowledge, for example: give a bonus to recent files.
+  #
+  # Or, in this case: test an alternate scoring algorithm.
+  #
+  # This is modified copy/paste from SelectListView#populateList, require jQuery!
+  # Should be temporary
+
+  populateAlternateList: ->
+
+    return unless @items?
+
+    filterQuery = @getFilterQuery()
+    if filterQuery.length
+      filteredItems = fuzzaldrinPlus.filter(@items, filterQuery, key: @getFilterKey())
+    else
+      filteredItems = @items
+
+    @list.empty()
+    if filteredItems.length
+      @setError(null)
+
+      for i in [0...Math.min(filteredItems.length, @maxItems)]
+        item = filteredItems[i]
+        itemView = $(@viewForItem(item))
+        itemView.data('select-list-item', item)
+        @list.append(itemView)
+
+      @selectItemView(@list.find('li:first'))
+    else
+      @setError(@getEmptyMessage(@items.length, filteredItems.length))
+
+
+
   confirmSelection: ->
     item = @getSelectedItem()
-    @confirmed(item)
+    @confirmed(item, searchAllPanes: atom.config.get('fuzzy-finder.searchAllPanes'))
 
-  confirmed: ({filePath}={}) ->
+  confirmInvertedSelection: ->
+    item = @getSelectedItem()
+    @confirmed(item, searchAllPanes: not atom.config.get('fuzzy-finder.searchAllPanes'))
+
+  confirmed: ({filePath}={}, openOptions) ->
     if atom.workspace.getActiveTextEditor() and @isQueryALineJump()
       lineNumber = @getLineNumber()
       @cancel()
@@ -115,7 +210,7 @@ class FuzzyFinderView extends SelectListView
     else
       lineNumber = @getLineNumber()
       @cancel()
-      @openPath(filePath, lineNumber)
+      @openPath(filePath, lineNumber, openOptions)
 
   isQueryALineJump: ->
     query = @filterEditorView.getModel().getText()
@@ -146,9 +241,13 @@ class FuzzyFinderView extends SelectListView
   projectRelativePathsForFilePaths: (filePaths) ->
     # Don't regenerate project relative paths unless the file paths have changed
     if filePaths isnt @filePaths
+      projectHasMultipleDirectories = atom.project.getDirectories().length > 1
+
       @filePaths = filePaths
       @projectRelativePaths = @filePaths.map (filePath) ->
-        projectRelativePath = atom.project.relativize(filePath)
+        [rootPath, projectRelativePath] = atom.project.relativizePath(filePath)
+        if rootPath and projectHasMultipleDirectories
+          projectRelativePath = path.join(path.basename(rootPath), projectRelativePath)
         {filePath, projectRelativePath}
 
     @projectRelativePaths
