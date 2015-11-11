@@ -17,7 +17,7 @@ class FuzzyFinderView extends SelectListView
     super
 
     @addClass('fuzzy-finder')
-    @setMaxItems(10)
+    @setMaxItems(100)
     @subscriptions = new CompositeDisposable
 
     atom.commands.add @element,
