@@ -101,3 +101,5 @@ sudo apt-get install bash curl patch bzip2 ca-certificates gawk make libc6-dev o
   zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake \
   libtool bison pkg-config libffi-dev g++ gcc build-essential git python-pip libxml2-dev libxslt1-dev libpq-dev
 ````
+
+Install Node.js by folling the instructions at https://github.com/nodesource/distributions#installation-instructions.
