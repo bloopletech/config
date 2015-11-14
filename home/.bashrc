@@ -146,13 +146,6 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# enhancd
-export ENHANCD_FILTER="fzf"
-if [ -f ~/.enhancd/bash/enhancd.bash ]; then
-    source ~/.enhancd/bash/enhancd.bash
-fi
-
-
 cd .
 
 function __set_ps1_with_git_branch {
