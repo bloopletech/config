@@ -89,6 +89,7 @@ defaults write com.apple.dock autohide -bool TRUE
 defaults write com.apple.dock autohide-delay -int 0
 defaults write com.apple.dock autohide-time-modifier -float 0.2
 defaults write ~/Library/Preferences/.GlobalPreferences com.apple.swipescrolldirection -int 0
+defaults write -globalDomain AppleEdgeResizing NO
 killall Dock
 ````
 
