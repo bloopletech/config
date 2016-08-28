@@ -77,7 +77,7 @@ alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
 alias lnode="ssh bloople@178.79.147.14"
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
-alias here="gnome-open ."
+alias here="xdg-open ."
 
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
@@ -111,8 +111,8 @@ function app () {
   bundle exec foreman start
 }
 
-if [ -f ~/key/pillage/shell/shell_functions.sh ]; then
-  source ~/key/pillage/shell/shell_functions.sh
+if [ -f ~/key/pillage/bash/functions.sh ]; then
+  source ~/key/pillage/bash/functions.sh
 fi
 
 if [ -f "$HOME/.docker/host" ]; then
