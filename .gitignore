@@ -1,7 +1,7 @@
 exec/.gitignore
-dotfiles/.vim/.netrwhist
-dotfiles/.vim/doc/tags
-dotfiles/.vim/doc/tags-ja
-dotfiles/.vim/spell/en.utf-8.add
-dotfiles/.vim/spell/en.utf-8.add.spl
-dotfiles/.config/roxterm.sourceforge.net/Searches
+home/.vim/.netrwhist
+home/.vim/doc/tags
+home/.vim/doc/tags-ja
+home/.vim/spell/en.utf-8.add
+home/.vim/spell/en.utf-8.add.spl
+home/.config/roxterm.sourceforge.net/Searches
