@@ -1,62 +1,113 @@
 "*":
-  "exception-reporting":
-    userId: "033b1fef-754e-a7ed-c6fc-be7bb9b5ec7a"
-  "release-notes":
-    viewedVersion: "3371252"
-  welcome:
-    showOnStartup: false
-  metrics:
-    userId: "6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10"
-  editor:
-    fontFamily: "Ubuntu Mono, Monaco"
-    fontSize: 16
-    showInvisibles: true
-    preferredLineLength: 120
-    invisibles: {}
-    zoomFontWhenCtrlScrolling: false
-    lineHeight: 1.3
+  "atom-beautify":
+    apex: {}
+    arduino: {}
+    c: {}
+    cfml: {}
+    coffeescript: {}
+    cpp: {}
+    cs: {}
+    css:
+      newline_between_rules: true
+    d: {}
+    ejs: {}
+    erb: {}
+    fortran: {}
+    general:
+      _analyticsUserId: "72f5102b-6f28-4282-92e3-6ace3fbca528"
+    gherkin: {}
+    handlebars: {}
+    html: {}
+    jade: {}
+    java: {}
+    js:
+      indent_size: 2
+      space_before_conditional: false
+    json: {}
+    jsx: {}
+    latex: {}
+    less: {}
+    marko: {}
+    mustache: {}
+    objectivec: {}
+    pawn: {}
+    perl: {}
+    php: {}
+    python: {}
+    riot: {}
+    ruby: {}
+    rust: {}
+    sass: {}
+    scss: {}
+    spacebars: {}
+    sql: {}
+    svg: {}
+    swig: {}
+    tss: {}
+    twig: {}
+    typescript: {}
+    vala: {}
+    visualforce: {}
+    xml: {}
+    xtemplate: {}
+  "atom-rspec":
+    command: "bundle exec rspec"
+  "autocomplete-plus":
+    confirmCompletion: "enter"
+    enableAutoActivation: false
   core:
+    allowPendingPaneItems: false
     disabledPackages: [
       "linter"
       "autocomplete-snippets"
       "autocomplete"
       "snippets"
       "tab-smart-sort"
+      "whitespace"
       "symbols-tree-view"
     ]
     themes: [
       "atom-light-ui"
       "railscast-theme"
     ]
-  "tree-view":
-    hideVcsIgnoredFiles: true
-    showOnRightSide: true
-  whitespace:
-    ensureSingleTrailingNewline: false
-  "atom-rspec":
-    command: "bundle exec rspec"
+  editor:
+    fontFamily: "Ubuntu Mono, Monaco"
+    fontSize: 16
+    invisibles: {}
+    lineHeight: 1.3
+    preferredLineLength: 120
+    showInvisibles: true
+    zoomFontWhenCtrlScrolling: false
+  "exception-reporting":
+    userId: "033b1fef-754e-a7ed-c6fc-be7bb9b5ec7a"
+  "git-blame": {}
   linter:
     lintOnChange: false
-  "atom-beautify":
-    _analyticsUserId: "72f5102b-6f28-4282-92e3-6ace3fbca528"
-  "autocomplete-plus":
-    enableAutoActivation: false
-    confirmCompletion: "enter"
-  "git-blame": {}
+  metrics:
+    userId: "6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10"
+  "release-notes":
+    viewedVersion: "3371252"
   "symbols-tree-view":
     autoToggle: true
     scrollAnimation: false
   "tab-smart-sort": {}
+  "tree-view":
+    hideVcsIgnoredFiles: true
+    showOnRightSide: true
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false
+".html.php.text":
+  editor:
+    preferredLineLength: 120
+".html.ruby.text":
+  editor:
+    preferredLineLength: 120
 ".js.rails.source source.jquery.js":
   editor:
     preferredLineLength: 120
 ".rails.rjs.ruby.source":
-  editor:
-    preferredLineLength: 120
-".text.xml.xsl":
-  editor:
-    preferredLineLength: 120
-".html.ruby.text":
   editor:
     preferredLineLength: 120
 ".rails.ruby.source":
@@ -66,5 +117,8 @@
   editor:
     preferredLineLength: 120
 ".text.xml":
+  editor:
+    preferredLineLength: 120
+".text.xml.xsl":
   editor:
     preferredLineLength: 120
