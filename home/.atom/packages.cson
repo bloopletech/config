@@ -11,9 +11,7 @@ packages: [
   "script"
   "squint-test"
   "symbol-gen"
-  "symbols-tree-view"
-  "tab-smart-sort"
   "tree-view-open-files"
   "xml-formatter"
-  "language-terraform"
+  "file-icons"
 ]
