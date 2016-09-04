@@ -104,3 +104,29 @@ sudo apt-get install bash curl patch bzip2 ca-certificates gawk make libc6-dev o
 ````
 
 Install Node.js by folling the instructions at https://github.com/nodesource/distributions#installation-instructions.
+
+## Windows-specific Setup
+
+### Install GUI Apps
+
+Install the following:
+* 7-Zip: http://www.7-zip.org/download.html
+* Abyss Web Server X1: http://aprelium.com/abyssws/download.php
+* Advanced Renamer: https://www.advancedrenamer.com/download
+* Equalizer APO: https://sourceforge.net/projects/equalizerapo/
+* foobar2000: http://www.foobar2000.org/download
+* Free Clipboard Viewer: http://www.freeclipboardviewer.com/
+* Free Download Manager: http://www.freedownloadmanager.org/
+* HandBrake: https://handbrake.fr/
+* Hourglass: http://chris.dziemborowicz.com/apps/hourglass/
+* HxD Hex Editor: https://mh-nexus.de/en/hxd/
+* IrfanView: http://www.irfanview.com/
+* mpv: https://mpv.srsfckn.biz/
+* Notepad++: https://notepad-plus-plus.org/
+* paint.net: http://www.getpaint.net/index.html
+* SyncTrazor: https://github.com/canton7/SyncTrayzor#installation
+* Transmission-Qt: http://trqtw.sourceforge.net/blog/
+* VcXsrv: https://sourceforge.net/projects/vcxsrv/
+* WebP Codex for Windows: https://developers.google.com/speed/webp/docs/webp_codec
+* WinDirStat: https://windirstat.info/download.html
+
