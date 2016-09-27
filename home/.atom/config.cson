@@ -55,6 +55,8 @@
   "autocomplete-plus":
     confirmCompletion: "enter"
     enableAutoActivation: false
+  "autoupdate-packages":
+    lastUpdateTimestamp: 1474966248955
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -98,13 +100,25 @@
     showOnStartup: false
   whitespace:
     ensureSingleTrailingNewline: false
+".html.jsp.text":
+  editor:
+    preferredLineLength: 120
 ".html.php.text":
   editor:
     preferredLineLength: 120
 ".html.ruby.text":
   editor:
     preferredLineLength: 120
+".java-properties.source":
+  editor:
+    preferredLineLength: 120
+".java.source":
+  editor:
+    preferredLineLength: 120
 ".js.rails.source source.jquery.js":
+  editor:
+    preferredLineLength: 120
+".junit-test-report.text":
   editor:
     preferredLineLength: 120
 ".rails.rjs.ruby.source":
