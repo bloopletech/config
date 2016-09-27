@@ -2,7 +2,7 @@ packages: [
   "atom-beautify"
   "atom-terminal"
   "autocomplete-paths"
-  "git-blame"
+  "blame"
   "language-haml"
   "linter-rubocop"
   "package-sync"
