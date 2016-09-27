@@ -7,6 +7,19 @@ temp = require 'temp'
 wrench = require 'wrench'
 
 PathLoader = require '../lib/path-loader'
+DefaultFileIcons = require '../lib/default-file-icons'
+
+escapeSelector = (_selector) ->
+  _selector.replace(/\\/g, '\\\\')
+
+rmrf = (_path) ->
+  if fs.statSync(_path).isDirectory()
+    _.each(fs.readdirSync(_path), (child) ->
+      rmrf(path.join(_path, child))
+      )
+    fs.rmdirSync(_path)
+  else
+    fs.unlinkSync(_path)
 
 describe 'FuzzyFinder', ->
   [rootDir1, rootDir2] = []
@@ -98,7 +111,7 @@ describe 'FuzzyFinder', ->
 
           runs ->
             eachFilePath [rootDir1, rootDir2], (filePath) ->
-              item = projectView.list.find("li:contains(#{filePath})").eq(0)
+              item = projectView.list.find("li:contains(#{escapeSelector(filePath)})").eq(0)
               expect(item).toExist()
               nameDiv = item.find("div:first-child")
               expect(nameDiv).toHaveAttr("data-name", path.basename(filePath))
@@ -113,12 +126,12 @@ describe 'FuzzyFinder', ->
 
           runs ->
             eachFilePath [rootDir1], (filePath) ->
-              item = projectView.list.find("li:contains(#{filePath})").eq(0)
+              item = projectView.list.find("li:contains(#{escapeSelector(filePath)})").eq(0)
               expect(item).toExist()
               expect(item.find("div").eq(1)).toHaveText(path.join(path.basename(rootDir1), filePath))
 
             eachFilePath [rootDir2], (filePath) ->
-              item = projectView.list.find("li:contains(#{filePath})").eq(0)
+              item = projectView.list.find("li:contains(#{escapeSelector(filePath)})").eq(0)
               expect(item).toExist()
               expect(item.find("div").eq(1)).toHaveText(path.join(path.basename(rootDir2), filePath))
 
@@ -129,7 +142,7 @@ describe 'FuzzyFinder', ->
           dispatchCommand('toggle-file-finder') # Show again
           expect(PathLoader.startTask.callCount).toBe 1
 
-        it "puts the last active path first", ->
+        it "puts the last opened path first", ->
           waitsForPromise -> atom.workspace.open 'sample.txt'
           waitsForPromise -> atom.workspace.open 'sample.js'
 
@@ -141,8 +154,17 @@ describe 'FuzzyFinder', ->
             expect(projectView.list.find("li:eq(0)").text()).toContain('sample.txt')
             expect(projectView.list.find("li:eq(1)").text()).toContain('sample.html')
 
+        it "displays paths correctly if the last-opened path is not part of the project (regression)", ->
+          waitsForPromise -> atom.workspace.open 'foo.txt'
+          waitsForPromise -> atom.workspace.open 'sample.js'
+
+          runs -> dispatchCommand('toggle-file-finder')
+
+          waitForPathsToDisplay(projectView)
+
         describe "symlinks on #darwin or #linux", ->
           [junkDirPath, junkFilePath] = []
+
           beforeEach ->
             junkDirPath = fs.realpathSync(temp.mkdirSync('junk-1'))
             junkFilePath = path.join(junkDirPath, 'file.txt')
@@ -160,6 +182,19 @@ describe 'FuzzyFinder', ->
             fs.symlinkSync(atom.project.getDirectories()[0].resolve('dir'), atom.project.getDirectories()[0].resolve('symlink-to-internal-dir'))
 
             fs.unlinkSync(brokenFilePath)
+
+          it "indexes project paths that are symlinks", ->
+            symlinkProjectPath = path.join(junkDirPath, 'root-dir-symlink')
+            fs.symlinkSync(atom.project.getPaths()[0], symlinkProjectPath)
+
+            atom.project.setPaths([symlinkProjectPath])
+
+            dispatchCommand('toggle-file-finder')
+
+            waitForPathsToDisplay(projectView)
+
+            runs ->
+              expect(projectView.list.find("li:contains(sample.txt)")).toExist()
 
           it "includes symlinked file paths", ->
             dispatchCommand('toggle-file-finder')
@@ -247,7 +282,7 @@ describe 'FuzzyFinder', ->
 
           runs ->
             eachFilePath [rootDir1], (filePath) ->
-              item = projectView.list.find("li:contains(#{filePath})").eq(0)
+              item = projectView.list.find("li:contains(#{escapeSelector(filePath)})").eq(0)
               expect(item).toExist()
               expect(item).not.toHaveText(path.basename(rootDir1))
 
@@ -259,6 +294,21 @@ describe 'FuzzyFinder', ->
           dispatchCommand('toggle-file-finder')
           expect(projectView.error.text()).toBe 'Project is empty'
           expect(projectView.list.children('li').length).toBe 0
+
+    describe "when a project's root path is unlinked", ->
+      beforeEach ->
+        rmrf(rootDir1) if fs.existsSync(rootDir1)
+        rmrf(rootDir2) if fs.existsSync(rootDir2)
+
+      it "posts an error notification", ->
+        spyOn(atom.notifications, 'addError')
+        dispatchCommand('toggle-file-finder')
+        waitsFor ->
+          atom.workspace.panelForItem(projectView).isVisible()
+        runs ->
+          expect(atom.notifications.addError).toHaveBeenCalled()
+
+
 
     describe "when a path selection is confirmed", ->
       it "opens the file associated with that path in that split", ->
@@ -595,7 +645,7 @@ describe 'FuzzyFinder', ->
 
       it "passes the indexed paths into the project view when it is created", ->
         {projectPaths} = fuzzyFinder
-        expect(projectPaths.length).toBe 18
+        expect(projectPaths.length).toBe 19
         projectView = fuzzyFinder.createProjectView()
         expect(projectView.paths).toBe projectPaths
         expect(projectView.reloadPaths).toBe false
@@ -870,6 +920,37 @@ describe 'FuzzyFinder', ->
       expect(projectView.filterEditorView.getText()).toBe 'this should show up next time we open finder'
       expect(projectView.filterEditorView.getModel().getSelectedText()).toBe 'this should show up next time we open finder'
 
+  describe "file icons", ->
+    fileIcons = new DefaultFileIcons
+
+    it "defaults to text", ->
+
+      waitsForPromise ->
+        atom.workspace.open('sample.js')
+
+      runs ->
+        dispatchCommand('toggle-buffer-finder')
+        expect(atom.workspace.panelForItem(bufferView).isVisible()).toBe true
+
+        bufferView.filterEditorView.getModel().insertText('js')
+        bufferView.populateList()
+        firstResult = bufferView.list.children('li').find('.primary-line')
+        expect(fileIcons.iconClassForPath(firstResult[0].dataset.path)).toBe 'icon-file-text'
+
+    it "shows image icons", ->
+
+      waitsForPromise ->
+        atom.workspace.open('sample.gif')
+
+      runs ->
+        dispatchCommand('toggle-buffer-finder')
+        expect(atom.workspace.panelForItem(bufferView).isVisible()).toBe true
+
+        bufferView.filterEditorView.getModel().insertText('gif')
+        bufferView.populateList()
+        firstResult = bufferView.list.children('li').find('.primary-line')
+        expect(fileIcons.iconClassForPath(firstResult[0].dataset.path)).toBe 'icon-file-media'
+
   describe "Git integration", ->
     [projectPath, gitRepository, gitDirectory] = []
 
@@ -885,6 +966,8 @@ describe 'FuzzyFinder', ->
       [originalText, originalPath, newPath] = []
 
       beforeEach ->
+        jasmine.attachToDOM(workspaceElement)
+
         waitsForPromise ->
           atom.workspace.open(path.join(projectPath, 'a.txt'))
 
@@ -905,7 +988,6 @@ describe 'FuzzyFinder', ->
         expect(atom.workspace.panelForItem(gitStatusView).isVisible()).toBe true
 
         expect(gitStatusView.find('.file').length).toBe 2
-
         expect(gitStatusView.find('.status.status-modified').length).toBe 1
         expect(gitStatusView.find('.status.status-added').length).toBe 1
 

@@ -5,6 +5,7 @@ path = require 'path'
 fs = require 'fs-plus'
 fuzzaldrin = require 'fuzzaldrin'
 fuzzaldrinPlus = require 'fuzzaldrin-plus'
+FileIcons = require './file-icons'
 
 module.exports =
 class FuzzyFinderView extends SelectListView
@@ -20,15 +21,24 @@ class FuzzyFinderView extends SelectListView
     @setMaxItems(100)
     @subscriptions = new CompositeDisposable
 
+    splitLeft = => @splitOpenPath (pane) -> pane.splitLeft.bind(pane)
+    splitRight = => @splitOpenPath (pane) -> pane.splitRight.bind(pane)
+    splitUp = => @splitOpenPath (pane) -> pane.splitUp.bind(pane)
+    splitDown = => @splitOpenPath (pane) -> pane.splitDown.bind(pane)
+
     atom.commands.add @element,
-      'pane:split-left': =>
-        @splitOpenPath (pane) -> pane.splitLeft.bind(pane)
-      'pane:split-right': =>
-        @splitOpenPath (pane) -> pane.splitRight.bind(pane)
-      'pane:split-down': =>
-        @splitOpenPath (pane) -> pane.splitDown.bind(pane)
-      'pane:split-up': =>
-        @splitOpenPath (pane) -> pane.splitUp.bind(pane)
+      'pane:split-left': splitLeft
+      'pane:split-left-and-copy-active-item': splitLeft
+      'pane:split-left-and-move-active-item': splitLeft
+      'pane:split-right': splitRight
+      'pane:split-right-and-copy-active-item': splitRight
+      'pane:split-right-and-move-active-item': splitRight
+      'pane:split-up': splitUp
+      'pane:split-up-and-copy-active-item': splitUp
+      'pane:split-up-and-move-active-item': splitUp
+      'pane:split-down': splitDown
+      'pane:split-down-and-copy-active-item': splitDown
+      'pane:split-down-and-move-active-item': splitDown
       'fuzzy-finder:invert-confirm': =>
         @confirmInvertedSelection()
 
@@ -56,7 +66,6 @@ class FuzzyFinderView extends SelectListView
     @subscriptions = null
 
   viewForItem: ({filePath, projectRelativePath}) ->
-
     # Style matched characters in search results
     filterQuery = @getFilterQuery()
 
@@ -96,24 +105,14 @@ class FuzzyFinderView extends SelectListView
           else if repo.isStatusModified(status)
             @div class: 'status status-modified icon icon-diff-modified'
 
-        ext = path.extname(filePath)
-        if fs.isReadmePath(filePath)
-          typeClass = 'icon-book'
-        else if fs.isCompressedExtension(ext)
-          typeClass = 'icon-file-zip'
-        else if fs.isImageExtension(ext)
-          typeClass = 'icon-file-media'
-        else if fs.isPdfExtension(ext)
-          typeClass = 'icon-file-pdf'
-        else if fs.isBinaryExtension(ext)
-          typeClass = 'icon-file-binary'
-        else
-          typeClass = 'icon-file-text'
+        typeClass = FileIcons.getService().iconClassForPath(filePath, 'fuzzy-finder') or []
+        unless Array.isArray typeClass
+          typeClass = typeClass?.toString().split(/\s+/g)
 
         fileBasename = path.basename(filePath)
         baseOffset = projectRelativePath.length - fileBasename.length
 
-        @div class: "primary-line file icon #{typeClass}", 'data-name': fileBasename, 'data-path': projectRelativePath, -> highlighter(projectRelativePath, matches, 0)
+        @div class: "primary-line file icon #{typeClass.join(' ')}", 'data-name': fileBasename, 'data-path': projectRelativePath, -> highlighter(projectRelativePath, matches, 0)
         @div class: 'secondary-line path no-icon', -> ''
 
   openPath: (filePath, lineNumber, openOptions) ->
