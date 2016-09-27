@@ -16,4 +16,5 @@ packages: [
   "file-icons"
   "atomic-chrome"
   "pigments"
+  "auto-update-packages"
 ]
