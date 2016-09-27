@@ -14,4 +14,6 @@ packages: [
   "tree-view-open-files"
   "xml-formatter"
   "file-icons"
+  "atomic-chrome"
+  "pigments"
 ]
