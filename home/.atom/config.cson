@@ -100,10 +100,7 @@
     showOnStartup: false
   whitespace:
     ensureSingleTrailingNewline: false
-".html.jsp.text":
-  editor:
-    preferredLineLength: 120
-".html.php.text":
+".haml.text":
   editor:
     preferredLineLength: 120
 ".html.ruby.text":
@@ -128,6 +125,9 @@
   editor:
     preferredLineLength: 120
 ".ruby.source.sql":
+  editor:
+    preferredLineLength: 120
+".source.terraform":
   editor:
     preferredLineLength: 120
 ".text.xml":
