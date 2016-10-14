@@ -56,7 +56,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1474966248955
+    lastUpdateTimestamp: 1476433823228
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -67,6 +67,7 @@
       "tab-smart-sort"
       "whitespace"
       "symbols-tree-view"
+      "spell-check"
     ]
     themes: [
       "atom-light-ui"
