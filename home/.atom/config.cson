@@ -56,7 +56,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1476433823228
+    lastUpdateTimestamp: 1476676852966
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -69,6 +69,7 @@
       "symbols-tree-view"
       "spell-check"
     ]
+    telemetryConsent: "limited"
     themes: [
       "atom-light-ui"
       "railscast-theme"
@@ -83,6 +84,7 @@
     zoomFontWhenCtrlScrolling: false
   "exception-reporting":
     userId: "033b1fef-754e-a7ed-c6fc-be7bb9b5ec7a"
+  "file-icons": {}
   "git-blame": {}
   linter:
     lintOnChange: false
