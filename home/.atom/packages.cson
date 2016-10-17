@@ -15,4 +15,5 @@ packages: [
   "atomic-chrome"
   "pigments"
   "autoupdate-packages"
+  "open-recent"
 ]
