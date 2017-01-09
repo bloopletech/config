@@ -56,7 +56,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1479173926907
+    lastUpdateTimestamp: 1483922410891
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -80,6 +80,7 @@
     invisibles: {}
     lineHeight: 1.3
     preferredLineLength: 120
+    showInvisibles: true
     zoomFontWhenCtrlScrolling: false
   "exception-reporting":
     userId: "033b1fef-754e-a7ed-c6fc-be7bb9b5ec7a"
