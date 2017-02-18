@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'excon'
+
+MAX_LENGTH = 200
+
+url = ARGV.first
+filename = nil
+
+response = Excon.head(url)
+disposition = response.headers["Content-Disposition"]
+
+unless disposition.nil?
+  disposition =~ /^attachment; filename="(.*?)"$/
+  filename = $1
+end
+
+if filename.nil?
+  uri = URI(url)
+  filename = File.basename(uri.path)
+end
+
+filename.gsub!(/[<>:"\\|?*]/, "_")
+
+if filename.length > MAX_LENGTH
+  extension = File.extname(filename)
+  basename = File.basename(filename, extension)
+
+  filename = "#{basename[0, MAX_LENGTH - extension.length]}#{extension}"
+end
+
+print filename
