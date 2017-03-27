@@ -84,8 +84,6 @@ alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.j
 alias right="xrandr --current -o right"
 alias normal="xrandr --current -o normal"
 alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -extent 480x800 +repage -colorspace Gray -quality 90 "
-alias serve="python -m SimpleHTTPServer >/dev/null 2>&1 &"
-#alias serve="ruby -run -ehttpd . -p9292 >/dev/null 2>&1"
 alias recent="git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 alias e="atom ."
 alias getin="cd $HOME/key/config-vagrant/ && vagrant_ssh_fast"
@@ -109,6 +107,11 @@ function app () {
   pkill -9 -f mailcatcher
   pkill -9 -f puma
   bundle exec foreman start
+}
+
+#alias serve="ruby -run -ehttpd . -p9292 >/dev/null 2>&1"
+function serve () {
+  python -m SimpleHTTPServer "$@" >/dev/null 2>&1 &
 }
 
 if [ -f ~/key/pillage/bash/functions.sh ]; then
