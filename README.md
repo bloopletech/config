@@ -130,3 +130,19 @@ Install the following:
 * WebP Codex for Windows: https://developers.google.com/speed/webp/docs/webp_codec
 * WinDirStat: https://windirstat.info/download.html
 
+## Google Chrome Extensions
+
+* Always Clear Downloads: https://chrome.google.com/webstore/detail/always-clear-downloads/cpbmgiffkljiglnpdbljhlenaikojapc
+* Atomic Chrome: https://chrome.google.com/webstore/detail/atomic-chrome/lhaoghhllmiaaagaffababmkdllgfcmc
+* Double-click Image Downloader: https://chrome.google.com/webstore/detail/double-click-image-downlo/bkijmpolkanhdehnlnabfooghjdokakc
+* Full Window Image Viewer: https://chrome.google.com/webstore/detail/full-window-image-viewer/poakplgknboogmjglihkhdgpljkmajel
+* img2tab: https://chrome.google.com/webstore/detail/img2tab/kbbalffcbdlngpklndognfpcipmhdmod
+* LastPass: Free Password Manager: https://chrome.google.com/webstore/detail/lastpass-free-password-ma/hdokiejnpimakedhajhdlcegeplioahd
+* LiveReload: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
+* No Scroll Bars Please!
+* Reddit Enhancement Suite: https://chrome.google.com/webstore/detail/reddit-enhancement-suite/kbmfpngjjgdllneeigpgjifpgocmfgmb
+* select-copy: https://chrome.google.com/webstore/detail/select-copy/obeogbddablmkbhgbgkfigpfldpofilb
+* story-leanback: https://chrome.google.com/webstore/detail/story-leanback/ooghbbjkiphcimhhcfjglgippbiageai
+* Stylist: https://chrome.google.com/webstore/detail/stylist/pabfempgigicdjjlccdgnbmeggkbjdhd
+* Tabby Cat: https://chrome.google.com/webstore/detail/tabby-cat/mefhakmgclhhfbdadeojlkbllmecialg
+* uBlock Origin: https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
