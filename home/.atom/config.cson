@@ -50,13 +50,11 @@
     visualforce: {}
     xml: {}
     xtemplate: {}
-  "atom-rspec":
-    command: "bundle exec rspec"
   "autocomplete-plus":
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1490572197433
+    lastUpdateTimestamp: 1496624293471
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -97,13 +95,9 @@
     userId: "6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10"
   "release-notes":
     viewedVersion: "3371252"
-  "symbols-tree-view":
-    autoToggle: true
-    scrollAnimation: false
   "tab-smart-sort": {}
   "tree-view":
     hideVcsIgnoredFiles: true
-    showOnRightSide: true
   welcome:
     showOnStartup: false
   whitespace:
