@@ -54,7 +54,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1496624293471
+    lastUpdateTimestamp: 1498092104206
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -96,8 +96,7 @@
   "release-notes":
     viewedVersion: "3371252"
   "tab-smart-sort": {}
-  "tree-view":
-    hideVcsIgnoredFiles: true
+  "tree-view": {}
   welcome:
     showOnStartup: false
   whitespace:
