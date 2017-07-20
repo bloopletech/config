@@ -50,11 +50,17 @@
     visualforce: {}
     xml: {}
     xtemplate: {}
+  "atom-package-deps":
+    ignored: [
+      "linter-rubocop"
+    ]
+  "atom-rspec":
+    command: "bundle exec rspec"
   "autocomplete-plus":
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1499318473445
+    lastUpdateTimestamp: 1500371440892
   core:
     allowPendingPaneItems: false
     disabledPackages: [
