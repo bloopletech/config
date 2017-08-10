@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+if [ "$(git status --porcelain | wc -l)" != "0" ]; then
+  echo "Git repo not clean, exiting."
+  exit
+fi
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+git fetch upstream
+git checkout master
+git merge upstream/master
+
+git push origin master
+
+git checkout "$current_branch"
+
+echo "Fork synced with upstream repo correctly."
