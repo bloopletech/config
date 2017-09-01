@@ -44,9 +44,24 @@ atom-text-editor.editor {
   }
 }
 
+atom-panel, .tool-panel {
+  color: #000;
+  text-shadow: none;
+}
+
+.list-group li:not(.list-nested-item), .list-tree li:not(.list-nested-item), .list-group li.list-nested-item > .list-item, .list-tree li.list-nested-item > .list-item {
+  color: #000;
+  text-shadow: none;
+}
+
 /* find-and-replace colour fixes */
 atom-text-editor .find-result .region, atom-text-editor.editor .find-result .region, atom-text-editor .current-result .region, atom-text-editor.editor .current-result .region {
   background-color: transparent;
+}
+
+/* hide tabs */
+atom-workspace-axis > atom-pane-container > atom-pane > ul.tab-bar {
+  /*display: none;*/
 }
 
 /* fuzzy finder layout */
@@ -108,6 +123,30 @@ atom-text-editor.editor .git-blame-mount .git-blame .git-blame-scroller {
   }
 }
 
-atom-workspace-axis > atom-pane-container > atom-pane > ul.tab-bar {
-  display: none;
+/* document-outline fixes */
+.document-outline heading-node.list-nested-item.highlight {
+  background-blend-mode: normal;
+  background: #fff;
+  color: #000;
+}
+
+.document-outline heading-node.list-nested-item .icon.icon-one-dot:before {
+  content: "•";
+  font-size: 1em;
+  height: 21px;
+  line-height: 21px;
+  margin-right: 3px;
+}
+
+.document-outline document-tree {
+  margin-left: 0;
+}
+
+.document-outline heading-node.list-nested-item {
+  padding: 4px 4px;
+}
+
+.document-outline heading-node.list-nested-item.highlight {
+  padding: 3px 4px;
+  border-color: #ccc;
 }
