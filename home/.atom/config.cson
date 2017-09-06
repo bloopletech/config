@@ -54,7 +54,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1504247229442
+    lastUpdateTimestamp: 1504658597250
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -67,6 +67,16 @@
       "symbols-tree-view"
       "spell-check"
       "tree-view-open-files"
+    ]
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "desktop.ini"
+      "node_modules"
     ]
     telemetryConsent: "limited"
     themes: [
@@ -97,7 +107,10 @@
   "release-notes":
     viewedVersion: "3371252"
   "tab-smart-sort": {}
-  "tree-view": {}
+  "tree-view":
+    alwaysOpenExisting: true
+    autoReveal: true
+    hideIgnoredNames: true
   welcome:
     showOnStartup: false
   whitespace:
