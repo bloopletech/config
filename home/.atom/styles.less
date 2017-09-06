@@ -4,21 +4,26 @@ atom-workspace {
 }
 
 /* font sizing */
-@font-size: 16px;
-html, body, .tree-view, .tab-bar .tab, .status-bar, .settings-view, .btn, .editor.mini, .panel-heading {
-  font-size: @font-size;
-}
-
-.list-group .selected::before, .list-tree .selected::before {
-  height: 27px;
+.editor.mini, .settings-view .package-readme, .settings-view select.form-control, .tooltip {
+  font-size: unset;
 }
 
 atom-panel, .tool-panel {
   text-shadow: none !important;
 }
 
-.rspec-console.rspec pre, .rspec-console.rspec pre div.editor, .rspec-console.rspec code, .rspec-console.rspec tt {
-  font-size: 16px;
+.list-group li:not(.list-nested-item), .list-tree li:not(.list-nested-item), .list-group li.list-nested-item > .list-item, .list-tree li.list-nested-item > .list-item {
+  text-shadow: none;
+  line-height: 1.6em;
+}
+
+.list-group .selected::before, .list-tree .selected::before {
+  height: 1.6em;
+}
+
+.tab-bar .tab .close-icon::before {
+  font-size: 1em;
+  margin-top: -1px;
 }
 
 /* colours */
@@ -50,8 +55,16 @@ atom-panel, .tool-panel {
 }
 
 .list-group li:not(.list-nested-item), .list-tree li:not(.list-nested-item), .list-group li.list-nested-item > .list-item, .list-tree li.list-nested-item > .list-item {
+  line-height: 1.6em;
+}
+
+.tab-bar .tab {
   color: #000;
-  text-shadow: none;
+}
+
+/* settings layout */
+.settings-view input[type="checkbox"] {
+  margin-top: 8px;
 }
 
 /* find-and-replace colour fixes */
@@ -59,9 +72,17 @@ atom-text-editor .find-result .region, atom-text-editor.editor .find-result .reg
   background-color: transparent;
 }
 
-/* hide tabs */
-atom-workspace-axis > atom-pane-container > atom-pane > ul.tab-bar {
-  /*display: none;*/
+/* vertical-tabs */
+.vertical .tab-bar {
+  box-shadow: none;
+
+  .tab:last-of-type {
+    box-shadow: none;
+  }
+
+  .tab {
+    border: none;
+  }
 }
 
 /* fuzzy finder layout */

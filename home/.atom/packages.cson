@@ -18,7 +18,7 @@ packages: [
   "symbol-gen"
   "symbols-tree-view"
   "tab-smart-sort"
-  "tree-view-open-files"
+  "vertical-tabs"
   "xml-formatter"
   "zenburn"
 ]

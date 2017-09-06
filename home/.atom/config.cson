@@ -54,7 +54,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1504658597250
+    lastUpdateTimestamp: 1504680197276
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -80,7 +80,7 @@
     ]
     telemetryConsent: "limited"
     themes: [
-      "atom-light-ui"
+      "one-light-ui"
       "railscast-theme"
     ]
   editor:
@@ -104,6 +104,8 @@
     lintOnChange: false
   metrics:
     userId: "6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10"
+  "one-light-ui":
+    fontSize: 16
   "release-notes":
     viewedVersion: "3371252"
   "tab-smart-sort": {}
@@ -111,6 +113,8 @@
     alwaysOpenExisting: true
     autoReveal: true
     hideIgnoredNames: true
+  "vertical-tabs":
+    setToRightSide: true
   welcome:
     showOnStartup: false
   whitespace:
