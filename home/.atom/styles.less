@@ -83,11 +83,12 @@ atom-text-editor .find-result .region, atom-text-editor.editor .find-result .reg
     border: none;
     line-height: 2em;
 
-    .close-icon {
+    .close-icon, &.modified:not(:hover) .close-icon {
       width: 1em;
       height: 1em;
       font-size: 1em;
       line-height: 1;
+      margin-right: 0;
     }
   }
 }
@@ -182,4 +183,17 @@ atom-text-editor.editor .git-blame-mount .git-blame .git-blame-scroller {
 .document-outline heading-node.list-nested-item.highlight {
   padding: 3px 4px;
   border-color: #ccc;
+}
+
+/* ruby-block colours */
+:host, atom-text-editor, atom-text-editor::shadow {
+  .line-number.ruby-block-highlight {
+    background-color: #474d5c;
+  }
+
+  .highlights {
+    .ruby-block-highlight .region {
+      background-color: #474d5c;
+    }
+  }
 }
