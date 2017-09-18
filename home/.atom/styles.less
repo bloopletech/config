@@ -98,14 +98,33 @@ atom-text-editor .find-result .region, atom-text-editor.editor .find-result .reg
   line-height: 2em;
 }
 
-/* fuzzy finder layout */
+/* modal / popup layout */
 .overlay, atom-panel.modal {
   max-width: 1000px;
 }
 
-.select-list {
+atom-panel.modal {
+  border-bottom: none;
+
+  &.from-top {
+    top: 20px;
+  }
+
+  &:after {
+    display: none;
+    -webkit-animation: none;
+  }
+}
+
+/* fuzzy finder layout */
+atom-panel.modal .select-list, atom-panel.modal.select-list {
   ol.list-group {
-    max-height: 542px !important;
+    max-height: 547px !important;
+
+    li {
+      line-height: 1.6em;
+      padding: 0.5em 1em;
+    }
   }
 }
 
