@@ -1,11 +1,14 @@
-/* font family */
+/* typography */
 atom-workspace {
   font-family: 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
 }
 
-/* font sizing */
-.editor.mini, .settings-view .package-readme, .settings-view select.form-control, .tooltip {
+atom-text-editor[mini], .settings-view .package-readme, .settings-view select.form-control, .tooltip {
   font-size: unset;
+}
+
+atom-text-editor[mini] {
+  line-height: 35px;
 }
 
 atom-panel, .tool-panel {
@@ -27,7 +30,7 @@ atom-panel, .tool-panel {
 }
 
 /* colours */
-atom-text-editor.editor {
+atom-text-editor {
   background-color: #000000;
   color: #ffffff;
 
