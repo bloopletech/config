@@ -58,7 +58,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1513576168811
+    lastUpdateTimestamp: 1522048722119
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -86,6 +86,7 @@
       "one-light-ui"
       "railscast-theme"
     ]
+    uriHandlerRegistration: "always"
   editor:
     fontFamily: "Ubuntu Mono, Monaco"
     fontSize: 16
