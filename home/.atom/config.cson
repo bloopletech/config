@@ -88,6 +88,7 @@
       "one-light-ui"
       "railscast-theme"
     ]
+    uriHandlerRegistration: "always"
   editor:
     fontFamily: "Ubuntu Mono, Monaco"
     fontSize: 16
