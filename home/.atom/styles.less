@@ -1,3 +1,38 @@
+/* scrollbar usability */
+.scrollbars-visible-always {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+
+    &-track {
+      border: 0px;
+      background-color: transparent;
+    }
+
+    &-thumb {
+      border: 0px;
+      background-color: #888;
+    }
+  }
+
+  atom-text-editor {
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+
+      &-track {
+        border: 0px;
+        background-color: transparent;
+      }
+
+      &-thumb {
+        border: 0px;
+        background-color: #888;
+      }
+    }
+  }
+}
+
 /* typography */
 atom-workspace {
   font-family: 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
