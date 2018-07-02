@@ -71,7 +71,6 @@
       "symbols-tree-view"
       "spell-check"
       "autocomplete-paths"
-      "github"
     ]
     ignoredNames: [
       ".git"
