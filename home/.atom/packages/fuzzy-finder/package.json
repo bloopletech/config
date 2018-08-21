@@ -1,43 +1,58 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "/tmp/d-116827-38106-2laeky/package.tgz",
-        "scope": null,
-        "escapedName": null,
-        "name": null,
-        "rawSpec": "/tmp/d-116827-38106-2laeky/package.tgz",
-        "spec": "/tmp/d-116827-38106-2laeky/package.tgz",
-        "type": "local"
-      },
-      "/tmp/apm-install-dir-116827-38106-1ddrcie"
-    ]
-  ],
-  "_from": "../d-116827-38106-2laeky/package.tgz",
-  "_id": "fuzzy-finder@1.4.0",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/fuzzy-finder",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "/tmp/d-116827-38106-2laeky/package.tgz",
-    "scope": null,
-    "escapedName": null,
-    "name": null,
-    "rawSpec": "/tmp/d-116827-38106-2laeky/package.tgz",
-    "spec": "/tmp/d-116827-38106-2laeky/package.tgz",
-    "type": "local"
+  "name": "fuzzy-finder",
+  "version": "1.8.2",
+  "main": "./lib/main",
+  "description": "Open an editor to a file in the project with `cmd-t`.",
+  "repository": "https://github.com/atom/fuzzy-finder",
+  "license": "MIT",
+  "dependencies": {
+    "async": "0.2.6",
+    "atom-select-list": "^0.7.0",
+    "fs-plus": "^3.0.0",
+    "fuzzaldrin": "^2.0",
+    "fuzzaldrin-plus": "^0.6.0",
+    "humanize-plus": "~1.8.2",
+    "minimatch": "~3.0.3",
+    "temp": "~0.8.1",
+    "underscore-plus": "^1.0.0",
+    "wrench": "^1.5"
   },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_resolved": "file:../d-116827-38106-2laeky/package.tgz",
-  "_shasum": "1921268fc9b7b50fc3ad57fc65d12e1f3333aca1",
-  "_shrinkwrap": null,
-  "_spec": "/tmp/d-116827-38106-2laeky/package.tgz",
-  "_where": "/tmp/apm-install-dir-116827-38106-1ddrcie",
-  "bugs": {
-    "url": "https://github.com/atom/fuzzy-finder/issues"
+  "devDependencies": {
+    "standard": "^10.0.3"
+  },
+  "standard": {
+    "env": {
+      "atomtest": true,
+      "browser": true,
+      "jasmine": true,
+      "node": true
+    },
+    "globals": [
+      "atom"
+    ],
+    "ignore": [
+      "spec/fixtures"
+    ]
+  },
+  "engines": {
+    "atom": "*"
+  },
+  "consumedServices": {
+    "teletype": {
+      "versions": {
+        "0.0.1": "consumeTeletype"
+      }
+    },
+    "atom.file-icons": {
+      "versions": {
+        "1.0.0": "consumeFileIcons"
+      }
+    },
+    "file-icons.element-icons": {
+      "versions": {
+        "1.0.0": "consumeElementIcons"
+      }
+    }
   },
   "configSchema": {
     "ignoredNames": {
@@ -59,44 +74,11 @@
       "type": "boolean",
       "default": true,
       "description": "Use an alternative scoring approach which prefers run of consecutive characters, acronyms and start of words. (Experimental)"
+    },
+    "prefillFromSelection": {
+      "type": "boolean",
+      "default": false,
+      "description": "Prefills search query with selected in current editor text"
     }
-  },
-  "consumedServices": {
-    "atom.file-icons": {
-      "versions": {
-        "1.0.0": "consumeFileIcons"
-      }
-    }
-  },
-  "dependencies": {
-    "async": "0.2.6",
-    "atom-space-pen-views": "^2.0.0",
-    "fs-plus": "^2.0.0",
-    "fuzzaldrin": "^2.0",
-    "fuzzaldrin-plus": "^0.1",
-    "humanize-plus": "~1.4.2",
-    "minimatch": "~0.3.0",
-    "temp": "~0.8.1",
-    "underscore-plus": "^1.0.0",
-    "wrench": "^1.5"
-  },
-  "description": "Open an editor to a file in the project with `cmd-t`.",
-  "devDependencies": {
-    "coffeelint": "^1.9.7"
-  },
-  "engines": {
-    "atom": "*"
-  },
-  "homepage": "https://github.com/atom/fuzzy-finder#readme",
-  "license": "MIT",
-  "main": "./lib/main",
-  "name": "fuzzy-finder",
-  "optionalDependencies": {},
-  "readme": "# Fuzzy Finder package\n[![OS X Build Status](https://travis-ci.org/atom/fuzzy-finder.svg?branch=master)](https://travis-ci.org/atom/fuzzy-finder) [![Windows Build Status](https://ci.appveyor.com/api/projects/status/b4b2dg5n9r1wdqad/branch/master?svg=true)](https://ci.appveyor.com/project/Atom/fuzzy-finder/branch/master) [![Dependency Status](https://david-dm.org/atom/fuzzy-finder.svg)](https://david-dm.org/atom/fuzzy-finder)\n\nQuickly find and open files using <kbd>cmd-t</kbd>.\n\n  * <kbd>cmd-t</kbd> or <kbd>cmd-p</kbd> to open the file finder\n  * <kbd>cmd-b</kbd> to open the list of open buffers\n  * <kbd>cmd-shift-b</kbd> to open the list of Git modified and untracked files\n  * <kbd>enter</kbd> defaults to opening the selected file without leaving the current pane\n  * <kbd>shift-enter</kbd> defaults to switching to another pane if the file is already open there\n\nTurning on the \"Search All Panes\" setting reverses the behavior of <kbd>enter</kbd> and <kbd>shift-enter</kbd> so <kbd>enter</kbd> opens the file in any pane and <kbd>shift-enter</kbd> creates a new tab in the current pane.\n\nThis package uses both the `core.ignoredNames` and `fuzzy-finder.ignoredNames` config settings to filter out files and folders that will not be shown. Both of those config settings are interpreted as arrays of [minimatch](https://github.com/isaacs/minimatch) glob patterns.\n\nThis package also will also not show Git ignored files when the `core.excludeVcsIgnoredPaths` is enabled.\n\n![](https://f.cloud.github.com/assets/671378/2241456/100db6b8-9cd3-11e3-9b3a-569c6b50cc60.png)\n",
-  "readmeFilename": "README.md",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/atom/fuzzy-finder.git"
-  },
-  "version": "1.4.0"
+  }
 }
