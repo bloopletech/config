@@ -15,7 +15,7 @@ class FuzzyFinderView {
     this.items = []
     this.selectListView = new SelectListView({
       items: this.items,
-      maxResults: 10,
+      maxResults: 100,
       emptyMessage: this.getEmptyMessage(),
       filterKeyForItem: (item) => item.label,
       filterQuery: (query) => {
@@ -361,19 +361,12 @@ class FuzzyFinderItem {
       }
     }
 
-    const fileBasename = path.basename(filePath)
-    const baseOffset = label.length - fileBasename.length
     this.primaryLine = document.createElement('div')
-    this.primaryLine.dataset.name = fileBasename
+    this.primaryLine.dataset.name = path.basename(filePath)
     this.primaryLine.dataset.path = label
     this.primaryLine.classList.add('primary-line', 'file', 'icon')
-    this.primaryLine.appendChild(highlight(fileBasename, matches, baseOffset))
+    this.primaryLine.appendChild(highlight(label, matches, 0))
     this.element.appendChild(this.primaryLine)
-
-    this.secondaryLine = document.createElement('div')
-    this.secondaryLine.classList.add('secondary-line', 'path', 'no-icon')
-    this.secondaryLine.appendChild(highlight(label, matches, 0))
-    this.element.appendChild(this.secondaryLine)
 
     if (ownerGitHubUsername) {
       this.element.classList.add('has-avatar')
