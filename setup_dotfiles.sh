@@ -25,8 +25,6 @@ rm .inputrc
 ln -nfs ~/key/config/home/.inputrc
 rm -r .mplayer
 ln -nfs ~/key/config/home/.mplayer
-rm -r .npmrc
-ln -nfs ~/key/config/home/.npmrc
 rm .psqlrc
 ln -nfs ~/key/config/home/.psqlrc
 rm -r .vim
