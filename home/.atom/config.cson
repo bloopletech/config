@@ -58,7 +58,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1534899500517
+    lastUpdateTimestamp: 1538885901039
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -82,6 +82,7 @@
       "desktop.ini"
       "node_modules"
     ]
+    restorePreviousWindowsOnStart: "no"
     telemetryConsent: "limited"
     themes: [
       "one-light-ui"
