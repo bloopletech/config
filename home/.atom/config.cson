@@ -82,6 +82,7 @@
       "desktop.ini"
       "node_modules"
     ]
+    restorePreviousWindowsOnStart: "no"
     telemetryConsent: "limited"
     themes: [
       "one-light-ui"
