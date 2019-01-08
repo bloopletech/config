@@ -74,6 +74,12 @@ export MANPATH="$(manpath 2>/dev/null)"
 export WHOME="/mnt/c/Users/Brenton Fletcher"
 export USERPROFILE="$WHOME"
 
+if [[ "$OS" == "linux" ]]; then
+  :
+elif [[ "$OS" == "osx" ]]; then
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+fi
+
 alias sad="psql -h localhost -U postgres "
 alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
