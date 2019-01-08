@@ -58,7 +58,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1538885901039
+    lastUpdateTimestamp: 1546921149038
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -71,6 +71,7 @@
       "symbols-tree-view"
       "spell-check"
       "autocomplete-paths"
+      "github"
     ]
     ignoredNames: [
       ".git"
