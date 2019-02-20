@@ -86,6 +86,8 @@ if [ -f "$HOME/.docker/host" ]; then
   export DOCKER_HOST="$(<~/.docker/host)"
 fi
 
+export KUBECONFIG="$HOME/.kube/config"
+
 export NODE_PATH="$HOME/.npm-packages/lib/node_modules:$NODE_PATH"
 
 export CLICOLOR=TRUE
