@@ -67,12 +67,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   export OS="osx"
 fi
 
-export GOPATH="$HOME/key/go"
 export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
 export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)"):"
 export MANPATH="$(manpath 2>/dev/null)"
 export WHOME="/mnt/c/Users/Brenton Fletcher"
 export USERPROFILE="$WHOME"
+export GOPATH="$WHOME/Source/go"
 
 alias sad="psql -h localhost -U postgres "
 alias mad="mysql -u root "
