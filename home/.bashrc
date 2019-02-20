@@ -59,6 +59,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+if hash kubectl 2>/dev/null; then
+  source <(kubectl completion bash)
+fi
+
 shopt -s autocd
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
