@@ -74,6 +74,43 @@ export WHOME="/mnt/c/Users/Brenton Fletcher"
 export USERPROFILE="$WHOME"
 export GOPATH="$WHOME/Source/go"
 
+if [[ "$OS" == "linux" ]]; then
+  :
+elif [[ "$OS" == "osx" ]]; then
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+fi
+
+if [ -f "$HOME/.docker/host" ]; then
+  export DOCKER_TLS_VERIFY="1"
+  export DOCKER_CERT_PATH="$HOME/.docker/tls"
+  export DOCKER_HOST="$(<~/.docker/host)"
+fi
+
+export NODE_PATH="$HOME/.npm-packages/lib/node_modules:$NODE_PATH"
+
+export CLICOLOR=TRUE
+
+export CAMPING_ENV=development
+export RUNNING_LOCALLY=true
+
+export ACK_OPTIONS="-i --type-add ruby=haml"
+export VISUAL="vi"
+
+export JRUBY_OPTS="--1.9"
+
+if [ -f ~/work/environment ]; then
+  . ~/work/environment
+fi
+
+if [ -f ~/.bashrc_private ]; then
+  . ~/.bashrc_private
+fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 alias sad="psql -h localhost -U postgres "
 alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
@@ -109,37 +146,6 @@ function app () {
 if [ -f ~/key/pillage/bash/functions.sh ]; then
   source ~/key/pillage/bash/functions.sh
 fi
-
-if [ -f "$HOME/.docker/host" ]; then
-  export DOCKER_TLS_VERIFY="1"
-  export DOCKER_CERT_PATH="$HOME/.docker/tls"
-  export DOCKER_HOST="$(<~/.docker/host)"
-fi
-
-export NODE_PATH="$HOME/.npm-packages/lib/node_modules:$NODE_PATH"
-
-export CLICOLOR=TRUE
-
-export CAMPING_ENV=development
-export RUNNING_LOCALLY=true
-
-export ACK_OPTIONS="-i --type-add ruby=haml"
-export VISUAL="vi"
-
-export JRUBY_OPTS="--1.9"
-
-if [ -f ~/work/environment ]; then
-  . ~/work/environment
-fi
-
-if [ -f ~/.bashrc_private ]; then
-  . ~/.bashrc_private
-fi
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 cd .
 
