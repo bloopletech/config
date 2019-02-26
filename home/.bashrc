@@ -59,6 +59,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+if hash kubectl 2>/dev/null; then
+  source <(kubectl completion bash)
+fi
+
 shopt -s autocd
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -67,12 +71,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   export OS="osx"
 fi
 
-export GOPATH="$HOME/key/go"
 export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
 export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)"):"
 export MANPATH="$(manpath 2>/dev/null)"
 export WHOME="/mnt/c/Users/Brenton Fletcher"
 export USERPROFILE="$WHOME"
+export GOPATH="$WHOME/Source/go"
 
 if [[ "$OS" == "linux" ]]; then
   :
@@ -85,6 +89,8 @@ if [ -f "$HOME/.docker/host" ]; then
   export DOCKER_CERT_PATH="$HOME/.docker/tls"
   export DOCKER_HOST="$(<~/.docker/host)"
 fi
+
+export KUBECONFIG="$HOME/.kube/config"
 
 export NODE_PATH="$HOME/.npm-packages/lib/node_modules:$NODE_PATH"
 

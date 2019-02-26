@@ -72,6 +72,7 @@
       "spell-check"
       "autocomplete-paths"
       "github"
+      "pigments"
     ]
     ignoredNames: [
       ".git"
