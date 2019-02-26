@@ -98,9 +98,10 @@ killall Dock
 Open a terminal and run:
 
 ````
-sudo apt-get install bash curl patch bzip2 ca-certificates gawk make libc6-dev openssl libreadline6 libreadline6-dev \
-  zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake \
-  libtool bison pkg-config libffi-dev g++ gcc build-essential git python-pip libxml2-dev libxslt1-dev libpq-dev
+sudo apt-get install bash curl patch bzip2 ca-certificates gawk make libc6-dev openssl libreadline-dev \
+  zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses-dev automake \
+  libtool bison pkg-config libffi-dev g++ gcc build-essential git python3-pip libxml2-dev libxslt1-dev libpq-dev \
+  libmagickcore-dev libmagickwand-dev
 ````
 
 Install Node.js by folling the instructions at https://github.com/nodesource/distributions#installation-instructions.
