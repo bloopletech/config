@@ -51,14 +51,12 @@
     xml: {}
     xtemplate: {}
   "atom-package-deps":
-    ignored: [
-      "linter-rubocop"
-    ]
+    ignored: []
   "autocomplete-plus":
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1550534928151
+    lastUpdateTimestamp: 1552359520701
   core:
     allowPendingPaneItems: false
     disabledPackages: [
