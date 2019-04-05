@@ -82,6 +82,7 @@ if [[ "$OS" == "linux" ]]; then
   :
 elif [[ "$OS" == "osx" ]]; then
   export ANDROID_HOME="$HOME/Library/Android/sdk"
+  export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 fi
 
 if [ -f "$HOME/.docker/host" ]; then
