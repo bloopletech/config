@@ -14,5 +14,6 @@ $HOME/key/third_party/$OS/packer
 $HOME/key/third_party/$OS/terraform
 $HOME/key/third_party/$OS
 $HOME/.npm-packages/bin
+/usr/local/opt/mongodb@3.0/bin
 $PATH
 .
