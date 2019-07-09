@@ -58,7 +58,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1557795555322
+    lastUpdateTimestamp: 1562124117548
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -97,6 +97,7 @@
     invisibles: {}
     lineHeight: 1.3
     preferredLineLength: 120
+    showInvisibles: true
     zoomFontWhenCtrlScrolling: false
   "exception-reporting":
     userId: "033b1fef-754e-a7ed-c6fc-be7bb9b5ec7a"
@@ -120,7 +121,6 @@
     alwaysOpenExisting: true
     autoReveal: true
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   "vertical-tabs":
     setToRightSide: true
   welcome:
