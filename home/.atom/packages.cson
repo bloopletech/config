@@ -6,6 +6,8 @@ packages: [
   "autoupdate-packages"
   "blame"
   "file-icons"
+  "language-gradle"
+  "language-groovy"
   "language-haml"
   "language-sugar-cube"
   "no-caffeine-syntax"
