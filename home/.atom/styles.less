@@ -38,6 +38,17 @@ atom-workspace {
   font-family: 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
 }
 
+/* workaround for https://github.com/atom/atom/issues/20052 */
+body.platform-darwin {
+  atom-workspace {
+    -webkit-text-stroke-width: 0.15px;
+  }
+
+  atom-text-editor:not([mini]) {
+    -webkit-text-stroke-width: 0.35px;
+  }
+}
+
 atom-text-editor[mini], .settings-view .package-readme, .settings-view select.form-control, .tooltip {
   font-size: unset;
 }
