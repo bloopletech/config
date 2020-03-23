@@ -94,7 +94,7 @@ fi
 
 export KUBECONFIG="$HOME/.kube/config"
 
-export NODE_PATH="$HOME/.npm-packages/lib/node_modules:$NODE_PATH"
+export NPM_CONFIG_PREFIX="${HOME}/.npm-packages"
 
 export CLICOLOR=TRUE
 
