@@ -1,0 +1,7 @@
+--embed-subs
+--embed-thumbnail
+--add-metadata
+--xattrs
+--output '%(title).246s.%(ext)s'
+--no-overwrites
+
