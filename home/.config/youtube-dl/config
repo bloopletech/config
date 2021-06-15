@@ -2,6 +2,6 @@
 --embed-thumbnail
 --add-metadata
 --xattrs
---output '%(title).246s.%(ext)s'
+--output '%(title).200s - %(uploader)s - %(upload_date)s.%(ext)s'
 --no-overwrites
 
