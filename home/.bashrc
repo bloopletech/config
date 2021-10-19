@@ -71,6 +71,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   export OS="osx"
 fi
 
+if builtin type -P "ConEmuC.exe" >/dev/null; then
+  export ConEmu="1"
+fi
+
 export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
 export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)"):"
 export MANPATH="$(manpath 2>/dev/null)"
@@ -170,6 +174,9 @@ if [ "$SHELL" = '/bin/bash' -o "$SHELL" = '/usr/local/bin/bash' ]
 then
     case $TERM in
       rxvt|*term*|*screen*)
+          if [[ -v ConEmu ]]; then
+            export PROMPT_COMMAND="ConEmuC.exe -StoreCWD;$PROMPT_COMMAND"
+          fi
           export PROMPT_COMMAND="__set_ps1_with_git_branch;$PROMPT_COMMAND"
           trap 'echo -ne "\e]2;$BASH_COMMAND\007"' DEBUG
       ;;
