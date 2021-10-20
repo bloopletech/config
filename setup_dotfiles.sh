@@ -49,6 +49,8 @@ rm -r .config/roxterm.sourceforge.net
 ln -nfs ~/key/config/home/.config/roxterm.sourceforge.net .config/roxterm.sourceforge.net
 rm -r .config/youtube-dl
 ln -nfs ~/key/config/home/.config/youtube-dl .config/youtube-dl
+rm -r .config/yt-dlp
+ln -nfs ~/key/config/home/.config/yt-dlp .config/yt-dlp
 rm .local/share/applications/mimeapps.list
 ln -nfs ~/key/config/home/.local/share/applications/mimeapps.list .local/share/applications/mimeapps.list
 rm .local/share/applications/play.desktop
