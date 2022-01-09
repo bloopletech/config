@@ -58,7 +58,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1634601540778
+    lastUpdateTimestamp: 1641763164196
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -84,7 +84,7 @@
       "node_modules"
     ]
     restorePreviousWindowsOnStart: "no"
-    telemetryConsent: "limited"
+    telemetryConsent: "no"
     themes: [
       "one-light-ui"
       "railscast-theme"
