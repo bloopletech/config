@@ -78,7 +78,7 @@ fi
 export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
 export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)"):"
 export MANPATH="$(manpath 2>/dev/null)"
-export WHOME="/mnt/c/Users/Brenton Fletcher"
+export WHOME="/mnt/c/Users/Brenton"
 export USERPROFILE="$WHOME"
 export GOPATH="$WHOME/Source/go"
 
