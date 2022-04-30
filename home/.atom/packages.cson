@@ -9,6 +9,7 @@ packages: [
   "language-gradle"
   "language-groovy"
   "language-haml"
+  "language-liquid"
   "language-sugar-cube"
   "no-caffeine-syntax"
   "open-recent"
