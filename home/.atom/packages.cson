@@ -13,7 +13,6 @@ packages: [
   "no-caffeine-syntax"
   "open-recent"
   "package-sync"
-  "pigments"
   "rails-transporter"
   "railscast-theme"
   "ruby-block"
