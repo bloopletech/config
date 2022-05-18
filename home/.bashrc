@@ -78,7 +78,7 @@ fi
 export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
 export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)"):"
 export MANPATH="$(manpath 2>/dev/null)"
-export WHOME="/mnt/c/Users/Brenton Fletcher"
+export WHOME="/mnt/c/Users/Brenton"
 export USERPROFILE="$WHOME"
 export GOPATH="$WHOME/Source/go"
 
@@ -88,6 +88,11 @@ elif [[ "$OS" == "osx" ]]; then
   export ANDROID_HOME="$HOME/Library/Android/sdk"
   export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
   export JAVA_HOME="$(/usr/libexec/java_home)"
+fi
+
+proc_version="$(</proc/version)"
+if [[ "${proc_version,,}" == *microsoft* ]]; then
+  export WSL=TRUE
 fi
 
 if [ -f "$HOME/.docker/host" ]; then
@@ -137,6 +142,11 @@ alias right="xrandr --current -o right"
 alias normal="xrandr --current -o normal"
 alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white -extent 480x800 +repage -colorspace Gray -quality 90 "
 alias recent="git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
+
+if [[ "$WSL" == "TRUE" ]]; then
+  alias atom="cmd.exe /c atom.cmd"
+fi
+
 alias e="atom ."
 alias getin="cd $HOME/key/config-vagrant/ && vagrant_ssh_fast"
 

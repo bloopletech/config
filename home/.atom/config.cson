@@ -84,7 +84,7 @@
       "node_modules"
     ]
     restorePreviousWindowsOnStart: "no"
-    telemetryConsent: "limited"
+    telemetryConsent: "no"
     themes: [
       "one-light-ui"
       "railscast-theme"
@@ -120,6 +120,7 @@
     alwaysOpenExisting: true
     autoReveal: true
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
   "vertical-tabs":
     setToRightSide: true
   welcome:
