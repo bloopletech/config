@@ -123,6 +123,11 @@ if [ -f ~/.bashrc_private ]; then
   . ~/.bashrc_private
 fi
 
+homebrew_exec_path="/home/linuxbrew/.linuxbrew/bin/brew"
+if [[ -f "$homebrew_exec_path" ]]; then
+  eval "$($homebrew_exec_path shellenv)"
+fi
+
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
