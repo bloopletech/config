@@ -33,7 +33,7 @@ if [ ! -f "$TARGET_FILE" ]; then
     exit 3
 fi
 
-MIME=`file -b --mime-type $TARGET_FILE`
+MIME=$(file -b --mime-type "${TARGET_FILE}")
 if [[ "${MIME}" == "" ]]; then
     echo ${THIS_SCRIPT} $TARGET_FILE - Could not find MIME-type.
     exit 4
@@ -47,7 +47,7 @@ if [[ "$EXT" == "" ]]; then
 fi
 
 
-if [ "${TARGET_FILE_EXTENSION}" == "${EXT}" ]; then
+if [[ "${TARGET_FILE_EXTENSION}" == "${EXT}" || ("${TARGET_FILE_EXTENSION}" == "jpg" && "${EXT}" == "jpeg") ]]; then
     echo ${TARGET_FILE} already has extension appropriate for MIME-Type ${MIME}
     exit 0
 fi
