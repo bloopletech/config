@@ -1,4 +1,6 @@
---embed-subs
+--write-subs
+--sub-format best
+#--embed-subs
 --embed-thumbnail
 --add-metadata
 --xattrs
