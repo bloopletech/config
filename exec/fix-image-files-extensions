@@ -1,0 +1,4 @@
+#!/bin/bash
+
+. /etc/environment
+find ~+ -regextype posix-extended -regex ".*\.(jpg|gif|png|jpeg)" -type f -execdir ~/key/config/exec/fix-file-extension '{}' \;
