@@ -134,6 +134,11 @@ fi
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+brew_path="/opt/homebrew/bin/brew"
+if [[ -e "$brew_path" ]]; then
+  eval "$("$brew_path" shellenv)"
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 alias sad="psql -h localhost -U postgres "
