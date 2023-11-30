@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# From https://unix.stackexchange.com/a/225485
+# Set the location of your mime-types file here.  On some OS X installations,
+# you may find such a file at /etc/apache2/mime.types; On some linux distros, 
+# it can be found at /etc/mime.types
+#MIMETYPE_FILE="/etc/apache2/mime.types"
+MIMETYPE_FILE="/etc/mime.types"
+
+THIS_SCRIPT=`basename "$0"`
+TARGET_FILE="$1"
+TARGET_FILE_BASE=$(basename "$TARGET_FILE")
+TARGET_FILE_EXTENSION="${TARGET_FILE_BASE##*.}"
+if [[ "$TARGET_FILE_BASE" == "$TARGET_FILE_EXTENSION" ]]; then
+    # This fixes the case where the target file has no extension
+    TARGET_FILE_EXTENSION=''
+fi
+TARGET_FILE_NAME="${TARGET_FILE_BASE%.*}"
+
+
+if [ ! -f "$MIMETYPE_FILE" ]; then
+    echo Could not find the mime.types file.  Please set the MIMETYPE_FILE variable in this script.
+    exit 1
+fi
+
+if [ "$TARGET_FILE" == "" ]; then
+    echo "No file name given. Usage: ${THIS_SCRIPT} <filename>"
+    exit 2
+fi
+
+if [ ! -f "$TARGET_FILE" ]; then
+    echo "Could not find specified file, $TARGET_FILE"
+    exit 3
+fi
+
+MIME=`file -b --mime-type $TARGET_FILE`
+if [[ "${MIME}" == "" ]]; then
+    echo ${THIS_SCRIPT} $TARGET_FILE - Could not find MIME-type.
+    exit 4
+fi
+
+EXT=$(grep "${MIME}" "${MIMETYPE_FILE}" | sed '/^#/ d' | grep -m 1 "${MIME}" | awk '{print $2}')
+
+if [[ "$EXT" == "" ]]; then
+    echo ${THIS_SCRIPT} ${TARGET_FILE} - Could not find extension for MIME-Type ${MIME}
+    exit 5
+fi
+
+
+if [ "${TARGET_FILE_EXTENSION}" == "${EXT}" ]; then
+    echo ${TARGET_FILE} already has extension appropriate for MIME-Type ${MIME}
+    exit 0
+fi
+
+echo Renaming "${TARGET_FILE}" to "${TARGET_FILE}.${EXT}"
+mv "${TARGET_FILE}" "${TARGET_FILE}.${EXT}"
