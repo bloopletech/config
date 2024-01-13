@@ -75,6 +75,11 @@ if builtin type -P "ConEmuC.exe" >/dev/null; then
   export ConEmu="1"
 fi
 
+brew_path="/opt/homebrew/bin/brew"
+if [[ -e "$brew_path" ]]; then
+  eval "$("$brew_path" shellenv)"
+fi
+
 homebrew_exec_path="/home/linuxbrew/.linuxbrew/bin/brew"
 if [[ -f "$homebrew_exec_path" ]]; then
   eval "$($homebrew_exec_path shellenv)"
