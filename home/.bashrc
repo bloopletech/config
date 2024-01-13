@@ -75,6 +75,11 @@ if builtin type -P "ConEmuC.exe" >/dev/null; then
   export ConEmu="1"
 fi
 
+homebrew_exec_path="/home/linuxbrew/.linuxbrew/bin/brew"
+if [[ -f "$homebrew_exec_path" ]]; then
+  eval "$($homebrew_exec_path shellenv)"
+fi
+
 export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
 export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)"):"
 export MANPATH="$(manpath 2>/dev/null)"
@@ -83,7 +88,9 @@ export USERPROFILE="$WHOME"
 export GOPATH="$WHOME/Source/go"
 
 if [[ "$OS" == "linux" ]]; then
-  :
+  if $(hash brew 2>/dev/null) && $(hash ruby 2>/dev/null); then
+    export PATH="$(ruby -r rubygems -e 'puts Gem.bindir'):$PATH"
+  fi
 elif [[ "$OS" == "osx" ]]; then
   export ANDROID_HOME="$HOME/Library/Android/sdk"
   export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
@@ -130,14 +137,6 @@ fi
 if [ -f ~/.bashrc_private ]; then
   . ~/.bashrc_private
 fi
-
-homebrew_exec_path="/home/linuxbrew/.linuxbrew/bin/brew"
-if [[ -f "$homebrew_exec_path" ]]; then
-  eval "$($homebrew_exec_path shellenv)"
-fi
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
