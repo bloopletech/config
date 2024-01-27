@@ -150,8 +150,8 @@ alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
 alias lnode="ssh bloople@178.79.147.14"
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
-alias here="xdg-open ."
 alias whome="cd \"$WHOME\""
+alias rdepends="apt-cache rdepends --installed "
 
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
@@ -181,6 +181,38 @@ function app () {
   pkill -9 -f puma
   bundle exec foreman start
 }
+
+function why () {
+  target_type="$(type -t "$1")"
+
+  if [[ "$target_type" == "" ]]; then
+    echo -E "$1 doesn't exist"
+    return
+  fi
+
+  type "$1"
+
+  if [[ "$target_type" != "file" ]]; then
+    return
+  fi
+
+  target="$(type -p "$1")"
+  target_path="$(realpath "$target")"
+  echo -E "$target -> $target_path"
+  dpkg -S "$target_path"
+}
+
+if [[ "$WSL" == "TRUE" ]]; then
+  function open () {
+    windows_path="$(wslpath -w "$1" 2>/dev/null)"
+    if [ $? -ne 0 ]; then return; fi
+    explorer.exe "$windows_path"
+  }
+elif $(hash xdg-open 2>/dev/null); then
+  alias open="xdg-open"
+fi
+
+alias here="open ."
 
 if [ -f ~/key/pillage/bash/functions.sh ]; then
   source ~/key/pillage/bash/functions.sh
