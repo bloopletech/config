@@ -5,6 +5,7 @@ $HOME/.cargo/bin
 $HOME/.yarn/bin
 $HOME/.npm/bin
 $HOME/.config/yarn/global/node_modules/.bin
+$HOME/.fly/bin
 $HOME/key/apache-ant-1.8.2/bin
 $HOME/Library/Android/sdk/emulator
 $HOME/Library/Android/sdk/tools

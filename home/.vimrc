@@ -149,3 +149,4 @@ set notagrelative
 
 "Workarounds
 silent! set regexpengine=1
+set visualbell

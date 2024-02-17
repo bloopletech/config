@@ -58,7 +58,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1652828525039
+    lastUpdateTimestamp: 1706185121440
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -124,6 +124,7 @@
   "vertical-tabs":
     setToRightSide: true
   welcome:
+    lastViewedChangeLog: "1.112.1"
     showOnStartup: false
   whitespace:
     ensureSingleTrailingNewline: false
