@@ -153,6 +153,7 @@ alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
 alias whome="cd \"$WHOME\""
 alias rdepends="apt-cache rdepends --installed "
 alias yt="yt-dlp --cookies *.txt --download-archive yt-dlp-archive"
+alias yt-community="\"$WHOME\"/Source/3rd-party/youtube-community-tab/ytct.py --cookies *.txt -d ./"
 
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
