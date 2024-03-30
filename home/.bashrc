@@ -162,10 +162,11 @@ alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white 
 alias recent="git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 
 if [[ "$WSL" == "TRUE" ]]; then
-  alias atom="cmd.exe /c atom.cmd"
+  alias pulsar="cmd.exe /c pulsar.cmd"
+  alias atom="pulsar"
 fi
 
-alias e="atom ."
+alias e="pulsar ."
 alias getin="cd $HOME/key/config-vagrant/ && vagrant_ssh_fast"
 
 function r3lar () { echo "" > log/test.log; rspec "$1"; cat log/test.log; }
