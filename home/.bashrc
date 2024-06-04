@@ -85,12 +85,12 @@ if [[ -f "$homebrew_exec_path" ]]; then
   eval "$($homebrew_exec_path shellenv)"
 fi
 
-export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
-export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)"):"
-export MANPATH="$(manpath 2>/dev/null)"
 export WHOME="/mnt/c/Users/Brenton"
 export USERPROFILE="$WHOME"
 export GOPATH="$WHOME/Source/go"
+export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
+export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)"):"
+export MANPATH="$(manpath 2>/dev/null)"
 
 if [[ "$OS" == "linux" ]]; then
   if $(hash brew 2>/dev/null) && $(hash ruby 2>/dev/null); then
@@ -152,7 +152,7 @@ alias lnode="ssh bloople@178.79.147.14"
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
 alias whome="cd \"$WHOME\""
 alias rdepends="apt-cache rdepends --installed "
-alias yt="yt-dlp -S 'res:1080' --cookies *.txt --download-archive yt-dlp-archive"
+alias yt="yt-dlp -S 'res:1080' --download-archive yt-dlp-archive"
 alias yt-community="\"$WHOME\"/Source/3rd-party/youtube-community-tab/ytct.py --cookies *.txt -d ./"
 
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"

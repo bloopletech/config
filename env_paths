@@ -18,5 +18,6 @@ $HOME/key/third_party/$OS/terraform
 $HOME/key/third_party/$OS
 $HOME/.npm-packages/bin
 /usr/local/opt/mongodb@3.0/bin
+/home/linuxbrew/.linuxbrew/opt/python@3.12/libexec/bin
 $PATH
 .
