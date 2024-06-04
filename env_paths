@@ -1,6 +1,7 @@
 $GOPATH/bin
 $HOME/key/exec
 $HOME/key/config/exec
+$HOME/.local/bin
 $HOME/.cargo/bin
 $HOME/.yarn/bin
 $HOME/.npm/bin
