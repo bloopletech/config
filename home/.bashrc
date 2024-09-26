@@ -152,7 +152,8 @@ alias lnode="ssh bloople@178.79.147.14"
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
 alias whome="cd \"$WHOME\""
 alias rdepends="apt-cache rdepends --installed "
-alias yt="yt-dlp --cookies *.txt --download-archive yt-dlp-archive"
+alias yt="yt-dlp -S 'res:1080' --cookies *.txt --download-archive yt-dlp-archive"
+alias yt-community="\"$WHOME\"/Source/3rd-party/youtube-community-tab/ytct.py --cookies *.txt -d ./"
 
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
@@ -162,10 +163,11 @@ alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white 
 alias recent="git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 
 if [[ "$WSL" == "TRUE" ]]; then
-  alias atom="cmd.exe /c atom.cmd"
+  alias pulsar="cmd.exe /c pulsar.cmd"
+  alias atom="pulsar"
 fi
 
-alias e="atom ."
+alias e="pulsar ."
 alias getin="cd $HOME/key/config-vagrant/ && vagrant_ssh_fast"
 
 function r3lar () { echo "" > log/test.log; rspec "$1"; cat log/test.log; }
