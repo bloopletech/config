@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2024-09-16 22:43:32" build="230724">
+		<key name=".Vanilla" modified="2024-09-26 18:25:45" build="230724">
 			<value name="StartType" type="hex" data="00"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -604,11 +604,11 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data="C:\Windows\System32\bash.exe -new_console:p5"/>
 				</key>
-				<key name="Task2" modified="2024-07-24 12:34:12" build="230724">
+				<key name="Task2" modified="2024-09-26 18:26:10" build="230724">
 					<value name="Name" type="string" data="{Shells::PowerShell}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
+					<value name="GuiArgs" type="string" data='/dir "%CD%"'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data="pwsh.exe"/>
