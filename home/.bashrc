@@ -75,6 +75,16 @@ if builtin type -P "ConEmuC.exe" >/dev/null; then
   export ConEmu="1"
 fi
 
+brew_path="/opt/homebrew/bin/brew"
+if [[ -e "$brew_path" ]]; then
+  eval "$("$brew_path" shellenv)"
+fi
+
+homebrew_exec_path="/home/linuxbrew/.linuxbrew/bin/brew"
+if [[ -f "$homebrew_exec_path" ]]; then
+  eval "$($homebrew_exec_path shellenv)"
+fi
+
 export PATH="$(eval echo "$(paste -d: -s ~/key/config/env_paths)")"
 export MANPATH="$(eval echo "$(paste -d: -s ~/key/config/env_manpaths)"):"
 export MANPATH="$(manpath 2>/dev/null)"
@@ -83,7 +93,9 @@ export USERPROFILE="$WHOME"
 export GOPATH="$WHOME/Source/go"
 
 if [[ "$OS" == "linux" ]]; then
-  :
+  if $(hash brew 2>/dev/null) && $(hash ruby 2>/dev/null); then
+    export PATH="$(ruby -r rubygems -e 'puts Gem.bindir'):$PATH"
+  fi
 elif [[ "$OS" == "osx" ]]; then
   export ANDROID_HOME="$HOME/Library/Android/sdk"
   export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
@@ -131,19 +143,6 @@ if [ -f ~/.bashrc_private ]; then
   . ~/.bashrc_private
 fi
 
-homebrew_exec_path="/home/linuxbrew/.linuxbrew/bin/brew"
-if [[ -f "$homebrew_exec_path" ]]; then
-  eval "$($homebrew_exec_path shellenv)"
-fi
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-brew_path="/opt/homebrew/bin/brew"
-if [[ -e "$brew_path" ]]; then
-  eval "$("$brew_path" shellenv)"
-fi
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 alias sad="psql -h localhost -U postgres "
@@ -151,8 +150,10 @@ alias mad="mysql -u root "
 alias sslice="ssh -p 9979 bloople@67.207.142.56"
 alias lnode="ssh bloople@178.79.147.14"
 alias glog="git log --author=brenton -i --pretty=format:'%h %ar%x09* %s' | less"
-alias here="xdg-open ."
 alias whome="cd \"$WHOME\""
+alias rdepends="apt-cache rdepends --installed "
+alias yt="yt-dlp -S 'res:1080' --cookies *.txt --download-archive yt-dlp-archive"
+alias yt-community="\"$WHOME\"/Source/3rd-party/youtube-community-tab/ytct.py --cookies *.txt -d ./"
 
 alias astream="vlc --sout '#transcode{acodec=mp3}:duplicate{dst=gather:std{mux=mpeg1,dst=:8080/,access=http},select=\"novideo\"}' --sout-keep --sout-audio"
 alias splitpdf="gs -q -sDEVICE=jpeg -dBATCH -dNOPAUSE  -r300 -sOutputFile=%03d.jpg input.pdf;mogrify -limit memory 256MiB -resize 50% -trim -fuzz 5 *.jpg"
@@ -162,10 +163,11 @@ alias comicify="mogrify -fuzz 50% -trim +repage  -resize 480x -background white 
 alias recent="git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 
 if [[ "$WSL" == "TRUE" ]]; then
-  alias atom="cmd.exe /c atom.cmd"
+  alias pulsar="cmd.exe /c pulsar.cmd"
+  alias atom="pulsar"
 fi
 
-alias e="atom ."
+alias e="pulsar ."
 alias getin="cd $HOME/key/config-vagrant/ && vagrant_ssh_fast"
 
 function r3lar () { echo "" > log/test.log; rspec "$1"; cat log/test.log; }
@@ -182,6 +184,38 @@ function app () {
   pkill -9 -f puma
   bundle exec foreman start
 }
+
+function why () {
+  target_type="$(type -t "$1")"
+
+  if [[ "$target_type" == "" ]]; then
+    echo -E "$1 doesn't exist"
+    return
+  fi
+
+  type "$1"
+
+  if [[ "$target_type" != "file" ]]; then
+    return
+  fi
+
+  target="$(type -p "$1")"
+  target_path="$(realpath "$target")"
+  echo -E "$target -> $target_path"
+  dpkg -S "$target_path"
+}
+
+if [[ "$WSL" == "TRUE" ]]; then
+  function open () {
+    windows_path="$(wslpath -w "$1" 2>/dev/null)"
+    if [ $? -ne 0 ]; then return; fi
+    explorer.exe "$windows_path"
+  }
+elif $(hash xdg-open 2>/dev/null); then
+  alias open="xdg-open"
+fi
+
+alias here="open ."
 
 if [ -f ~/key/pillage/bash/functions.sh ]; then
   source ~/key/pillage/bash/functions.sh

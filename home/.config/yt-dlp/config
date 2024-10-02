@@ -1,9 +1,12 @@
---write-subs
 --sub-format best
-#--embed-subs
+--embed-subs
 --embed-thumbnail
---add-metadata
+--embed-chapters
+--embed-metadata
+--embed-info-json
 --xattrs
+--xattr-set-filesize
+#--live-from-start
 --output '%(title).200s - %(uploader)s - %(upload_date)s.%(ext)s'
 --no-overwrites
-
+--no-post-overwrites
