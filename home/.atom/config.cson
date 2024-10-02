@@ -58,7 +58,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1701376268973
+    lastUpdateTimestamp: 1706189912649
   core:
     allowPendingPaneItems: false
     disabledPackages: [
