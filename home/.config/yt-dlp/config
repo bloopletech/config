@@ -10,3 +10,4 @@
 --output '%(title).200s - %(uploader)s - %(upload_date)s.%(ext)s'
 --no-overwrites
 --no-post-overwrites
+--netrc-location ~/.netrc

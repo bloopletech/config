@@ -1,3 +1,0 @@
-[submodule "home/.config/yt-dlp/plugins/yt-dlp-youtube-oauth2"]
-	path = home/.config/yt-dlp/plugins/yt-dlp-youtube-oauth2
-	url = git@github.com:coletdjnz/yt-dlp-youtube-oauth2.git
