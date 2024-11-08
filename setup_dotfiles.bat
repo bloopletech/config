@@ -12,3 +12,6 @@ if not exist ".atom\packages" mkdir .atom\packages
 mklink /J .atom\packages\fuzzy-finder C:\Repos\config\home\.atom\packages\fuzzy-finder
 del AppData\Roaming\ConEmu.xml
 mklink AppData\Roaming\ConEmu.xml C:\Repos\config\home\AppData\Roaming\ConEmu.xml
+del Documents\PowerShell\Profile.ps1
+if not exist ".Documents\PowerShell" mkdir Documents\PowerShell
+mklink Documents\PowerShell\Profile.ps1 C:\Repos\config\home\Documents\PowerShell\Profile.ps1

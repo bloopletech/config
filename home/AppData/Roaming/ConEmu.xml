@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2024-02-02 05:05:09" build="230724">
+		<key name=".Vanilla" modified="2024-09-26 18:25:45" build="230724">
 			<value name="StartType" type="hex" data="00"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -28,7 +28,7 @@
 			<value name="BackColorIdx" type="hex" data="10"/>
 			<value name="PopTextColorIdx" type="hex" data="10"/>
 			<value name="PopBackColorIdx" type="hex" data="10"/>
-			<value name="SingleInstance" type="hex" data="00"/>
+			<value name="SingleInstance" type="hex" data="01"/>
 			<value name="QuakeStyle" type="hex" data="00"/>
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="01"/>
@@ -341,11 +341,11 @@
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="00000520"/>
-			<value name="ConWnd X" type="long" data="-1"/>
-			<value name="ConWnd Y" type="long" data="-8"/>
+			<value name="ConWnd X" type="long" data="7"/>
+			<value name="ConWnd Y" type="long" data="0"/>
 			<value name="LastMonitor" type="string" data="0,0,1920,1040"/>
-			<value name="ConWnd Width" type="dword" data="00000078"/>
-			<value name="ConWnd Height" type="dword" data="00000036"/>
+			<value name="ConWnd Width" type="dword" data="00000077"/>
+			<value name="ConWnd Height" type="dword" data="00000035"/>
 			<value name="16bit Height" type="ulong" data="0"/>
 			<value name="Restore2ActiveMon" type="hex" data="00"/>
 			<value name="RestoreInactive" type="hex" data="00"/>
@@ -548,7 +548,7 @@
 			<value name="MinimizeOnLoseFocus" type="hex" data="00"/>
 			<value name="DisableFarFlashing" type="hex" data="00"/>
 			<value name="DisableAllFlashing" type="hex" data="00"/>
-			<value name="FindText" type="string" data="Private video"/>
+			<value name="FindText" type="string" data="toofast"/>
 			<value name="FindMatchCase" type="hex" data="00"/>
 			<value name="FindMatchWholeWords" type="hex" data="00"/>
 			<value name="FindTransparent" type="hex" data="01"/>
@@ -595,53 +595,25 @@
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
 			<key name="Tasks" modified="2023-09-23 18:08:33" build="230724">
 				<value name="Count" type="long" data="15"/>
-				<key name="Task1" modified="2021-10-19 13:20:51" build="210912">
-					<value name="Name" type="string" data="{Shells::cmd}"/>
-					<value name="Flags" type="dword" data="00000002"/>
-					<value name="Hotkey" type="dword" data="00101154"/>
+				<key name="Task1" modified="2024-07-24 12:34:12" build="230724">
+					<value name="Name" type="string" data="{Bash::bash}"/>
+					<value name="Flags" type="dword" data="00000005"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data='/dir "%CD%"'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data='cmd.exe /k "%ConEmuBaseDir%\CmdInit.cmd"'/>
+					<value name="Cmd1" type="string" data="C:\Windows\System32\bash.exe -new_console:p5"/>
 				</key>
-				<key name="Task2" modified="2018-05-05 01:36:39" build="180503">
-					<value name="Name" type="string" data="{Shells::cmd (Admin)}"/>
-					<value name="Flags" type="dword" data="00000004"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data='cmd.exe /k "%ConEmuBaseDir%\CmdInit.cmd" -new_console:a'/>
-				</key>
-				<key name="Task3" modified="2018-05-05 01:36:39" build="180503">
-					<value name="Name" type="string" data="{Shells::cmd-32}"/>
-					<value name="Flags" type="dword" data="00000004"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data='"%windir%\syswow64\cmd.exe" /k "%ConEmuBaseDir%\CmdInit.cmd"'/>
-				</key>
-				<key name="Task4" modified="2018-05-05 01:36:39" build="180503">
-					<value name="Name" type="string" data="{Shells::cmd 64/32}"/>
-					<value name="Flags" type="dword" data="00000004"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Active" type="long" data="1"/>
-					<value name="Count" type="long" data="2"/>
-					<value name="Cmd1" type="string" data='&gt; "%windir%\system32\cmd.exe" /k ""%ConEmuBaseDir%\CmdInit.cmd" &amp; echo This is Native cmd.exe"'/>
-					<value name="Cmd2" type="string" data='"%windir%\syswow64\cmd.exe" /k ""%ConEmuBaseDir%\CmdInit.cmd" &amp; echo This is 32 bit cmd.exe -new_console:s50V"'/>
-				</key>
-				<key name="Task5" modified="2023-06-15 02:42:34" build="221218">
+				<key name="Task2" modified="2024-09-26 18:26:10" build="230724">
 					<value name="Name" type="string" data="{Shells::PowerShell}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
+					<value name="GuiArgs" type="string" data='/dir "%CD%"'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data="pwsh.exe"/>
 				</key>
-				<key name="Task6" modified="2023-06-15 02:42:34" build="221218">
+				<key name="Task3" modified="2024-07-24 12:34:12" build="230724">
 					<value name="Name" type="string" data="{Shells::PowerShell (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -650,14 +622,42 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data="pwsh.exe -new_console:a"/>
 				</key>
-				<key name="Task7" modified="2021-10-19 13:59:38" build="210912">
-					<value name="Name" type="string" data="{Bash::bash}"/>
-					<value name="Flags" type="dword" data="00000005"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
+				<key name="Task4" modified="2024-07-24 12:34:12" build="230724">
+					<value name="Name" type="string" data="{Shells::cmd}"/>
+					<value name="Flags" type="dword" data="00000002"/>
+					<value name="Hotkey" type="dword" data="00101154"/>
 					<value name="GuiArgs" type="string" data='/dir "%CD%"'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data="C:\Windows\System32\bash.exe -new_console:p5"/>
+					<value name="Cmd1" type="string" data='cmd.exe /k "%ConEmuBaseDir%\CmdInit.cmd"'/>
+				</key>
+				<key name="Task5" modified="2024-07-24 12:34:12" build="230724">
+					<value name="Name" type="string" data="{Shells::cmd (Admin)}"/>
+					<value name="Flags" type="dword" data="00000004"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Active" type="long" data="0"/>
+					<value name="Count" type="long" data="1"/>
+					<value name="Cmd1" type="string" data='cmd.exe /k "%ConEmuBaseDir%\CmdInit.cmd" -new_console:a'/>
+				</key>
+				<key name="Task6" modified="2024-07-24 12:34:12" build="230724">
+					<value name="Name" type="string" data="{Shells::cmd-32}"/>
+					<value name="Flags" type="dword" data="00000004"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Active" type="long" data="0"/>
+					<value name="Count" type="long" data="1"/>
+					<value name="Cmd1" type="string" data='"%windir%\syswow64\cmd.exe" /k "%ConEmuBaseDir%\CmdInit.cmd"'/>
+				</key>
+				<key name="Task7" modified="2024-07-24 12:34:12" build="230724">
+					<value name="Name" type="string" data="{Shells::cmd 64/32}"/>
+					<value name="Flags" type="dword" data="00000004"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Active" type="long" data="1"/>
+					<value name="Count" type="long" data="2"/>
+					<value name="Cmd1" type="string" data='&gt; "%windir%\system32\cmd.exe" /k ""%ConEmuBaseDir%\CmdInit.cmd" &amp; echo This is Native cmd.exe"'/>
+					<value name="Cmd2" type="string" data='"%windir%\syswow64\cmd.exe" /k ""%ConEmuBaseDir%\CmdInit.cmd" &amp; echo This is 32 bit cmd.exe -new_console:s50V"'/>
 				</key>
 				<key name="Task8" modified="2021-10-19 13:33:15" build="210912">
 					<value name="Name" type="string" data="{Bash::Git bash}"/>
@@ -741,9 +741,9 @@
 			<value name="CmdLineHistory" type="multi">
 				<line data="{Shells::PowerShell}"/>
 				<line data="{Shells::cmd}"/>
+				<line data="{Shells::PowerShell (Admin)}"/>
 				<line data="{Shells::cmd (Admin)}"/>
 				<line data="{SDK::VS 2019 x64 tools prompt}"/>
-				<line data="{Shells::PowerShell (Admin)}"/>
 				<line data="{Bash::bash}"/>
 			</value>
 			<value name="AnsiLogCodes" type="hex" data="00"/>
