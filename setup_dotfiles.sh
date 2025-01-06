@@ -2,17 +2,17 @@
 cd ~
 rm .agignore
 ln -nfs ~/key/config/home/.agignore
-rm .atom/config.cson
-ln -nfs ~/key/config/home/.atom/config.cson .atom/config.cson
-rm .atom/keymap.cson
-ln -nfs ~/key/config/home/.atom/keymap.cson .atom/keymap.cson
-rm .atom/packages.cson
-ln -nfs ~/key/config/home/.atom/packages.cson .atom/packages.cson
-rm .atom/styles.less
-ln -nfs ~/key/config/home/.atom/styles.less .atom/styles.less
-rm -r .atom/packages/fuzzy-finder
-mkdir -p .atom/packages
-ln -nfs ~/key/config/home/.atom/packages/fuzzy-finder .atom/packages/fuzzy-finder
+rm .pulsar/config.cson
+ln -nfs ~/key/config/home/.atom/config.cson .pulsar/config.cson
+rm .pulsar/keymap.cson
+ln -nfs ~/key/config/home/.atom/keymap.cson .pulsar/keymap.cson
+rm .pulsar/packages.cson
+ln -nfs ~/key/config/home/.atom/packages.cson .pulsar/packages.cson
+rm .pulsar/styles.less
+ln -nfs ~/key/config/home/.atom/styles.less .pulsar/styles.less
+rm -r .pulsar/packages/fuzzy-finder
+mkdir -p .pulsar/packages
+ln -nfs ~/key/config/home/.atom/packages/fuzzy-finder .pulsar/packages/fuzzy-finder
 rm .bash_profile
 ln -nfs ~/key/config/home/.bash_profile
 rm .bashrc
