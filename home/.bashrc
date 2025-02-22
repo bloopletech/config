@@ -221,6 +221,10 @@ if [ -f ~/key/pillage/bash/functions.sh ]; then
   source ~/key/pillage/bash/functions.sh
 fi
 
+if hash brew 2>/dev/null; then
+  . ~/key/config/scripts/brew_use.sh
+fi
+
 cd .
 
 function __set_ps1_with_git_branch {
