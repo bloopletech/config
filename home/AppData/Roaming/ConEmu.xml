@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2024-09-26 18:25:45" build="230724">
+		<key name=".Vanilla" modified="2025-04-26 19:04:40" build="230724">
 			<value name="StartType" type="hex" data="00"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -548,7 +548,7 @@
 			<value name="MinimizeOnLoseFocus" type="hex" data="00"/>
 			<value name="DisableFarFlashing" type="hex" data="00"/>
 			<value name="DisableAllFlashing" type="hex" data="00"/>
-			<value name="FindText" type="string" data="toofast"/>
+			<value name="FindText" type="string" data="bunny"/>
 			<value name="FindMatchCase" type="hex" data="00"/>
 			<value name="FindMatchWholeWords" type="hex" data="00"/>
 			<value name="FindTransparent" type="hex" data="01"/>
@@ -740,11 +740,11 @@
 			</key>
 			<value name="CmdLineHistory" type="multi">
 				<line data="{Shells::PowerShell}"/>
-				<line data="{Shells::cmd}"/>
 				<line data="{Shells::PowerShell (Admin)}"/>
+				<line data="{Bash::bash}"/>
+				<line data="{Shells::cmd}"/>
 				<line data="{Shells::cmd (Admin)}"/>
 				<line data="{SDK::VS 2019 x64 tools prompt}"/>
-				<line data="{Bash::bash}"/>
 			</value>
 			<value name="AnsiLogCodes" type="hex" data="00"/>
 			<value name="ResetTerminalConfirm" type="hex" data="00"/>
