@@ -7,7 +7,7 @@
 --xattrs
 --xattr-set-filesize
 #--live-from-start
---output '%(title).200s - %(uploader)s - %(upload_date)s.%(ext)s'
+--output '%(title).180B - %(uploader)s - %(upload_date)s.%(ext)s'
 --no-overwrites
 --no-post-overwrites
 --netrc-location ~/.netrc
