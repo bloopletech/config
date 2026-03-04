@@ -58,7 +58,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1745917434138
+    lastUpdateTimestamp: 1772575883950
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -120,7 +120,6 @@
     alwaysOpenExisting: true
     autoReveal: true
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   "vertical-tabs":
     setToRightSide: true
   welcome:
