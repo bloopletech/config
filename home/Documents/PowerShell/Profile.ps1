@@ -30,3 +30,7 @@ function prompt
 
   return $out
 }
+
+New-Alias which get-command
+
+$Env:NODE_OPTIONS='--max-old-space-size=4096'
