@@ -34,3 +34,25 @@ function prompt
 New-Alias which get-command
 
 $Env:NODE_OPTIONS='--max-old-space-size=4096'
+
+function Base64Encode ([string] $Raw)
+{
+    [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($Raw))
+}
+
+function Base64Decode ([string] $Encoded)
+{
+    [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($Encoded))
+}
+
+function Base64DecodeFile ([string] $EncodedFilename)
+{
+	$Encoded = [System.IO.File]::ReadAllText($EncodedFilename)
+    [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($Encoded))
+}
+
+function Base64DecodeFileBinary ([string] $EncodedFilename)
+{
+	$Encoded = [System.IO.File]::ReadAllText($EncodedFilename)
+    [System.Convert]::FromBase64String($Encoded)
+}
