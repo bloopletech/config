@@ -109,6 +109,8 @@
   "git-blame": {}
   linter:
     lintOnChange: false
+  "markdown-preview":
+    useGitHubStyle: true
   metrics:
     userId: "6fa07d2cebcc7fe31aaac4961b00ca5bb25dbd10"
   "one-light-ui":

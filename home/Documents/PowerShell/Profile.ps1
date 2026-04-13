@@ -56,3 +56,23 @@ function Base64DecodeFileBinary ([string] $EncodedFilename)
 	$Encoded = [System.IO.File]::ReadAllText($EncodedFilename)
     [System.Convert]::FromBase64String($Encoded)
 }
+
+function Open([string]$Path)
+{
+  $ResolvedPath = Resolve-Path $Path
+  explorer.exe $ResolvedPath
+}
+
+function Here
+{
+  Open .
+}
+
+function CleanDir
+{
+  if (Test-Path -Path ./* -Include *.sln,*.slnx)
+  {
+    # From https://sachabarbs.wordpress.com/2014/10/24/powershell-to-clean-visual-studio-binobj-folders/
+    Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
+  }
+}
