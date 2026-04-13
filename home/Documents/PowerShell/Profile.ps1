@@ -34,3 +34,14 @@ function prompt
 New-Alias which get-command
 
 $Env:NODE_OPTIONS='--max-old-space-size=4096'
+
+function Open([string]$Path)
+{
+  $ResolvedPath = Resolve-Path $Path
+  explorer.exe $ResolvedPath
+}
+
+function Here
+{
+  Open .
+}
