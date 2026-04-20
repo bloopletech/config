@@ -18,7 +18,7 @@
     "wrench": "^1.5"
   },
   "devDependencies": {
-    "standard": "^10.0.3"
+    "standard": "^17.0.0"
   },
   "standard": {
     "env": {
