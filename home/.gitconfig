@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Brenton \"B-Train\" Fletcher
+	email = i@bloople.net
+  useConfigOnly = true
+[core]
+	editor = 'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin
+[merge]
+	tool = bc
+[mergetool "bc"]
+	path = c:/Program Files/Beyond Compare 4/bcomp.exe
+[clean]
+	requireForce = false
+[push]
+	autoSetupRemote = true
