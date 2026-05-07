@@ -1,3 +1,8 @@
+if (Test-Path "$PSScriptRoot\Work-Environment.ps1")
+{
+    . "$PSScriptRoot\Work-Environment.ps1"
+}
+
 function prompt
 {
   $loc = Get-Location
