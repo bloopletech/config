@@ -1,6 +1,6 @@
-if (Test-Path "$PSScriptRoot\Work-Environment.ps1")
+if (Test-Path "$PSScriptRoot\Profile-Private.ps1")
 {
-    . "$PSScriptRoot\Work-Environment.ps1"
+    . "$PSScriptRoot\Profile-Private.ps1"
 }
 
 function prompt
