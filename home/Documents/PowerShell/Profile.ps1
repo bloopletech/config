@@ -1,15 +1,105 @@
-if (Test-Path "$PSScriptRoot\Work-Environment.ps1")
+if (Test-Path "$PSScriptRoot\Profile-Private.ps1")
 {
-    . "$PSScriptRoot\Work-Environment.ps1"
+    . "$PSScriptRoot\Profile-Private.ps1"
 }
+
+function Get-ParentItem([string] $Name)
+{
+	$Current = Get-Location
+
+	while ($Current)
+	{
+		$Path = Join-Path $Current $Name
+		if (Test-Path $Path)
+		{
+			return $Path
+		}
+
+		$Current = Split-Path $current
+	}
+
+	return $null
+}
+
+function Get-CwdNvmVersion ([boolean] $Warn = $false)
+{
+	$Path = Get-ParentItem ".nvmrc"
+	if ($Path)
+	{
+		return (Get-Content $Path).Trim()
+	}
+
+	$Path = Get-ParentItem "node-version"
+	if ($Path)
+	{
+		return (Get-Content $Path).Trim()
+	}
+
+	if ($Warn)
+	{
+		Write-Warning "No .nvmrc or .node-version file found"
+	}
+
+	return $null
+}
+
+$OriginalNvmExe = Get-Command nvm -CommandType Application -ErrorAction SilentlyContinue
+if ($OriginalNvmExe)
+{
+	Set-Alias nvm-original $OriginalNvmExe.Path
+}
+
+function _NvmWrapper {
+    param(
+        [string]$Argument = $null,
+        [string]$Version = $null
+    )
+
+    if ($Argument -eq "install" -or $Argument -eq "use")
+	{
+		if (!$Version)
+		{
+			$Version = Get-CwdNvmVersion $true
+		}
+
+		if ($Version)
+		{
+			& nvm-original $Argument $Version
+		}
+	}
+    elseif ($Argument)
+	{
+        & nvm-original $Argument
+    }
+	else
+	{
+		& nvm-original
+	}
+}
+
+Set-Alias nvm _NvmWrapper
+
+function _NvmAutoUse
+{
+	$Version = Get-CwdNvmVersion
+	if ($Version)
+	{
+		& nvm-original use $Version
+	}
+}
+
+$OriginalPrompt = Get-Command prompt -CommandType Function
 
 function prompt
 {
+  #_NvmAutoUse
+
   $loc = Get-Location
 
   # Emulate standard PS prompt with location followed by ">"
   $out = "PS $loc> "
-  
+  #$out = & $OriginalPrompt
+
   # Or prettify the prompt by coloring its parts
   # Write-Host -NoNewline -ForegroundColor Cyan "PS "
   # Write-Host -NoNewline -ForegroundColor Yellow $loc
