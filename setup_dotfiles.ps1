@@ -48,7 +48,3 @@ ln-nfs C:\Repos\config\home\AppData\Roaming\ConEmu.xml AppData\Roaming\ConEmu.xm
 mkdir-p Documents\PowerShell
 rm-f Documents\PowerShell\Profile.ps1
 ln-nfs C:\Repos\config\home\Documents\PowerShell\Profile.ps1 Documents\PowerShell\Profile.ps1
-
-mkdir-p AppData\Local\Microsoft\VisualStudio\18.0_46e09f56\Settings
-rm-f AppData\Local\Microsoft\VisualStudio\18.0_46e09f56\Settings\CurrentSettings.vssettings
-ln-nfs C:\Repos\config\home\AppData\Local\Microsoft\VisualStudio\Version\Settings\CurrentSettings.vssettings AppData\Local\Microsoft\VisualStudio\18.0_46e09f56\Settings\CurrentSettings.vssettings
