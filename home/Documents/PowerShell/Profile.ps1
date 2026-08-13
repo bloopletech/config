@@ -69,7 +69,7 @@ function _NvmWrapper {
 	}
     elseif ($Argument)
 	{
-        & nvm-original $Argument
+        & nvm-original $Argument $Version
     }
 	else
 	{
