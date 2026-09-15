@@ -86,6 +86,9 @@ ln -nfs ~/key/config/home/.config/yt-dlp .config/yt-dlp
 rm .config/powershell/profile.ps1
 ln -nfs ~/key/config/home/Documents/PowerShell/Profile.ps1 .config/powershell/profile.ps1
 
+rm -r .local/share/powershell/Modules
+ln -nfs ~/key/config/home/Documents/PowerShell/Modules .local/share/powershell/Modules
+
 rm .local/share/applications/mimeapps.list
 ln -nfs ~/key/config/home/.local/share/applications/mimeapps.list .local/share/applications/mimeapps.list
 

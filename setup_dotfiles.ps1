@@ -48,3 +48,5 @@ ln-nfs C:\Repos\config\home\AppData\Roaming\ConEmu.xml AppData\Roaming\ConEmu.xm
 mkdir-p Documents\PowerShell
 rm-f Documents\PowerShell\Profile.ps1
 ln-nfs C:\Repos\config\home\Documents\PowerShell\Profile.ps1 Documents\PowerShell\Profile.ps1
+rm-f Documents\PowerShell\Modules
+ln-nf C:\Repos\config\home\Documents\PowerShell\Modules Documents\PowerShell\Modules
