@@ -1,0 +1,12 @@
+{
+    "chat.agent.enabled": false,
+    "telemetry.feedback.enabled": false,
+    "telemetry.telemetryLevel": "off",
+    "chat.disableAIFeatures": true,
+    "workbench.startupEditor": "none",
+    "editor.fontSize": 16,
+    "chat.mcp.access": "none",
+    "chat.agent.sandbox.enabled": "on",
+    "chat.agent.sandbox.enabledWindows": "on",
+    "workbench.colorTheme": "Visual Studio Light"
+}
