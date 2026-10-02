@@ -58,7 +58,7 @@
     confirmCompletion: "enter"
     enableAutoActivation: false
   "autoupdate-packages":
-    lastUpdateTimestamp: 1789432746015
+    lastUpdateTimestamp: 1790923885665
   core:
     allowPendingPaneItems: false
     disabledPackages: [
@@ -118,6 +118,9 @@
   "release-notes":
     viewedVersion: "3371252"
   "tab-smart-sort": {}
+  terminal:
+    terminal:
+      shell: "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
   "tree-view":
     alwaysOpenExisting: true
     autoReveal: true
@@ -126,6 +129,7 @@
     setToRightSide: true
   welcome:
     lastViewedChangeLog: "1.115.0"
+    showChangeLog: false
     showOnStartup: false
   whitespace:
     ensureSingleTrailingNewline: false
